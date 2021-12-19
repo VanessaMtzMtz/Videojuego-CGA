@@ -880,11 +880,7 @@ void applicationLoop() {
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f),
 				(float) screenWidth / (float) screenHeight, 0.01f, 100.0f);
 
-		if(modelSelected == 0){
-			axis = glm::axis(glm::quat_cast(modelMatrixSimi));
-			angleTarget = glm::angle(glm::quat_cast(modelMatrixSimi));
-			target = modelMatrixSimi[3];
-		}else if(modelSelected == 1){
+		if(modelSelected == 1){
 			axis = glm::axis(glm::quat_cast(modelMatrixDart));
 			angleTarget = glm::angle(glm::quat_cast(modelMatrixDart));
 			target = modelMatrixDart[3];
