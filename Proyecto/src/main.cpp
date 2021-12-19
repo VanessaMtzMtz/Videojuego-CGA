@@ -93,8 +93,8 @@ Model modelLampPost2;
 // Hierba
 Model modelGrass;
 // Model animate instance
-// Mayow
-Model mayowModelAnimate;
+// Simi
+Model simiModelAnimate;
 // Terrain model instance
 Terrain terrain(-1, -1, 200, 8, "../Textures/heightmap.png");
 
@@ -127,7 +127,7 @@ glm::mat4 modelMatrixHeli = glm::mat4(1.0f);
 glm::mat4 modelMatrixLambo = glm::mat4(1.0);
 glm::mat4 modelMatrixAircraft = glm::mat4(1.0);
 glm::mat4 modelMatrixDart = glm::mat4(1.0f);
-glm::mat4 modelMatrixMayow = glm::mat4(1.0f);
+glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 
 int animationIndex = 1;
 float rotDartHead = 0.0, rotDartLeftArm = 0.0, rotDartLeftHand = 0.0, rotDartRightArm = 0.0, rotDartRightHand = 0.0, rotDartLeftLeg = 0.0, rotDartRightLeg = 0.0;
@@ -302,9 +302,9 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelGrass.loadModel("../models/grass/grassModel.obj");
 	modelGrass.setShader(&shaderMulLighting);
 
-	//Mayow
-	mayowModelAnimate.loadModel("../models/mayow/personaje2.fbx");
-	mayowModelAnimate.setShader(&shaderMulLighting);
+	//Simi
+	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
+	simiModelAnimate.setShader(&shaderMulLighting);
 
 	camera->setPosition(glm::vec3(0.0, 0.0, 10.0));
 	camera->setDistanceFromTarget(distanceFromTarget);
@@ -698,7 +698,7 @@ void destroy() {
 	modelGrass.destroy();
 
 	// Custom objects animate
-	mayowModelAnimate.destroy();
+	simiModelAnimate.destroy();
 
 	// Textures Delete
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -815,18 +815,18 @@ bool processInput(bool continueApplication) {
 		availableSave = true;
 
 	
-
+	//Simi walking
 	if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
-		modelMatrixMayow = glm::rotate(modelMatrixMayow, glm::radians(1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(1.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
-		modelMatrixMayow = glm::rotate(modelMatrixMayow, glm::radians(-1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixMayow = glm::translate(modelMatrixMayow, glm::vec3(0, 0, 0.02));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-		modelMatrixMayow = glm::translate(modelMatrixMayow, glm::vec3(0, 0, -0.02));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.02));
 		animationIndex = 0;
 	}
 
@@ -857,8 +857,7 @@ void applicationLoop() {
 
 	modelMatrixLambo = glm::translate(modelMatrixLambo, glm::vec3(23.0, 0.0, 0.0));
 
-	modelMatrixMayow = glm::translate(modelMatrixMayow, glm::vec3(13.0f, 0.05f, -5.0f));
-	modelMatrixMayow = glm::rotate(modelMatrixMayow, glm::radians(-90.0f), glm::vec3(0, 1, 0));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(13.0f, 0.05f, -5.0f));
 
 
 	lastTime = TimeManager::Instance().GetTime();
@@ -887,9 +886,9 @@ void applicationLoop() {
 			target = modelMatrixDart[3];
 		}
 		else{
-			axis = glm::axis(glm::quat_cast(modelMatrixMayow));
-			angleTarget = glm::angle(glm::quat_cast(modelMatrixMayow));
-			target = modelMatrixMayow[3];
+			axis = glm::axis(glm::quat_cast(modelMatrixSimi));
+			angleTarget = glm::angle(glm::quat_cast(modelMatrixSimi));
+			target = modelMatrixSimi[3];
 		}
 
 		if(std::isnan(angleTarget))
@@ -1101,17 +1100,18 @@ void applicationLoop() {
 		/*******************************************
 		 * Custom Anim objects obj
 		 *******************************************/
-		modelMatrixMayow[3][1] = -GRAVITY * tmv * tmv + 3.5 * tmv + terrain.getHeightTerrain(modelMatrixMayow[3][0], modelMatrixMayow[3][2]);
+		modelMatrixSimi[3][1] = -GRAVITY * tmv * tmv + 3.5 * tmv + terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		tmv = currTime - startTimeJump;
-		if(modelMatrixMayow[3][1] < terrain.getHeightTerrain(modelMatrixMayow[3][0], modelMatrixMayow[3][2])){
+		if(modelMatrixSimi[3][1] < terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2])){
 			isJump = false;
-			modelMatrixMayow[3][1] = terrain.getHeightTerrain(modelMatrixMayow[3][0], modelMatrixMayow[3][2]);
+			modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		}
-		//modelMatrixMayow[3][1] = terrain.getHeightTerrain(modelMatrixMayow[3][0], modelMatrixMayow[3][2]);
-		glm::mat4 modelMatrixMayowBody = glm::mat4(modelMatrixMayow);
-		modelMatrixMayowBody = glm::scale(modelMatrixMayowBody, glm::vec3(0.021, 0.021, 0.021));
-		mayowModelAnimate.setAnimationIndex(animationIndex);
-		mayowModelAnimate.render(modelMatrixMayowBody);
+		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
+		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
+		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(1.5, 1.5, 1.5));
+		simiModelAnimate.setAnimationIndex(animationIndex);
+		simiModelAnimate.render(modelMatrixSimiBody);
+		simiModelAnimate.setAnimationIndex(1);
 
 		/*******************************************
 		 * Skybox
@@ -1256,21 +1256,21 @@ void applicationLoop() {
 			std::get<0>(collidersOBB.find("lamp2-" + std::to_string(i))->second) = lampCollider;
 		}
 
-		// Collider de mayow
-		AbstractModel::OBB mayowCollider;
-		glm::mat4 modelmatrixColliderMayow = glm::mat4(modelMatrixMayow);
-		modelmatrixColliderMayow = glm::rotate(modelmatrixColliderMayow,
+		// Collider de simi
+		AbstractModel::OBB simiCollider;
+		glm::mat4 modelmatrixColliderSimi = glm::mat4(modelMatrixSimi);
+		modelmatrixColliderSimi = glm::rotate(modelmatrixColliderSimi,
 				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
-		mayowCollider.u = glm::quat_cast(modelmatrixColliderMayow);
-		modelmatrixColliderMayow = glm::scale(modelmatrixColliderMayow, glm::vec3(0.021, 0.021, 0.021));
-		modelmatrixColliderMayow = glm::translate(modelmatrixColliderMayow,
-				glm::vec3(mayowModelAnimate.getObb().c.x,
-						mayowModelAnimate.getObb().c.y,
-						mayowModelAnimate.getObb().c.z));
-		mayowCollider.e = mayowModelAnimate.getObb().e * glm::vec3(0.021, 0.021, 0.021) * glm::vec3(0.787401574, 0.787401574, 0.787401574);
-		mayowCollider.c = glm::vec3(modelmatrixColliderMayow[3]);
-		addOrUpdateColliders(collidersOBB, "mayow", mayowCollider, modelMatrixMayow);
+		simiCollider.u = glm::quat_cast(modelmatrixColliderSimi);
+		modelmatrixColliderSimi = glm::scale(modelmatrixColliderSimi, glm::vec3(1.5, 1.5, 1.5));
+		modelmatrixColliderSimi = glm::translate(modelmatrixColliderSimi,
+				glm::vec3(simiModelAnimate.getObb().c.x,
+						simiModelAnimate.getObb().c.y - 0.5f,
+						simiModelAnimate.getObb().c.z + 0.53f));
+		simiCollider.e = simiModelAnimate.getObb().e * glm::vec3(1.0, 1.0, 3.4);
+		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
+		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
 		/*******************************************
 		 * Render de colliders
@@ -1297,18 +1297,18 @@ void applicationLoop() {
 		}
 
 		// Esto es para ilustrar la transformacion inversa de los coliders
-		/*glm::vec3 cinv = glm::inverse(mayowCollider.u) * glm::vec4(rockCollider.c, 1.0);
+		/*glm::vec3 cinv = glm::inverse(simiCollider.u) * glm::vec4(rockCollider.c, 1.0);
 		glm::mat4 invColliderS = glm::mat4(1.0);
 		invColliderS = glm::translate(invColliderS, cinv);
-		invColliderS =  invColliderS * glm::mat4(mayowCollider.u);
+		invColliderS =  invColliderS * glm::mat4(simiCollider.u);
 		invColliderS = glm::scale(invColliderS, glm::vec3(rockCollider.ratio * 2.0, rockCollider.ratio * 2.0, rockCollider.ratio * 2.0));
 		sphereCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
 		sphereCollider.enableWireMode();
 		sphereCollider.render(invColliderS);
-		glm::vec3 cinv2 = glm::inverse(mayowCollider.u) * glm::vec4(mayowCollider.c, 1.0);
+		glm::vec3 cinv2 = glm::inverse(simiCollider.u) * glm::vec4(simiCollider.c, 1.0);
 		glm::mat4 invColliderB = glm::mat4(1.0);
 		invColliderB = glm::translate(invColliderB, cinv2);
-		invColliderB = glm::scale(invColliderB, mayowCollider.e * 2.0f);
+		invColliderB = glm::scale(invColliderB, simiCollider.e * 2.0f);
 		boxCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
 		boxCollider.enableWireMode();
 		boxCollider.render(invColliderB);
@@ -1391,8 +1391,8 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					if (jt->first.compare("mayow") == 0)
-						modelMatrixMayow = std::get<1>(jt->second);
+					if (jt->first.compare("simi") == 0)
+						modelMatrixSimi = std::get<1>(jt->second);
 					if (jt->first.compare("dart") == 0)
 						modelMatrixDart = std::get<1>(jt->second);
 				}
