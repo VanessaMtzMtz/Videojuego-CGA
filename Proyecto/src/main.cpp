@@ -75,13 +75,15 @@ Model modelLamp2;
 Model modelLampPost2;
 // Hierba
 Model modelGrass;
+//Edificios y casas
+Model modelEdificio1;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
 // Terrain model instance
 Terrain terrain(-1, -1, 200, 8, "../Textures/heightmap.png");
 
-GLuint textureCespedID, textureWallID, textureWindowID, textureHighwayID, textureLandingPadID;
+GLuint textureCespedID;
 GLuint textureTerrainBackgroundID, textureTerrainRID, textureTerrainGID, textureTerrainBID, textureTerrainBlendMapID;
 GLuint skyboxTextureID;
 
@@ -623,10 +625,11 @@ void applicationLoop() {
 
 	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(13.0f, 0.05f, -5.0f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-67.97f, 0.05f, 95.8f));
+	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 
-	lastTime = TimeManager::Instance().GetTime();
+	lastTime = TimeManager::Instance().GetTime(); 
 
 	while (psi) {
 		currTime = TimeManager::Instance().GetTime();
@@ -1133,6 +1136,7 @@ void applicationLoop() {
 				else {
 					if (jt->first.compare("simi") == 0)
 						modelMatrixSimi = std::get<1>(jt->second);
+					
 				}
 			}
 		}
@@ -1150,7 +1154,7 @@ void applicationLoop() {
 }
 
 int main(int argc, char **argv) {
-	init(800, 700, "Window GLFW", false);
+	init(800, 700, "Videojuego COVID-19", false);
 	applicationLoop();
 	destroy();
 	return 1;
