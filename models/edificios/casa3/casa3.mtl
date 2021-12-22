@@ -1,0 +1,201 @@
+# Blender MTL File: 'None'
+# Material Count: 17
+
+newmtl chimney_pot_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd abandoned_cottage_chimney_pot_BaseColor.png
+
+newmtl chimney_stack_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_chimney_box_Normal.png
+map_Kd abandoned_cottage_chimney_box_BaseColor.png
+
+newmtl chimneypot_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 0.009600 0.001300 0.001600
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl door.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_door_Normal.png
+map_Kd abandoned_cottage_door_BaseColor.png
+
+newmtl door_beams_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_doorbeams_Normal.png
+map_Kd abandoned_cottage_doorbeams_BaseColor.png
+
+newmtl door_handle_mat.001
+Ns 56.806129
+Ka 0.500000 0.500000 0.500000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump abandoned_cottage_doorknob_Normal.png
+map_Kd abandoned_cottage_doorknob_BaseColor.png
+
+newmtl flat_roof_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_flat_parts_roof_Normal.png
+map_Kd abandoned_cottage_flat_parts_roof_BaseColor.png
+
+newmtl glass_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.805031
+illum 9
+map_Bump abandoned_cottage_boarded_windows_Normal.png
+map_Kd abandoned_cottage_boarded_windows_BaseColor.png
+
+newmtl hori_sup_beams_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_hori_beams_Normal.png
+map_Kd abandoned_cottage_hori_beams_BaseColor.png
+
+newmtl main_roof_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_main_roof_tiles_Normal.png
+map_Kd abandoned_cottage_main_roof_tiles_BaseColor.png
+
+newmtl plaster_insert_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 0.439800 0.128500 0.017200
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl sec_roof_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_lower_roof_tiles_Normal.png
+map_Kd abandoned_cottage_lower_roof_tiles_BaseColor.png
+
+newmtl underneath_roof1_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_underneath_lowerroof_Normal.png
+map_Kd abandoned_cottage_underneath_lowerroof_BaseColor.png
+
+newmtl wall_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -bm 0.000000 abandoned_cottage_brickwall_Normal.png
+map_Kd abandoned_cottage_brickwall_BaseColor.png
+
+newmtl window_frame_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_window_fram_wood_Normal.png
+map_Kd abandoned_cottage_window_fram_wood_BaseColor.png
+
+newmtl window_mantles_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_window_conc_surround_Normal.png
+map_Kd abandoned_cottage_window_conc_surround_BaseColor.png
+
+newmtl window_sill_mat.001
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump abandoned_cottage_underneathwindow_Normal.png
+map_Kd abandoned_cottage_underneathwindow_BaseColor.png

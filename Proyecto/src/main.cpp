@@ -76,7 +76,15 @@ Model modelLampPost2;
 // Hierba
 Model modelGrass;
 //Edificios y casas
-Model modelEdificio1;
+Model modelEdi1;
+Model modelEdi2;
+Model modelEdi3;
+Model modelEdi4;
+Model modelEdi5;
+Model modelEdi6;
+Model modelEdi7;
+Model modelEdi8;
+Model modelEdi9;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
@@ -111,6 +119,15 @@ glm::mat4 matrixModelRock = glm::mat4(1.0);
 glm::mat4 modelMatrixHeli = glm::mat4(1.0f);
 glm::mat4 modelMatrixAircraft = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi3 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi4 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi5 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi6 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi7 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi8 = glm::mat4(1.0f);
+glm::mat4 modelMatrixEdi9 = glm::mat4(1.0f);
 
 int animationIndex = 1;
 int modelSelected = 2;
@@ -124,10 +141,6 @@ bool record = false;
 
 // Var animate helicopter
 float rotHelHelY = 0.0;
-
-// Var animate lambo dor
-int stateDoor = 0;
-float dorRotCount = 0.0;
 
 // Lamps positions
 std::vector<glm::vec3> lamp1Position = { glm::vec3(-7.03, 0, -19.14), glm::vec3(
@@ -267,6 +280,26 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//Grass
 	modelGrass.loadModel("../models/grass/grassModel.obj");
 	modelGrass.setShader(&shaderMulLighting);
+
+	//Edificios
+	modelEdi1.loadModel("../models/edificios/Genova/Genova.obj");
+	modelEdi1.setShader(&shaderMulLighting);
+	modelEdi2.loadModel("../models/edificios/Departamentos/Departamentos.obj");
+	modelEdi2.setShader(&shaderMulLighting);
+	modelEdi3.loadModel("../models/edificios/Departamentos2/Departamentos2.obj");
+	modelEdi3.setShader(&shaderMulLighting);
+	modelEdi4.loadModel("../models/edificios/EdificioC/EdificioC.obj");
+	modelEdi4.setShader(&shaderMulLighting);
+	modelEdi5.loadModel("../models/edificios/Kiosco/Kiosko.obj");
+	modelEdi5.setShader(&shaderMulLighting);
+	modelEdi6.loadModel("../models/edificios/VeneciaMod1/Venecia1.obj");
+	modelEdi6.setShader(&shaderMulLighting);
+	modelEdi7.loadModel("../models/edificios/casa/simple_house/house.obj");
+	modelEdi7.setShader(&shaderMulLighting);
+	modelEdi8.loadModel("../models/edificios/casa2/casa2.obj");
+	modelEdi8.setShader(&shaderMulLighting);
+	modelEdi9.loadModel("../models/edificios/casa3/casa3.obj");
+	modelEdi9.setShader(&shaderMulLighting);
 
 	//Simi
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
@@ -486,6 +519,15 @@ void destroy() {
 
 	// Terrains objects Delete
 	terrain.destroy();
+	modelEdi1.destroy(); 
+	modelEdi2.destroy();
+	modelEdi3.destroy();
+	modelEdi4.destroy();
+	modelEdi5.destroy();
+	modelEdi6.destroy();
+	modelEdi7.destroy();
+	modelEdi8.destroy();
+	modelEdi9.destroy();
 
 	// Custom objects Delete
 	modelAircraft.destroy();
@@ -583,8 +625,6 @@ bool processInput(bool continueApplication) {
 	else if(glfwGetKey(window, GLFW_KEY_TAB) == GLFW_RELEASE)
 		enableCountSelected = true;
 
-	// Guardar key frames
-	
 	//Simi walking
 	if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
 		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(1.0f), glm::vec3(0, 1, 0));
@@ -625,9 +665,18 @@ void applicationLoop() {
 
 	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-67.97f, 0.05f, 95.8f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-62.7f, 0.0f, -21.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
+	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-90.3f, 0.0f, 72.7f));
+	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(19.4f, 0.0f, -58.7f));
+	modelMatrixEdi3 = glm::translate(modelMatrixEdi3, glm::vec3(19.4f, 0.0f, -12.4f));
+	modelMatrixEdi4 = glm::translate(modelMatrixEdi4, glm::vec3(86.4f, 0.0f, 77.0f));
+	modelMatrixEdi5 = glm::translate(modelMatrixEdi5, glm::vec3(-47.0f, 0.0f, 58.5f));
+	modelMatrixEdi6 = glm::translate(modelMatrixEdi6, glm::vec3(-75.5f, 0.0f, -93.8f));
+	modelMatrixEdi7 = glm::translate(modelMatrixEdi7, glm::vec3(-91.3f, 0.0f, -24.1f));
+	modelMatrixEdi8 = glm::translate(modelMatrixEdi8, glm::vec3(-91.3f, 0.0f, 3.2f));
+	modelMatrixEdi9 = glm::translate(modelMatrixEdi9, glm::vec3(-45.0f, 0.0f,-30.9f));
 
 	lastTime = TimeManager::Instance().GetTime(); 
 
@@ -829,6 +878,26 @@ void applicationLoop() {
 		//Rock render
 		matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
 		modelRock.render(matrixModelRock);
+		//Edificios
+		modelMatrixEdi1[3][1] = terrain.getHeightTerrain(modelMatrixEdi1[3][0], modelMatrixEdi1[3][2]);
+		modelEdi1.render(modelMatrixEdi1);
+		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
+		modelEdi2.render(modelMatrixEdi2); 
+		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
+		modelEdi3.render(modelMatrixEdi3);
+		modelMatrixEdi4[3][1] = terrain.getHeightTerrain(modelMatrixEdi4[3][0], modelMatrixEdi4[3][2]);
+		modelEdi4.render(modelMatrixEdi4);
+		modelMatrixEdi5[3][1] = terrain.getHeightTerrain(modelMatrixEdi5[3][0], modelMatrixEdi5[3][2]);
+		modelEdi5.render(modelMatrixEdi5);
+		modelMatrixEdi6[3][1] = terrain.getHeightTerrain(modelMatrixEdi6[3][0], modelMatrixEdi6[3][2]);
+		modelEdi6.render(modelMatrixEdi6);
+		modelMatrixEdi7[3][1] = terrain.getHeightTerrain(modelMatrixEdi7[3][0], modelMatrixEdi7[3][2]);
+		modelEdi7.render(modelMatrixEdi7);
+		modelMatrixEdi8[3][1] = terrain.getHeightTerrain(modelMatrixEdi8[3][0], modelMatrixEdi8[3][2]);
+		modelEdi8.render(modelMatrixEdi8);
+		modelMatrixEdi9[3][1] = terrain.getHeightTerrain(modelMatrixEdi9[3][0], modelMatrixEdi9[3][2]);
+		modelEdi9.render(modelMatrixEdi9);
+
 		// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
 
@@ -872,7 +941,7 @@ void applicationLoop() {
 		}
 		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
-		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(1.5, 1.5, 1.5));
+		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(1.5f, 1.5f, 1.5f));
 		simiModelAnimate.setAnimationIndex(animationIndex);
 		simiModelAnimate.render(modelMatrixSimiBody);
 		simiModelAnimate.setAnimationIndex(1);
