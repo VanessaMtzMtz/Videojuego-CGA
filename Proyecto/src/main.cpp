@@ -282,7 +282,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelGrass.setShader(&shaderMulLighting);
 
 	//Edificios
-	modelEdi1.loadModel("../models/edificios/Genova/Genova.obj");
+	modelEdi1.loadModel("../models/edificios/ladoA.obj");
 	modelEdi1.setShader(&shaderMulLighting);
 	modelEdi2.loadModel("../models/edificios/Departamentos/Departamentos.obj");
 	modelEdi2.setShader(&shaderMulLighting);
@@ -665,10 +665,10 @@ void applicationLoop() {
 
 	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-62.7f, 0.0f, -21.7f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
-	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-90.3f, 0.0f, 72.7f));
+	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
 	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(19.4f, 0.0f, -58.7f));
 	modelMatrixEdi3 = glm::translate(modelMatrixEdi3, glm::vec3(19.4f, 0.0f, -12.4f));
 	modelMatrixEdi4 = glm::translate(modelMatrixEdi4, glm::vec3(86.4f, 0.0f, 77.0f));
@@ -881,7 +881,7 @@ void applicationLoop() {
 		//Edificios
 		modelMatrixEdi1[3][1] = terrain.getHeightTerrain(modelMatrixEdi1[3][0], modelMatrixEdi1[3][2]);
 		modelEdi1.render(modelMatrixEdi1);
-		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
+		/*modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
 		modelEdi2.render(modelMatrixEdi2); 
 		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
 		modelEdi3.render(modelMatrixEdi3);
@@ -896,7 +896,7 @@ void applicationLoop() {
 		modelMatrixEdi8[3][1] = terrain.getHeightTerrain(modelMatrixEdi8[3][0], modelMatrixEdi8[3][2]);
 		modelEdi8.render(modelMatrixEdi8);
 		modelMatrixEdi9[3][1] = terrain.getHeightTerrain(modelMatrixEdi9[3][0], modelMatrixEdi9[3][2]);
-		modelEdi9.render(modelMatrixEdi9);
+		modelEdi9.render(modelMatrixEdi9);*/
 
 		// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
