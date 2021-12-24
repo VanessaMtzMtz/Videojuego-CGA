@@ -82,9 +82,6 @@ Model modelEdi3;
 Model modelEdi4;
 Model modelEdi5;
 Model modelEdi6;
-Model modelEdi7;
-Model modelEdi8;
-Model modelEdi9;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
@@ -125,9 +122,6 @@ glm::mat4 modelMatrixEdi3 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi4 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi5 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi6 = glm::mat4(1.0f);
-glm::mat4 modelMatrixEdi7 = glm::mat4(1.0f);
-glm::mat4 modelMatrixEdi8 = glm::mat4(1.0f);
-glm::mat4 modelMatrixEdi9 = glm::mat4(1.0f);
 
 int animationIndex = 1;
 int modelSelected = 2;
@@ -284,22 +278,16 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//Edificios
 	modelEdi1.loadModel("../models/edificios/ladoA.obj");
 	modelEdi1.setShader(&shaderMulLighting);
-	modelEdi2.loadModel("../models/edificios/Departamentos/Departamentos.obj");
+	modelEdi2.loadModel("../models/edificios/ladoB.obj");
 	modelEdi2.setShader(&shaderMulLighting);
-	modelEdi3.loadModel("../models/edificios/Departamentos2/Departamentos2.obj");
+	modelEdi3.loadModel("../models/edificios/ladoC.obj");
 	modelEdi3.setShader(&shaderMulLighting);
-	modelEdi4.loadModel("../models/edificios/EdificioC/EdificioC.obj");
+	modelEdi4.loadModel("../models/edificios/ladoD.obj");
 	modelEdi4.setShader(&shaderMulLighting);
 	modelEdi5.loadModel("../models/edificios/Kiosco/Kiosko.obj");
 	modelEdi5.setShader(&shaderMulLighting);
-	modelEdi6.loadModel("../models/edificios/VeneciaMod1/Venecia1.obj");
+	modelEdi6.loadModel("../models/edificios/ladoE.obj");
 	modelEdi6.setShader(&shaderMulLighting);
-	modelEdi7.loadModel("../models/edificios/casa/simple_house/house.obj");
-	modelEdi7.setShader(&shaderMulLighting);
-	modelEdi8.loadModel("../models/edificios/casa2/casa2.obj");
-	modelEdi8.setShader(&shaderMulLighting);
-	modelEdi9.loadModel("../models/edificios/casa3/casa3.obj");
-	modelEdi9.setShader(&shaderMulLighting);
 
 	//Simi
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
@@ -524,10 +512,6 @@ void destroy() {
 	modelEdi3.destroy();
 	modelEdi4.destroy();
 	modelEdi5.destroy();
-	modelEdi6.destroy();
-	modelEdi7.destroy();
-	modelEdi8.destroy();
-	modelEdi9.destroy();
 
 	// Custom objects Delete
 	modelAircraft.destroy();
@@ -633,7 +617,8 @@ bool processInput(bool continueApplication) {
 		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.1));
+		//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.02));
@@ -669,14 +654,11 @@ void applicationLoop() {
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
-	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(19.4f, 0.0f, -58.7f));
-	modelMatrixEdi3 = glm::translate(modelMatrixEdi3, glm::vec3(19.4f, 0.0f, -12.4f));
-	modelMatrixEdi4 = glm::translate(modelMatrixEdi4, glm::vec3(86.4f, 0.0f, 77.0f));
-	modelMatrixEdi5 = glm::translate(modelMatrixEdi5, glm::vec3(-47.0f, 0.0f, 58.5f));
-	modelMatrixEdi6 = glm::translate(modelMatrixEdi6, glm::vec3(-75.5f, 0.0f, -93.8f));
-	modelMatrixEdi7 = glm::translate(modelMatrixEdi7, glm::vec3(-91.3f, 0.0f, -24.1f));
-	modelMatrixEdi8 = glm::translate(modelMatrixEdi8, glm::vec3(-91.3f, 0.0f, 3.2f));
-	modelMatrixEdi9 = glm::translate(modelMatrixEdi9, glm::vec3(-45.0f, 0.0f,-30.9f));
+	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(-82.7f, 0.0f, 78.8f));
+	modelMatrixEdi3 = glm::translate(modelMatrixEdi3, glm::vec3(-82.7f, 0.0f, 75.0f));
+	modelMatrixEdi4 = glm::translate(modelMatrixEdi4, glm::vec3(-82.7f, 0.0f, 78.8f));
+	modelMatrixEdi5 = glm::translate(modelMatrixEdi5, glm::vec3(-50.0f, 0.0f, 56.5f));
+	modelMatrixEdi6 = glm::translate(modelMatrixEdi6, glm::vec3(-82.7f, 0.0f, 78.8f));
 
 	lastTime = TimeManager::Instance().GetTime(); 
 
@@ -881,7 +863,7 @@ void applicationLoop() {
 		//Edificios
 		modelMatrixEdi1[3][1] = terrain.getHeightTerrain(modelMatrixEdi1[3][0], modelMatrixEdi1[3][2]);
 		modelEdi1.render(modelMatrixEdi1);
-		/*modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
+		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
 		modelEdi2.render(modelMatrixEdi2); 
 		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
 		modelEdi3.render(modelMatrixEdi3);
@@ -891,12 +873,6 @@ void applicationLoop() {
 		modelEdi5.render(modelMatrixEdi5);
 		modelMatrixEdi6[3][1] = terrain.getHeightTerrain(modelMatrixEdi6[3][0], modelMatrixEdi6[3][2]);
 		modelEdi6.render(modelMatrixEdi6);
-		modelMatrixEdi7[3][1] = terrain.getHeightTerrain(modelMatrixEdi7[3][0], modelMatrixEdi7[3][2]);
-		modelEdi7.render(modelMatrixEdi7);
-		modelMatrixEdi8[3][1] = terrain.getHeightTerrain(modelMatrixEdi8[3][0], modelMatrixEdi8[3][2]);
-		modelEdi8.render(modelMatrixEdi8);
-		modelMatrixEdi9[3][1] = terrain.getHeightTerrain(modelMatrixEdi9[3][0], modelMatrixEdi9[3][2]);
-		modelEdi9.render(modelMatrixEdi9);*/
 
 		// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
 		glActiveTexture(GL_TEXTURE0);
