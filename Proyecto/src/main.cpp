@@ -23,6 +23,9 @@
 #include "Headers/FirstPersonCamera.h"
 #include "Headers/ThirdPersonCamera.h"
 
+//Font rendering
+#include "Headers/FontTypeRendering.h"
+
 //GLM include
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
@@ -104,6 +107,9 @@ Terrain terrain(-1, -1, 200, 8, "../Textures/heightmap.png");
 GLuint textureCespedID, textureWallID, textureWindowID, textureHighwayID, textureLandingPadID;
 GLuint textureTerrainBackgroundID, textureTerrainRID, textureTerrainGID, textureTerrainBID, textureTerrainBlendMapID;
 GLuint skyboxTextureID;
+
+// Modelo para el render del texto
+FontTypeRendering::FontTypeRendering *modelText;
 
 GLenum types[6] = {
 GL_TEXTURE_CUBE_MAP_POSITIVE_X,
@@ -537,6 +543,12 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		std::cout << "Failed to load texture" << std::endl;
 	// Libera la memoria de la textura
 	textureTerrainBlendMap.freeImage(bitmap);
+
+	/******************************************
+	*Se inicializa el modelo de FontTypeRendering para dibujar texto
+	*******************************************/
+	modelText = new FontTypeRendering::FontTypeRendering(screenWidth, screenHeight);
+	modelText -> Initialize();
 
 	/*******************************************
 	 * OpenAL init
@@ -1372,6 +1384,20 @@ void applicationLoop() {
 			}
 			break;
 		}
+
+		/*****************************
+		* Configuracion del texto
+		******************************/
+
+		glEnable(GL_BLEND);
+			/********************
+			 * Texto
+			 * Coordenadas
+			 * Tamaño
+			 * Color (r,g,b)
+			 *******************/
+		modelText -> render("Vida:" , -1, 0, 20, 1.0, 1.0, 1.0);
+		glDisable(GL_BLEND);
 
 		glfwSwapBuffers(window);
 
