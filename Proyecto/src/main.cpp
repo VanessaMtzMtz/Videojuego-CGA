@@ -154,6 +154,7 @@ float rotHelHelY = 0.0;
 
 // Var animate lambo dor
 int stateDoor = 0;
+int stateSimi = 0;
 float dorRotCount = 0.0;
 
 // Lamps positions
@@ -1355,6 +1356,7 @@ void applicationLoop() {
 				else {
 					if (jt->first.compare("simi") == 0)
 						modelMatrixSimi = std::get<1>(jt->second);
+						stateSimi += 1;
 					if (jt->first.compare("dart") == 0)
 						modelMatrixDart = std::get<1>(jt->second);
 				}
@@ -1388,24 +1390,43 @@ void applicationLoop() {
 		/*****************************
 		* Configuracion del texto
 		******************************/
-		switch(stateDoor){
-		case 0:
+		if (stateSimi >= 0 && stateSimi < 50){
 			glEnable(GL_BLEND);
-			/********************
-			 * Texto
-			 * Coordenadas
-			 * Tamaño
-			 * Color (r,g,b)
-			 *******************/
-			modelText -> render("Vida: 100%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
-			glDisable(GL_BLEND);
-			break;
-		case 1:
-			glEnable(GL_BLEND);
-			modelText -> render("Vida: 0%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
-			glDisable(GL_BLEND);
-			break;
+				/********************
+				 * Texto
+				 * Coordenadas
+				 * Tamaño
+				 * Color (r,g,b)
+				 *******************/
+				modelText -> render("Vida: 100%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+				glDisable(GL_BLEND);
 		}
+		else if (stateSimi >= 50 && stateSimi < 100){
+			glEnable(GL_BLEND);
+			modelText -> render("Vida: 75%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else if (stateSimi >= 100 && stateSimi < 150){
+			glEnable(GL_BLEND);
+			modelText -> render("Vida: 50%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else if (stateSimi >= 150 && stateSimi < 200){
+			glEnable(GL_BLEND);
+			modelText -> render("Vida: 25%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else if (stateSimi >= 200 && stateSimi < 250){
+			glEnable(GL_BLEND);
+			modelText -> render("El Dr. Simi murio" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else{
+			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(13.0f, 0.05f, -5.0f));
+			stateSimi = 0;
+		}
+		
+				
 		
 
 		glfwSwapBuffers(window);
