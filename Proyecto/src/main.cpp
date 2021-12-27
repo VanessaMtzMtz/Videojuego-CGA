@@ -1388,16 +1388,25 @@ void applicationLoop() {
 		/*****************************
 		* Configuracion del texto
 		******************************/
-
-		glEnable(GL_BLEND);
+		switch(stateDoor){
+		case 0:
+			glEnable(GL_BLEND);
 			/********************
 			 * Texto
 			 * Coordenadas
 			 * Tamaño
 			 * Color (r,g,b)
 			 *******************/
-		modelText -> render("Vida:" , -0.2, -0.9, 50, 1.0, 1.0, 0.0);
-		glDisable(GL_BLEND);
+			modelText -> render("Vida: 100%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+			break;
+		case 1:
+			glEnable(GL_BLEND);
+			modelText -> render("Vida: 0%" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+			break;
+		}
+		
 
 		glfwSwapBuffers(window);
 
