@@ -1396,7 +1396,7 @@ void applicationLoop() {
 			 * Tamaño
 			 * Color (r,g,b)
 			 *******************/
-		modelText -> render("Vida:" , -1, 0, 20, 1.0, 1.0, 1.0);
+		modelText -> render("Vida:" , -0.2, -0.9, 50, 1.0, 1.0, 0.0);
 		glDisable(GL_BLEND);
 
 		glfwSwapBuffers(window);
