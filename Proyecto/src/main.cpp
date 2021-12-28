@@ -1305,8 +1305,6 @@ void applicationLoop() {
 					if (jt->first.compare("simi") == 0)
 						modelMatrixSimi = std::get<1>(jt->second);
 						stateSimi += 1;
-					if (jt->first.compare("dart") == 0)
-						modelMatrixDart = std::get<1>(jt->second);
 				}
 			}
 		}
@@ -1364,15 +1362,6 @@ void applicationLoop() {
 		/****************************+
 		 * Open AL sound data
 		 */
-		source0Pos[0] = modelMatrixLambo[3].x;
-		source0Pos[1] = modelMatrixLambo[3].y;
-		source0Pos[2] = modelMatrixLambo[3].z;
-		alSourcefv(source[0], AL_POSITION, source0Pos);
-
-		source2Pos[0] = modelMatrixDart[3].x;
-		source2Pos[1] = modelMatrixDart[3].y;
-		source2Pos[2] = modelMatrixDart[3].z;
-		alSourcefv(source[2], AL_POSITION, source2Pos);
 
 		// Listener for the Thris person camera
 		listenerPos[0] = modelMatrixSimi[3].x;
