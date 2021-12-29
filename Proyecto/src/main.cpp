@@ -72,7 +72,6 @@ Sphere sphereCollider(10, 10);
 
 // Models complex instances
 Model modelRock;
-Model modelAircraft;
 // Lamps
 Model modelLamp1;
 Model modelLamp2;
@@ -120,7 +119,6 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
-glm::mat4 modelMatrixAircraft = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
@@ -132,12 +130,6 @@ glm::mat4 modelMatrixEdi6 = glm::mat4(1.0f);
 int animationIndex = 1;
 int modelSelected = 2;
 bool enableCountSelected = true;
-
-// Variables to animations keyframes
-bool saveFrame = false, availableSave = true;
-std::ofstream myfile;
-std::string fileName = "";
-bool record = false;
 
 int stateSimi = 0;
 
@@ -151,8 +143,7 @@ std::vector<float> lamp2Orientation = {21.37 + 90, -65.0 + 90};
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
-		{"aircraft", glm::vec3(10.0, 0.0, -17.5)},
-		{"farmacia", glm::vec3(-50.0f, 0.0f, 56.5f)}
+		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)}
 };
 
 double deltaTime;
@@ -289,9 +280,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	modelRock.loadModel("../models/rock/rock.obj");
 	modelRock.setShader(&shaderMulLighting);
-
-	modelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
-	modelAircraft.setShader(&shaderMulLighting);
 
 	terrain.init();
 	terrain.setShader(&shaderTerrain);
@@ -624,7 +612,6 @@ void destroy() {
 	modelEdi5.destroy();
 
 	// Custom objects Delete
-	modelAircraft.destroy();
 	modelRock.destroy();
 	modelLamp1.destroy();
 	modelLamp2.destroy();
@@ -753,8 +740,6 @@ void applicationLoop() {
 	float angleTarget;
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
-
-	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
 
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
@@ -967,8 +952,6 @@ void applicationLoop() {
 		matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
 		modelRock.render(matrixModelRock);
 		//Edificios
-		modelMatrixEdi1[3][1] = terrain.getHeightTerrain(modelMatrixEdi1[3][0], modelMatrixEdi1[3][2]);
-		modelEdi1.render(modelMatrixEdi1);
 		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
 		modelEdi2.render(modelMatrixEdi2); 
 		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
@@ -1006,7 +989,7 @@ void applicationLoop() {
 
 		// Grass
 		glDisable(GL_CULL_FACE);
-		glm::vec3 grassPosition = glm::vec3(0.0, 0.0, 0.0);
+		glm::vec3 grassPosition = glm::vec3(-82.7f, 0.0f, 78.8f);
 		grassPosition.y = terrain.getHeightTerrain(grassPosition.x, grassPosition.z);
 		modelGrass.setPosition(grassPosition);
 		modelGrass.render();
@@ -1047,10 +1030,8 @@ void applicationLoop() {
 		/**********
 		 * Update the position with alpha objects
 		 */
-		// Update the aircraft
-		blendingUnsorted.find("aircraft")->second = glm::vec3(modelMatrixAircraft[3]);
-		// Update the helicopter
-		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi5[3]);
+		// Update farmacia
+		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
 
 		/**********
 		 * Sorter with alpha objects
@@ -1069,16 +1050,11 @@ void applicationLoop() {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glDisable(GL_CULL_FACE);
 		for(std::map<float, std::pair<std::string, glm::vec3> >::reverse_iterator it = blendingSorted.rbegin(); it != blendingSorted.rend(); it++){
-			if(it->second.first.compare("aircraft") == 0){
-				// Render for the aircraft model
-				glm::mat4 modelMatrixAircraftBlend = glm::mat4(modelMatrixAircraft);
-				modelMatrixAircraftBlend[3][1] = terrain.getHeightTerrain(modelMatrixAircraftBlend[3][0], modelMatrixAircraftBlend[3][2]) + 2.0;
-				modelAircraft.render(modelMatrixAircraftBlend);
-			}
-			else if(it->second.first.compare("farmacia") == 0){
+			if(it->second.first.compare("farmacia") == 0){
 				// Farmacia
-				glm::mat4 modelMatrixEdi5Blend = glm::mat4(modelMatrixEdi5);
-				modelEdi5.render(modelMatrixEdi5Blend);
+				glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
+				modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
+				modelEdi1.render(modelMatrixEdi1Blend);
 			}
 		}
 		glEnable(GL_CULL_FACE);
@@ -1087,19 +1063,6 @@ void applicationLoop() {
 		 * Creacion de colliders
 		 * IMPORTANT do this before interpolations
 		 *******************************************/
-
-		// Collider del aricraft
-		glm::mat4 modelMatrixColliderAircraft = glm::mat4(modelMatrixAircraft);
-		AbstractModel::OBB aircraftCollider;
-		// Set the orientation of collider before doing the scale
-		aircraftCollider.u = glm::quat_cast(modelMatrixAircraft);
-		modelMatrixColliderAircraft = glm::scale(modelMatrixColliderAircraft,
-				glm::vec3(1.0, 1.0, 1.0));
-		modelMatrixColliderAircraft = glm::translate(
-				modelMatrixColliderAircraft, modelAircraft.getObb().c);
-		aircraftCollider.c = glm::vec3(modelMatrixColliderAircraft[3]);
-		aircraftCollider.e = modelAircraft.getObb().e * glm::vec3(1.0, 1.0, 1.0);
-		addOrUpdateColliders(collidersOBB, "aircraft", aircraftCollider, modelMatrixAircraft);
 
 		//Collider del la rock
 		AbstractModel::SBB rockCollider;
