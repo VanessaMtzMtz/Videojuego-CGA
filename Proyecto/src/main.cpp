@@ -73,8 +73,6 @@ Sphere sphereCollider(10, 10);
 // Models complex instances
 Model modelRock;
 Model modelAircraft;
-Model modelHeliChasis;
-Model modelHeliHeli;
 // Lamps
 Model modelLamp1;
 Model modelLamp2;
@@ -122,7 +120,6 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
-glm::mat4 modelMatrixHeli = glm::mat4(1.0f);
 glm::mat4 modelMatrixAircraft = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
@@ -142,9 +139,6 @@ std::ofstream myfile;
 std::string fileName = "";
 bool record = false;
 
-// Var animate helicopter
-float rotHelHelY = 0.0;
-
 int stateSimi = 0;
 
 // Lamps positions
@@ -158,7 +152,7 @@ std::vector<float> lamp2Orientation = {21.37 + 90, -65.0 + 90};
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
 		{"aircraft", glm::vec3(10.0, 0.0, -17.5)},
-		{"heli", glm::vec3(5.0, 10.0, -5.0)}
+		{"farmacia", glm::vec3(-50.0f, 0.0f, 56.5f)}
 };
 
 double deltaTime;
@@ -302,12 +296,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	terrain.init();
 	terrain.setShader(&shaderTerrain);
 	terrain.setPosition(glm::vec3(100, 0, 100));
-
-	// Helicopter
-	modelHeliChasis.loadModel("../models/Helicopter/Mi_24_chasis.obj");
-	modelHeliChasis.setShader(&shaderMulLighting);
-	modelHeliHeli.loadModel("../models/Helicopter/Mi_24_heli.obj");
-	modelHeliHeli.setShader(&shaderMulLighting);
 	
 	//Lamp models
 	modelLamp1.loadModel("../models/Street-Lamp-Black/objLamp.obj");
@@ -567,7 +555,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		exit(2);
 	}
 
-
 	alGetError(); /* clear error */
 	alGenSources(NUM_SOURCES, source);
 
@@ -638,8 +625,6 @@ void destroy() {
 
 	// Custom objects Delete
 	modelAircraft.destroy();
-	modelHeliChasis.destroy();
-	modelHeliHeli.destroy();
 	modelRock.destroy();
 	modelLamp1.destroy();
 	modelLamp2.destroy();
@@ -768,8 +753,6 @@ void applicationLoop() {
 	float angleTarget;
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
-
-	modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(5.0, 10.0, -5.0));
 
 	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
 
@@ -1067,7 +1050,7 @@ void applicationLoop() {
 		// Update the aircraft
 		blendingUnsorted.find("aircraft")->second = glm::vec3(modelMatrixAircraft[3]);
 		// Update the helicopter
-		blendingUnsorted.find("heli")->second = glm::vec3(modelMatrixHeli[3]);
+		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi5[3]);
 
 		/**********
 		 * Sorter with alpha objects
@@ -1092,16 +1075,10 @@ void applicationLoop() {
 				modelMatrixAircraftBlend[3][1] = terrain.getHeightTerrain(modelMatrixAircraftBlend[3][0], modelMatrixAircraftBlend[3][2]) + 2.0;
 				modelAircraft.render(modelMatrixAircraftBlend);
 			}
-			else if(it->second.first.compare("heli") == 0){
-				// Helicopter
-				glm::mat4 modelMatrixHeliChasis = glm::mat4(modelMatrixHeli);
-				modelHeliChasis.render(modelMatrixHeliChasis);
-
-				glm::mat4 modelMatrixHeliHeli = glm::mat4(modelMatrixHeliChasis);
-				modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, -0.249548));
-				modelMatrixHeliHeli = glm::rotate(modelMatrixHeliHeli, rotHelHelY, glm::vec3(0, 1, 0));
-				modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, 0.249548));
-				modelHeliHeli.render(modelMatrixHeliHeli);
+			else if(it->second.first.compare("farmacia") == 0){
+				// Farmacia
+				glm::mat4 modelMatrixEdi5Blend = glm::mat4(modelMatrixEdi5);
+				modelEdi5.render(modelMatrixEdi5Blend);
 			}
 		}
 		glEnable(GL_CULL_FACE);
@@ -1310,7 +1287,6 @@ void applicationLoop() {
 		}
 
 		// Constantes de animaciones
-		rotHelHelY += 0.5;
 		animationIndex = 1;
 
 		/*******************************************
@@ -1356,7 +1332,6 @@ void applicationLoop() {
 			stateSimi = 0;
 		}
 		
-				
 		glfwSwapBuffers(window);
 
 		/****************************+
