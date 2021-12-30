@@ -72,9 +72,6 @@ Sphere sphereCollider(10, 10);
 
 // Models complex instances
 Model modelRock;
-Model modelAircraft;
-Model modelHeliChasis;
-Model modelHeliHeli;
 // Lamps
 Model modelLamp1;
 Model modelLamp2;
@@ -122,8 +119,6 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
-glm::mat4 modelMatrixHeli = glm::mat4(1.0f);
-glm::mat4 modelMatrixAircraft = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
@@ -135,15 +130,6 @@ glm::mat4 modelMatrixEdi6 = glm::mat4(1.0f);
 int animationIndex = 1;
 int modelSelected = 2;
 bool enableCountSelected = true;
-
-// Variables to animations keyframes
-bool saveFrame = false, availableSave = true;
-std::ofstream myfile;
-std::string fileName = "";
-bool record = false;
-
-// Var animate helicopter
-float rotHelHelY = 0.0;
 
 int stateSimi = 0;
 
@@ -157,8 +143,7 @@ std::vector<float> lamp2Orientation = {21.37 + 90, -65.0 + 90};
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
-		{"aircraft", glm::vec3(10.0, 0.0, -17.5)},
-		{"heli", glm::vec3(5.0, 10.0, -5.0)}
+		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)}
 };
 
 double deltaTime;
@@ -296,18 +281,9 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelRock.loadModel("../models/rock/rock.obj");
 	modelRock.setShader(&shaderMulLighting);
 
-	modelAircraft.loadModel("../models/Aircraft_obj/E 45 Aircraft_obj.obj");
-	modelAircraft.setShader(&shaderMulLighting);
-
 	terrain.init();
 	terrain.setShader(&shaderTerrain);
 	terrain.setPosition(glm::vec3(100, 0, 100));
-
-	// Helicopter
-	modelHeliChasis.loadModel("../models/Helicopter/Mi_24_chasis.obj");
-	modelHeliChasis.setShader(&shaderMulLighting);
-	modelHeliHeli.loadModel("../models/Helicopter/Mi_24_heli.obj");
-	modelHeliHeli.setShader(&shaderMulLighting);
 	
 	//Lamp models
 	modelLamp1.loadModel("../models/Street-Lamp-Black/objLamp.obj");
@@ -567,7 +543,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		exit(2);
 	}
 
-
 	alGetError(); /* clear error */
 	alGenSources(NUM_SOURCES, source);
 
@@ -637,9 +612,6 @@ void destroy() {
 	modelEdi5.destroy();
 
 	// Custom objects Delete
-	modelAircraft.destroy();
-	modelHeliChasis.destroy();
-	modelHeliHeli.destroy();
 	modelRock.destroy();
 	modelLamp1.destroy();
 	modelLamp2.destroy();
@@ -769,10 +741,6 @@ void applicationLoop() {
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
-	modelMatrixHeli = glm::translate(modelMatrixHeli, glm::vec3(5.0, 10.0, -5.0));
-
-	modelMatrixAircraft = glm::translate(modelMatrixAircraft, glm::vec3(10.0, 2.0, -17.5));
-
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
@@ -872,29 +840,29 @@ void applicationLoop() {
 		/*******************************************
 		 * Propiedades SpotLights
 		 *******************************************/
-		glm::vec3 spotPosition = glm::vec3(modelMatrixHeli * glm::vec4(0.32437, 0.226053, 1.79149, 1.0));
+		glm::vec3 spotPosition = modelMatrixEdi5 * glm::vec4(7.0f, 2.0f, -12.0f, 1.0f);
 		shaderMulLighting.setInt("spotLightCount", 1);
 		shaderTerrain.setInt("spotLightCount", 1);
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.ambient", glm::value_ptr(glm::vec3(0.0, 0.0, 0.0)));
-		shaderMulLighting.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.2, 0.3, 0.2)));
+		shaderMulLighting.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].light.specular", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
-		shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(spotPosition));
+		shaderMulLighting.setVectorFloat3("spotLights[0].position", glm::value_ptr(glm::vec3(spotPosition)));
 		shaderMulLighting.setVectorFloat3("spotLights[0].direction", glm::value_ptr(glm::vec3(0, -1, 0)));
 		shaderMulLighting.setFloat("spotLights[0].constant", 1.0);
-		shaderMulLighting.setFloat("spotLights[0].linear", 0.074);
-		shaderMulLighting.setFloat("spotLights[0].quadratic", 0.03);
-		shaderMulLighting.setFloat("spotLights[0].cutOff", cos(glm::radians(12.5f)));
-		shaderMulLighting.setFloat("spotLights[0].outerCutOff", cos(glm::radians(15.0f)));
+		shaderMulLighting.setFloat("spotLights[0].linear", 0.0014);
+		shaderMulLighting.setFloat("spotLights[0].quadratic", 0.0001);
+		shaderMulLighting.setFloat("spotLights[0].cutOff", cos(glm::radians(77.0f)));
+		shaderMulLighting.setFloat("spotLights[0].outerCutOff", cos(glm::radians(77.0f)));
 		shaderTerrain.setVectorFloat3("spotLights[0].light.ambient", glm::value_ptr(glm::vec3(0.0, 0.0, 0.0)));
-		shaderTerrain.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.2, 0.3, 0.2)));
+		shaderTerrain.setVectorFloat3("spotLights[0].light.diffuse", glm::value_ptr(glm::vec3(0.2, 0.2, 0.2)));
 		shaderTerrain.setVectorFloat3("spotLights[0].light.specular", glm::value_ptr(glm::vec3(0.3, 0.3, 0.3)));
-		shaderTerrain.setVectorFloat3("spotLights[0].position", glm::value_ptr(spotPosition));
+		shaderTerrain.setVectorFloat3("spotLights[0].position", glm::value_ptr(glm::vec3(spotPosition)));
 		shaderTerrain.setVectorFloat3("spotLights[0].direction", glm::value_ptr(glm::vec3(0, -1, 0)));
 		shaderTerrain.setFloat("spotLights[0].constant", 1.0);
-		shaderTerrain.setFloat("spotLights[0].linear", 0.074);
-		shaderTerrain.setFloat("spotLights[0].quadratic", 0.03);
-		shaderTerrain.setFloat("spotLights[0].cutOff", cos(glm::radians(12.5f)));
-		shaderTerrain.setFloat("spotLights[0].outerCutOff", cos(glm::radians(15.0f)));
+		shaderTerrain.setFloat("spotLights[0].linear", 0.0014);
+		shaderTerrain.setFloat("spotLights[0].quadratic", 0.0001);
+		shaderTerrain.setFloat("spotLights[0].cutOff", cos(glm::radians(77.0f)));
+		shaderTerrain.setFloat("spotLights[0].outerCutOff", cos(glm::radians(77.0f)));
 
 		/*******************************************
 		 * Propiedades PointLights
@@ -984,8 +952,6 @@ void applicationLoop() {
 		matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
 		modelRock.render(matrixModelRock);
 		//Edificios
-		modelMatrixEdi1[3][1] = terrain.getHeightTerrain(modelMatrixEdi1[3][0], modelMatrixEdi1[3][2]);
-		modelEdi1.render(modelMatrixEdi1);
 		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
 		modelEdi2.render(modelMatrixEdi2); 
 		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
@@ -1023,7 +989,7 @@ void applicationLoop() {
 
 		// Grass
 		glDisable(GL_CULL_FACE);
-		glm::vec3 grassPosition = glm::vec3(0.0, 0.0, 0.0);
+		glm::vec3 grassPosition = glm::vec3(-82.7f, 0.0f, 78.8f);
 		grassPosition.y = terrain.getHeightTerrain(grassPosition.x, grassPosition.z);
 		modelGrass.setPosition(grassPosition);
 		modelGrass.render();
@@ -1064,10 +1030,8 @@ void applicationLoop() {
 		/**********
 		 * Update the position with alpha objects
 		 */
-		// Update the aircraft
-		blendingUnsorted.find("aircraft")->second = glm::vec3(modelMatrixAircraft[3]);
-		// Update the helicopter
-		blendingUnsorted.find("heli")->second = glm::vec3(modelMatrixHeli[3]);
+		// Update farmacia
+		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
 
 		/**********
 		 * Sorter with alpha objects
@@ -1086,22 +1050,11 @@ void applicationLoop() {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glDisable(GL_CULL_FACE);
 		for(std::map<float, std::pair<std::string, glm::vec3> >::reverse_iterator it = blendingSorted.rbegin(); it != blendingSorted.rend(); it++){
-			if(it->second.first.compare("aircraft") == 0){
-				// Render for the aircraft model
-				glm::mat4 modelMatrixAircraftBlend = glm::mat4(modelMatrixAircraft);
-				modelMatrixAircraftBlend[3][1] = terrain.getHeightTerrain(modelMatrixAircraftBlend[3][0], modelMatrixAircraftBlend[3][2]) + 2.0;
-				modelAircraft.render(modelMatrixAircraftBlend);
-			}
-			else if(it->second.first.compare("heli") == 0){
-				// Helicopter
-				glm::mat4 modelMatrixHeliChasis = glm::mat4(modelMatrixHeli);
-				modelHeliChasis.render(modelMatrixHeliChasis);
-
-				glm::mat4 modelMatrixHeliHeli = glm::mat4(modelMatrixHeliChasis);
-				modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, -0.249548));
-				modelMatrixHeliHeli = glm::rotate(modelMatrixHeliHeli, rotHelHelY, glm::vec3(0, 1, 0));
-				modelMatrixHeliHeli = glm::translate(modelMatrixHeliHeli, glm::vec3(0.0, 0.0, 0.249548));
-				modelHeliHeli.render(modelMatrixHeliHeli);
+			if(it->second.first.compare("farmacia") == 0){
+				// Farmacia
+				glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
+				modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
+				modelEdi1.render(modelMatrixEdi1Blend);
 			}
 		}
 		glEnable(GL_CULL_FACE);
@@ -1110,19 +1063,6 @@ void applicationLoop() {
 		 * Creacion de colliders
 		 * IMPORTANT do this before interpolations
 		 *******************************************/
-
-		// Collider del aricraft
-		glm::mat4 modelMatrixColliderAircraft = glm::mat4(modelMatrixAircraft);
-		AbstractModel::OBB aircraftCollider;
-		// Set the orientation of collider before doing the scale
-		aircraftCollider.u = glm::quat_cast(modelMatrixAircraft);
-		modelMatrixColliderAircraft = glm::scale(modelMatrixColliderAircraft,
-				glm::vec3(1.0, 1.0, 1.0));
-		modelMatrixColliderAircraft = glm::translate(
-				modelMatrixColliderAircraft, modelAircraft.getObb().c);
-		aircraftCollider.c = glm::vec3(modelMatrixColliderAircraft[3]);
-		aircraftCollider.e = modelAircraft.getObb().e * glm::vec3(1.0, 1.0, 1.0);
-		addOrUpdateColliders(collidersOBB, "aircraft", aircraftCollider, modelMatrixAircraft);
 
 		//Collider del la rock
 		AbstractModel::SBB rockCollider;
@@ -1310,7 +1250,6 @@ void applicationLoop() {
 		}
 
 		// Constantes de animaciones
-		rotHelHelY += 0.5;
 		animationIndex = 1;
 
 		/*******************************************
@@ -1356,7 +1295,6 @@ void applicationLoop() {
 			stateSimi = 0;
 		}
 		
-				
 		glfwSwapBuffers(window);
 
 		/****************************+
