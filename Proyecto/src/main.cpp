@@ -1123,6 +1123,22 @@ void applicationLoop() {
 		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
 		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
+		// Collider de simi
+		AbstractModel::OBB edi1Collider;
+		glm::mat4 modelmatrixColliderEdi1 = glm::mat4(modelMatrixEdi1);
+		modelmatrixColliderEdi1 = glm::rotate(modelmatrixColliderEdi1,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi1Collider.u = glm::quat_cast(modelmatrixColliderEdi1);
+		modelmatrixColliderEdi1 = glm::scale(modelmatrixColliderEdi1, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
+				glm::vec3(modelEdi1.getObb().c.x,
+						modelEdi1.getObb().c.y + 10.0,
+						modelEdi1.getObb().c.z + 110.0));
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 5.0, 0.01);
+		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
+		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
+
 		/*******************************************
 		 * Render de colliders
 		 *******************************************/
