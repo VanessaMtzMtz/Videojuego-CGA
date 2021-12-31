@@ -1258,9 +1258,17 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					if (jt->first.compare("simi") == 0)
-						modelMatrixSimi = std::get<1>(jt->second);
-						stateSimi += 1;
+					if (jt->first.compare("simi") == 0){
+						if (jt->first.compare("edi1") != 0){
+							printf("\n*****NO COLLISION*****\n");
+							modelMatrixSimi = std::get<1>(jt->second);
+						}
+						else{
+							modelMatrixSimi = std::get<1>(jt->second);
+							stateSimi += 1;
+						}
+					}
+					
 				}
 			}
 		}
