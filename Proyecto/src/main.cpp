@@ -1123,6 +1123,22 @@ void applicationLoop() {
 		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
 		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
+		// Collider del edificio
+		AbstractModel::OBB edi1Collider;
+		glm::mat4 modelmatrixColliderEdi1 = glm::mat4(modelMatrixEdi1);
+		modelmatrixColliderEdi1 = glm::rotate(modelmatrixColliderEdi1,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi1Collider.u = glm::quat_cast(modelmatrixColliderEdi1);
+		modelmatrixColliderEdi1 = glm::scale(modelmatrixColliderEdi1, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
+				glm::vec3(modelEdi1.getObb().c.x,
+						modelEdi1.getObb().c.y + 77.5,
+						modelEdi1.getObb().c.z + 110.0));
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.01);
+		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
+		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
+
 		/*******************************************
 		 * Render de colliders
 		 *******************************************/
@@ -1242,9 +1258,17 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					if (jt->first.compare("simi") == 0)
-						modelMatrixSimi = std::get<1>(jt->second);
-						stateSimi += 1;
+					if (jt->first.compare("simi") == 0){
+						if (jt->first.compare("edi1") != 0){
+							printf("\n*****NO COLLISION*****\n");
+							modelMatrixSimi = std::get<1>(jt->second);
+						}
+						else{
+							modelMatrixSimi = std::get<1>(jt->second);
+							stateSimi += 1;
+						}
+					}
+					
 				}
 			}
 		}
