@@ -1115,12 +1115,12 @@ void applicationLoop() {
 				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
 		simiCollider.u = glm::quat_cast(modelmatrixColliderSimi);
-		modelmatrixColliderSimi = glm::scale(modelmatrixColliderSimi, glm::vec3(1.5, 1.5, 1.5));
+		modelmatrixColliderSimi = glm::scale(modelmatrixColliderSimi, glm::vec3(1.5f, 1.5f, 1.5f));
 		modelmatrixColliderSimi = glm::translate(modelmatrixColliderSimi,
 				glm::vec3(simiModelAnimate.getObb().c.x,
 						simiModelAnimate.getObb().c.y - 0.5f,
-						simiModelAnimate.getObb().c.z + 0.53f));
-		simiCollider.e = simiModelAnimate.getObb().e * glm::vec3(1.0, 1.0, 3.4);
+						simiModelAnimate.getObb().c.z + 1.15f));
+		simiCollider.e = simiModelAnimate.getObb().e * glm::vec3(2.0, 2.8, 7.5);
 		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
 		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
