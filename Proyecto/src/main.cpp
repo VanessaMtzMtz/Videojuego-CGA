@@ -1007,7 +1007,7 @@ void applicationLoop() {
 		}
 		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
-		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(1.5f, 1.5f, 1.5f));
+		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
 		simiModelAnimate.setAnimationIndex(animationIndex);
 		simiModelAnimate.render(modelMatrixSimiBody);
 		simiModelAnimate.setAnimationIndex(1);
