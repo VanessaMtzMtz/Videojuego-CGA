@@ -64,7 +64,7 @@ Shader shaderMulLighting;
 Shader shaderTerrain;
 
 std::shared_ptr<Camera> camera(new ThirdPersonCamera());
-float distanceFromTarget = 7.0;
+float distanceFromTarget = 12.0;
 
 Sphere skyboxSphere(20, 20);
 Box boxCollider;
