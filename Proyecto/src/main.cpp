@@ -64,7 +64,7 @@ Shader shaderMulLighting;
 Shader shaderTerrain;
 
 std::shared_ptr<Camera> camera(new ThirdPersonCamera());
-float distanceFromTarget = 7.0;
+float distanceFromTarget = 12.0;
 
 Sphere skyboxSphere(20, 20);
 Box boxCollider;
@@ -315,7 +315,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
 	simiModelAnimate.setShader(&shaderMulLighting);
 
-	camera->setPosition(glm::vec3(0.0, 0.0, 10.0));
+	camera->setPosition(glm::vec3(0.0, 0.0, 15.0));
 	camera->setDistanceFromTarget(distanceFromTarget);
 	camera->setSensitivity(1.0);
 
@@ -741,7 +741,8 @@ void applicationLoop() {
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1006,7 +1007,7 @@ void applicationLoop() {
 		}
 		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
-		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(1.5f, 1.5f, 1.5f));
+		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
 		simiModelAnimate.setAnimationIndex(animationIndex);
 		simiModelAnimate.render(modelMatrixSimiBody);
 		simiModelAnimate.setAnimationIndex(1);
@@ -1114,16 +1115,16 @@ void applicationLoop() {
 				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
 		simiCollider.u = glm::quat_cast(modelmatrixColliderSimi);
-		modelmatrixColliderSimi = glm::scale(modelmatrixColliderSimi, glm::vec3(1.5, 1.5, 1.5));
+		modelmatrixColliderSimi = glm::scale(modelmatrixColliderSimi, glm::vec3(1.5f, 1.5f, 1.5f));
 		modelmatrixColliderSimi = glm::translate(modelmatrixColliderSimi,
 				glm::vec3(simiModelAnimate.getObb().c.x,
 						simiModelAnimate.getObb().c.y - 0.5f,
-						simiModelAnimate.getObb().c.z + 0.53f));
-		simiCollider.e = simiModelAnimate.getObb().e * glm::vec3(1.0, 1.0, 3.4);
+						simiModelAnimate.getObb().c.z + 1.15f));
+		simiCollider.e = simiModelAnimate.getObb().e * glm::vec3(2.0, 2.8, 7.5);
 		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
 		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
-		// Collider del edificio
+		// Collider del edificio 1
 		AbstractModel::OBB edi1Collider;
 		glm::mat4 modelmatrixColliderEdi1 = glm::mat4(modelMatrixEdi1);
 		modelmatrixColliderEdi1 = glm::rotate(modelmatrixColliderEdi1,
@@ -1138,6 +1139,22 @@ void applicationLoop() {
 		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.01);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
+
+		// Collider del edificio 2
+		AbstractModel::OBB edi2Collider;
+		glm::mat4 modelmatrixColliderEdi2 = glm::mat4(modelMatrixEdi2);
+		modelmatrixColliderEdi2 = glm::rotate(modelmatrixColliderEdi2,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi2Collider.u = glm::quat_cast(modelmatrixColliderEdi2);
+		modelmatrixColliderEdi2 = glm::scale(modelmatrixColliderEdi2, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi2 = glm::translate(modelmatrixColliderEdi2,
+				glm::vec3(modelEdi2.getObb().c.x + 6.0,
+						modelEdi2.getObb().c.y + 168.5,
+						modelEdi2.getObb().c.z + 180.0));
+		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(0.92, 1.1, 0.1);
+		edi2Collider.c = glm::vec3(modelmatrixColliderEdi2[3]);
+		addOrUpdateColliders(collidersOBB, "edi2", edi2Collider, modelMatrixEdi2);
 
 		/*******************************************
 		 * Render de colliders
