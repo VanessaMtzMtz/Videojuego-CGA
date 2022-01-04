@@ -741,7 +741,8 @@ void applicationLoop() {
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1123,7 +1124,7 @@ void applicationLoop() {
 		simiCollider.c = glm::vec3(modelmatrixColliderSimi[3]);
 		addOrUpdateColliders(collidersOBB, "simi", simiCollider, modelMatrixSimi);
 
-		// Collider del edificio
+		// Collider del edificio 1
 		AbstractModel::OBB edi1Collider;
 		glm::mat4 modelmatrixColliderEdi1 = glm::mat4(modelMatrixEdi1);
 		modelmatrixColliderEdi1 = glm::rotate(modelmatrixColliderEdi1,
@@ -1138,6 +1139,22 @@ void applicationLoop() {
 		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.01);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
+
+		// Collider del edificio 2
+		AbstractModel::OBB edi2Collider;
+		glm::mat4 modelmatrixColliderEdi2 = glm::mat4(modelMatrixEdi2);
+		modelmatrixColliderEdi2 = glm::rotate(modelmatrixColliderEdi2,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi2Collider.u = glm::quat_cast(modelmatrixColliderEdi2);
+		modelmatrixColliderEdi2 = glm::scale(modelmatrixColliderEdi2, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi2 = glm::translate(modelmatrixColliderEdi2,
+				glm::vec3(modelEdi2.getObb().c.x + 6.0,
+						modelEdi2.getObb().c.y + 168.5,
+						modelEdi2.getObb().c.z + 180.0));
+		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(0.92, 1.1, 0.1);
+		edi2Collider.c = glm::vec3(modelmatrixColliderEdi2[3]);
+		addOrUpdateColliders(collidersOBB, "edi2", edi2Collider, modelMatrixEdi2);
 
 		/*******************************************
 		 * Render de colliders
