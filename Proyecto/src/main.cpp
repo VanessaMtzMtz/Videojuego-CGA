@@ -704,11 +704,11 @@ bool processInput(bool continueApplication) {
 		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.1));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
 		//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.02));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
 		animationIndex = 0;
 	}
 
