@@ -699,7 +699,7 @@ void applicationLoop() {
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
 	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-28.0f, 0.0f, -50.0f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1063,21 +1063,21 @@ void applicationLoop() {
 		edi2Collider.c = glm::vec3(modelmatrixColliderEdi2[3]);
 		addOrUpdateColliders(collidersOBB, "edi2", edi2Collider, modelMatrixEdi2);
 
-		// // Collider del edificio 3
-		// AbstractModel::OBB edi3Collider;
-		// glm::mat4 modelmatrixColliderEdi3 = glm::mat4(modelMatrixEdi3);
-		// modelmatrixColliderEdi3 = glm::rotate(modelmatrixColliderEdi3,
-		// 		glm::radians(-90.0f), glm::vec3(1, 0, 0));
-		// // Set the orientation of collider before doing the scale
-		// edi3Collider.u = glm::quat_cast(modelmatrixColliderEdi3);
-		// modelmatrixColliderEdi3 = glm::scale(modelmatrixColliderEdi3, glm::vec3(1.0, 1.0, 0.1));
-		// modelmatrixColliderEdi3 = glm::translate(modelmatrixColliderEdi3,
-		// 		glm::vec3(modelEdi3.getObb().c.x,
-		// 				modelEdi3.getObb().c.y + 77.5,
-		// 				modelEdi3.getObb().c.z + 110.0));
-		// edi3Collider.e = modelEdi3.getObb().e * glm::vec3(1.0, 10.8, 0.01);
-		// edi3Collider.c = glm::vec3(modelmatrixColliderEdi3[3]);
-		// addOrUpdateColliders(collidersOBB, "edi3", edi3Collider, modelMatrixEdi3);
+		// Collider del edificio 3
+		AbstractModel::OBB edi3Collider;
+		glm::mat4 modelmatrixColliderEdi3 = glm::mat4(modelMatrixEdi3);
+		modelmatrixColliderEdi3 = glm::rotate(modelmatrixColliderEdi3,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi3Collider.u = glm::quat_cast(modelmatrixColliderEdi3);
+		modelmatrixColliderEdi3 = glm::scale(modelmatrixColliderEdi3, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi3 = glm::translate(modelmatrixColliderEdi3,
+				glm::vec3(modelEdi3.getObb().c.x + 5.5, 
+						modelEdi3.getObb().c.y + 49.6,
+						modelEdi3.getObb().c.z + 82.0));
+		edi3Collider.e = modelEdi3.getObb().e * glm::vec3(1.0, 10.85, 0.025);
+		edi3Collider.c = glm::vec3(modelmatrixColliderEdi3[3]);
+		addOrUpdateColliders(collidersOBB, "edi3", edi3Collider, modelMatrixEdi3);
 
 		// Collider del edificio 4
 		AbstractModel::OBB edi4Collider;
