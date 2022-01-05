@@ -1228,10 +1228,6 @@ void applicationLoop() {
 		// Constantes de animaciones
 		animationIndex = 1;
 
-		/*******************************************
-		 * State machines
-		 *******************************************/
-
 		/*****************************
 		* Configuracion del texto
 		******************************/
