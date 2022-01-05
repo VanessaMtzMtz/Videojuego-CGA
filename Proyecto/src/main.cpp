@@ -1170,26 +1170,6 @@ void applicationLoop() {
 			sphereCollider.render(matrixCollider);
 		}
 
-		// Esto es para ilustrar la transformacion inversa de los coliders
-		/*glm::vec3 cinv = glm::inverse(simiCollider.u) * glm::vec4(rockCollider.c, 1.0);
-		glm::mat4 invColliderS = glm::mat4(1.0);
-		invColliderS = glm::translate(invColliderS, cinv);
-		invColliderS =  invColliderS * glm::mat4(simiCollider.u);
-		invColliderS = glm::scale(invColliderS, glm::vec3(rockCollider.ratio * 2.0, rockCollider.ratio * 2.0, rockCollider.ratio * 2.0));
-		sphereCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
-		sphereCollider.enableWireMode();
-		sphereCollider.render(invColliderS);
-		glm::vec3 cinv2 = glm::inverse(simiCollider.u) * glm::vec4(simiCollider.c, 1.0);
-		glm::mat4 invColliderB = glm::mat4(1.0);
-		invColliderB = glm::translate(invColliderB, cinv2);
-		invColliderB = glm::scale(invColliderB, simiCollider.e * 2.0f);
-		boxCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
-		boxCollider.enableWireMode();
-		boxCollider.render(invColliderB);
-		// Se regresa el color blanco
-		sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-		boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));*/
-
 		/*******************************************
 		 * Test Colisions
 		 *******************************************/
