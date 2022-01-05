@@ -734,7 +734,7 @@ void applicationLoop() {
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
 	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, -50.0f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-28.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1129,6 +1129,22 @@ void applicationLoop() {
 		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 5.9, 0.05);
 		edi4Collider.c = glm::vec3(modelmatrixColliderEdi4[3]);
 		addOrUpdateColliders(collidersOBB, "edi4", edi4Collider, modelMatrixEdi4);
+
+		// Collider del edificio 6
+		AbstractModel::OBB edi6Collider;
+		glm::mat4 modelmatrixColliderEdi6 = glm::mat4(modelMatrixEdi6);
+		modelmatrixColliderEdi6 = glm::rotate(modelmatrixColliderEdi6,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi6Collider.u = glm::quat_cast(modelmatrixColliderEdi6);
+		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi6 = glm::translate(modelmatrixColliderEdi6,
+				glm::vec3(modelEdi6.getObb().c.x,
+						modelEdi6.getObb().c.y + 95.7,
+						modelEdi6.getObb().c.z + 110.0));
+		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
+		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
 		/*******************************************
 		 * Render de colliders
