@@ -75,6 +75,7 @@ Model modelRock;
 // Objetos
 Model modelLamp1;
 Model modelMask;
+Model modelVaccine;
 // Hierba
 Model modelGrass;
 //Edificios y casas
@@ -118,7 +119,7 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
-glm::mat4 matrixModelMask = glm::mat4(1.0);
+glm::mat4 matrixModelVaccine = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
@@ -147,7 +148,8 @@ glm::vec3(75.8, 2.0, -71.9) };
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
-		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)}
+		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)},
+		{"vacuna", glm::vec3(58.3, 0.0, 64.1)}
 };
 
 double deltaTime;
@@ -294,6 +296,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelLamp1.setShader(&shaderMulLighting);
 	modelMask.loadModel("../models/N95/n95.obj");
 	modelMask.setShader(&shaderMulLighting);
+	modelVaccine.loadModel("../models/Vaccine/model/Export/vaccine.obj");
+	modelVaccine.setShader(&shaderMulLighting);
 
 	//Grass
 	modelGrass.loadModel("../models/grass/grassModel.obj");
@@ -617,7 +621,7 @@ void destroy() {
 	modelLamp1.destroy();
 	modelMask.destroy();
 	modelGrass.destroy();
-	modelMask.destroy();
+	modelVaccine.destroy();
 
 	// Custom objects animate
 	simiModelAnimate.destroy();
@@ -745,7 +749,6 @@ bool processInput(bool continueApplication) {
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.1));
-		//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.02));
@@ -773,8 +776,11 @@ void applicationLoop() {
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
+	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
+	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
+
 	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, -50.0f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1039,6 +1045,7 @@ void applicationLoop() {
 		 */
 		// Update farmacia
 		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
+		blendingUnsorted.find("vacuna")->second = glm::vec3(matrixModelVaccine[3]);
 
 		/**********
 		 * Sorter with alpha objects
@@ -1062,6 +1069,12 @@ void applicationLoop() {
 				glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
 				modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
 				modelEdi1.render(modelMatrixEdi1Blend);
+			}
+			if (it->second.first.compare("vacuna") == 0) {
+				glm::mat4 modelMatrixVaccineBlend = glm::mat4(matrixModelVaccine);
+				modelMatrixVaccineBlend[3][1] = terrain.getHeightTerrain(modelMatrixVaccineBlend[3][0], modelMatrixVaccineBlend[3][2]);
+				modelVaccine.setScale(glm::vec3(0.2, 0.2, 0.2));
+				modelVaccine.render(modelMatrixVaccineBlend);
 			}
 		}
 		glEnable(GL_CULL_FACE);
