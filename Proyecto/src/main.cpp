@@ -72,10 +72,9 @@ Sphere sphereCollider(10, 10);
 
 // Models complex instances
 Model modelRock;
-// Lamps
+// Objetos
 Model modelLamp1;
-Model modelLamp2;
-Model modelLampPost2;
+Model modelMask;
 // Hierba
 Model modelGrass;
 //Edificios y casas
@@ -139,6 +138,11 @@ glm::vec3(8.3, 0, -84.8),
 glm::vec3(70.0, 0, 25.0),
 glm::vec3(18.95, 0, 76.4) };
 std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 ,23.70};
+//Mask position
+std::vector<glm::vec3> maskPosition = { glm::vec3(-55.7, 2.0, 2.8),
+glm::vec3(-8.3, 2.0, -70.9),
+glm::vec3(-13.3, 2.0, 70.4),
+glm::vec3(75.8, 2.0, -71.9) };
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
@@ -284,9 +288,11 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	terrain.setShader(&shaderTerrain);
 	terrain.setPosition(glm::vec3(100, 0, 100));
 	
-	//Lamp models
+	//Object models
 	modelLamp1.loadModel("../models/Poste/poste.obj");
 	modelLamp1.setShader(&shaderMulLighting);
+	modelMask.loadModel("../models/N95/n95.obj");
+	modelMask.setShader(&shaderMulLighting);
 
 	//Grass
 	modelGrass.loadModel("../models/grass/grassModel.obj");
@@ -608,6 +614,7 @@ void destroy() {
 	// Custom objects Delete
 	modelRock.destroy();
 	modelLamp1.destroy();
+	modelMask.destroy();
 	modelGrass.destroy();
 
 	// Custom objects animate
@@ -944,6 +951,14 @@ void applicationLoop() {
 			modelLamp1.setScale(glm::vec3(0.5, 0.5, 0.5));
 			modelLamp1.setOrientation(glm::vec3(0, lamp1Orientation[i], 0));
 			modelLamp1.render();
+		}
+
+		//Render Masks
+		for (int i = 0; i < maskPosition.size(); i++) {
+			maskPosition[i].y = terrain.getHeightTerrain(maskPosition[i].x, maskPosition[i].z);
+			modelMask.setPosition(maskPosition[i]);
+			modelMask.setScale(glm::vec3(20.5, 20.5, 20.5));
+			modelMask.render();
 		}
 
 		// Grass
@@ -1323,7 +1338,7 @@ void applicationLoop() {
 }
 
 int main(int argc, char **argv) {
-	init(800, 700, "Videojuego COVID-19", false);
+	init(800, 700, "ZONA DE ALTO CONTAGIO", false);
 	applicationLoop();
 	destroy();
 	return 1;
