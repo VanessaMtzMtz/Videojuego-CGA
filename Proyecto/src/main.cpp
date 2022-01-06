@@ -118,6 +118,7 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
+glm::mat4 matrixModelMask = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
@@ -616,6 +617,7 @@ void destroy() {
 	modelLamp1.destroy();
 	modelMask.destroy();
 	modelGrass.destroy();
+	modelMask.destroy();
 
 	// Custom objects animate
 	simiModelAnimate.destroy();
