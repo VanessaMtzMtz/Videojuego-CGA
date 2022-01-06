@@ -179,7 +179,7 @@ std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> > col
 ALfloat listenerPos[] = { 0.0, 0.0, 4.0 };
 ALfloat listenerVel[] = { 0.0, 0.0, 0.0 };
 ALfloat listenerOri[] = { 0.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-//Source 0
+// Source 0
 ALfloat source0Pos[] = { 2.0, 0.0, 0.0 };
 ALfloat source0Vel[] = { 0.0, 0.0, 0.0 };
 // Buffers
@@ -553,6 +553,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	else {
 		printf("init - no errors after alGenSources\n");
 	}
+
 	alSourcef(source[0], AL_PITCH, 1.0f);
 	alSourcef(source[0], AL_GAIN, 2.0f);
 	alSourcefv(source[0], AL_POSITION, source0Pos);
@@ -721,6 +722,7 @@ bool processInput(bool continueApplication) {
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
+		//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
@@ -751,7 +753,8 @@ void applicationLoop() {
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+  //modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
@@ -1140,14 +1143,14 @@ void applicationLoop() {
 		AbstractModel::OBB edi3Collider;
 		glm::mat4 modelmatrixColliderEdi3 = glm::mat4(modelMatrixEdi3);
 		modelmatrixColliderEdi3 = glm::rotate(modelmatrixColliderEdi3,
-			glm::radians(-90.0f), glm::vec3(1, 0, 0));
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
 		edi3Collider.u = glm::quat_cast(modelmatrixColliderEdi3);
 		modelmatrixColliderEdi3 = glm::scale(modelmatrixColliderEdi3, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi3 = glm::translate(modelmatrixColliderEdi3,
-			glm::vec3(modelEdi3.getObb().c.x + 5.5,
-				modelEdi3.getObb().c.y + 49.6,
-				modelEdi3.getObb().c.z + 82.0));
+				glm::vec3(modelEdi3.getObb().c.x + 5.5, 
+						modelEdi3.getObb().c.y + 49.6,
+						modelEdi3.getObb().c.z + 82.0));
 		edi3Collider.e = modelEdi3.getObb().e * glm::vec3(1.0, 10.85, 0.025);
 		edi3Collider.c = glm::vec3(modelmatrixColliderEdi3[3]);
 		addOrUpdateColliders(collidersOBB, "edi3", edi3Collider, modelMatrixEdi3);
@@ -1161,9 +1164,9 @@ void applicationLoop() {
 		edi4Collider.u = glm::quat_cast(modelmatrixColliderEdi4);
 		modelmatrixColliderEdi4 = glm::scale(modelmatrixColliderEdi4, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi4 = glm::translate(modelmatrixColliderEdi4,
-			glm::vec3(modelEdi4.getObb().c.x,
-				modelEdi4.getObb().c.y + 84.7,
-				modelEdi4.getObb().c.z + 110.0));
+				glm::vec3(modelEdi4.getObb().c.x,
+						modelEdi4.getObb().c.y + 84.7,
+						modelEdi4.getObb().c.z + 110.0));
 		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 5.9, 0.05);
 		edi4Collider.c = glm::vec3(modelmatrixColliderEdi4[3]);
 		addOrUpdateColliders(collidersOBB, "edi4", edi4Collider, modelMatrixEdi4);
@@ -1172,7 +1175,7 @@ void applicationLoop() {
 		AbstractModel::OBB edi6Collider;
 		glm::mat4 modelmatrixColliderEdi6 = glm::mat4(modelMatrixEdi6);
 		modelmatrixColliderEdi6 = glm::rotate(modelmatrixColliderEdi6,
-			glm::radians(-90.0f), glm::vec3(1, 0, 0));
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
 		edi6Collider.u = glm::quat_cast(modelmatrixColliderEdi6);
 		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
