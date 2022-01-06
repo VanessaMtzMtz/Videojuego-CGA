@@ -685,6 +685,37 @@ bool processInput(bool continueApplication) {
 		return false;
 	}
 
+	//Mapeo botones control XBOX
+	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GL_TRUE) {
+		int axesCount, buttonCount;
+		const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
+
+		if (fabs(axes[1]) > 0.2) {
+			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.1));
+			animationIndex = 0;
+		}
+		if (fabs(axes[0]) > 0.2) {
+			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 0.5f), glm::vec3(0, 1, 0));
+			animationIndex = 0;
+		}
+		if (fabs(axes[2]) > 0.2) {
+			camera->mouseMoveCamera(axes[2], 0.0, deltaTime);
+		}
+		if (fabs(axes[3]) > 0.2) {
+			camera->mouseMoveCamera(0.0, axes[3], deltaTime);
+		}
+		const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+		//std::cout << "Numero de botones disponibles:=>" << buttonCount << std::endl;
+		/*if (buttons[0] == GLFW_PRESS)
+			std::cout << "Se presiona A:" << std::endl;*/
+		if (!isJump && buttons[0] == GLFW_PRESS) {
+			isJump = true;
+			startTimeJump = currTime;
+			tmv = 0;
+		}
+
+	}
+
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 		camera->mouseMoveCamera(offsetX, 0.0, deltaTime);
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
