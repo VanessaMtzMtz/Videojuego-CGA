@@ -88,6 +88,8 @@ Model modelEdi6;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
+//Person
+Model personModelAnimate;
 // Terrain model instance
 Terrain terrain(-1, -1, 200, 8, "../Textures/heightmap.png");
 
@@ -121,6 +123,7 @@ int lastMousePosY, offsetY = 0;
 glm::mat4 matrixModelRock = glm::mat4(1.0);
 glm::mat4 matrixModelVaccine = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
+glm::mat4 modelMatrixPerson = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi3 = glm::mat4(1.0f);
@@ -176,18 +179,9 @@ std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> > col
 ALfloat listenerPos[] = { 0.0, 0.0, 4.0 };
 ALfloat listenerVel[] = { 0.0, 0.0, 0.0 };
 ALfloat listenerOri[] = { 0.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-// Source 0
-ALfloat source0Pos[] = { -2.0, 0.0, 0.0 };
+//Source 0
+ALfloat source0Pos[] = { 2.0, 0.0, 0.0 };
 ALfloat source0Vel[] = { 0.0, 0.0, 0.0 };
-// Source 1
-ALfloat source1Pos[] = { 2.0, 0.0, 0.0 };
-ALfloat source1Vel[] = { 0.0, 0.0, 0.0 };
-// Source 2
-ALfloat source2Pos[] = { 2.0, 0.0, 0.0 };
-ALfloat source2Vel[] = { 0.0, 0.0, 0.0 };
-// Source 2
-ALfloat source3Pos[] = { 2.0, 0.0, 0.0 };
-ALfloat source3Vel[] = { 0.0, 0.0, 0.0 };
 // Buffers
 ALuint buffer[NUM_BUFFERS];
 ALuint source[NUM_SOURCES];
@@ -198,7 +192,7 @@ ALenum format;
 ALvoid *data;
 int ch;
 ALboolean loop;
-std::vector<bool> sourcesPlay = {true, true, true, true};
+std::vector<bool> sourcesPlay = {true};
 
 // Se definen todos las funciones.
 void reshapeCallback(GLFWwindow *Window, int widthRes, int heightRes);
@@ -320,6 +314,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//Simi
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
 	simiModelAnimate.setShader(&shaderMulLighting);
+
+	//Person
+	personModelAnimate.loadModel("../models/Person/Crying/Crying.dae");
+	personModelAnimate.setShader(&shaderMulLighting);
 
 	camera->setPosition(glm::vec3(0.0, 0.0, 15.0));
 	camera->setDistanceFromTarget(distanceFromTarget);
@@ -538,10 +536,7 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	// Config source 0
 	// Generate buffers, or else no sound will happen!
 	alGenBuffers(NUM_BUFFERS, buffer);
-	buffer[0] = alutCreateBufferFromFile("../sounds/fountain.wav");
-	buffer[1] = alutCreateBufferFromFile("../sounds/fire.wav");
-	buffer[2] = alutCreateBufferFromFile("../sounds/darth_vader.wav");
-	buffer[3] = alutCreateBufferFromFile("../sounds/ambiente-ciudad.wav");
+	buffer[0] = alutCreateBufferFromFile("../sounds/ambiente-ciudad.wav");
 	int errorAlut = alutGetError();
 	if (errorAlut != ALUT_ERROR_NO_ERROR){
 		printf("- Error open files with alut %d !!\n", errorAlut);
@@ -559,36 +554,12 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 		printf("init - no errors after alGenSources\n");
 	}
 	alSourcef(source[0], AL_PITCH, 1.0f);
-	alSourcef(source[0], AL_GAIN, 0.5f);
+	alSourcef(source[0], AL_GAIN, 2.0f);
 	alSourcefv(source[0], AL_POSITION, source0Pos);
 	alSourcefv(source[0], AL_VELOCITY, source0Vel);
 	alSourcei(source[0], AL_BUFFER, buffer[0]);
 	alSourcei(source[0], AL_LOOPING, AL_TRUE);
-	alSourcef(source[0], AL_MAX_DISTANCE, 500);
-
-	alSourcef(source[1], AL_PITCH, 1.0f);
-	alSourcef(source[1], AL_GAIN, 0.5f);
-	alSourcefv(source[1], AL_POSITION, source1Pos);
-	alSourcefv(source[1], AL_VELOCITY, source1Vel);
-	alSourcei(source[1], AL_BUFFER, buffer[1]);
-	alSourcei(source[1], AL_LOOPING, AL_TRUE);
-	alSourcef(source[1], AL_MAX_DISTANCE, 500);
-
-	alSourcef(source[2], AL_PITCH, 1.0f);
-	alSourcef(source[2], AL_GAIN, 0.3f);
-	alSourcefv(source[2], AL_POSITION, source2Pos);
-	alSourcefv(source[2], AL_VELOCITY, source2Vel);
-	alSourcei(source[2], AL_BUFFER, buffer[2]);
-	alSourcei(source[2], AL_LOOPING, AL_TRUE);
-	alSourcef(source[2], AL_MAX_DISTANCE, 500);
-
-	alSourcef(source[3], AL_PITCH, 1.0f);
-	alSourcef(source[3], AL_GAIN, 2.0f);
-	alSourcefv(source[3], AL_POSITION, source3Pos);
-	alSourcefv(source[3], AL_VELOCITY, source3Vel);
-	alSourcei(source[3], AL_BUFFER, buffer[3]);
-	alSourcei(source[3], AL_LOOPING, AL_TRUE);
-	alSourcef(source[3], AL_MAX_DISTANCE, 3000);
+	alSourcef(source[0], AL_MAX_DISTANCE, 3000);
 }
 
 void destroy() {
@@ -625,6 +596,7 @@ void destroy() {
 
 	// Custom objects animate
 	simiModelAnimate.destroy();
+	personModelAnimate.destroy();
 
 	// Textures Delete
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -748,10 +720,10 @@ bool processInput(bool continueApplication) {
 		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.1));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.02));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
 		animationIndex = 0;
 	}
 
@@ -779,9 +751,10 @@ void applicationLoop() {
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
+
+	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
 	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -1017,12 +990,16 @@ void applicationLoop() {
 			isJump = false;
 			modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		}
-		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
 		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
 		simiModelAnimate.setAnimationIndex(animationIndex);
 		simiModelAnimate.render(modelMatrixSimiBody);
 		simiModelAnimate.setAnimationIndex(1);
+
+		modelMatrixPerson[3][1] = terrain.getHeightTerrain(modelMatrixPerson[3][0], modelMatrixPerson[3][2]);
+		glm::mat4 modelMatrixPersonBody = glm::mat4(modelMatrixPerson);
+		modelMatrixPersonBody = glm::scale(modelMatrixPersonBody, glm::vec3(0.02f, 0.02f, 0.02f));
+		personModelAnimate.render(modelMatrixPersonBody);
 
 		/*******************************************
 		 * Skybox
@@ -1138,8 +1115,8 @@ void applicationLoop() {
 		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
 				glm::vec3(modelEdi1.getObb().c.x,
 						modelEdi1.getObb().c.y + 77.5,
-						modelEdi1.getObb().c.z + 110.0));
-		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.01);
+						modelEdi1.getObb().c.z + 123.5));
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.025);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
 
@@ -1154,10 +1131,58 @@ void applicationLoop() {
 		modelmatrixColliderEdi2 = glm::translate(modelmatrixColliderEdi2,
 				glm::vec3(modelEdi2.getObb().c.x + 6.0,
 						modelEdi2.getObb().c.y + 168.5,
-						modelEdi2.getObb().c.z + 180.0));
-		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(0.92, 1.1, 0.1);
+						modelEdi2.getObb().c.z + 195.0));
+		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(0.92, 1.1, 0.3);
 		edi2Collider.c = glm::vec3(modelmatrixColliderEdi2[3]);
 		addOrUpdateColliders(collidersOBB, "edi2", edi2Collider, modelMatrixEdi2);
+
+		// Collider del edificio 3
+		AbstractModel::OBB edi3Collider;
+		glm::mat4 modelmatrixColliderEdi3 = glm::mat4(modelMatrixEdi3);
+		modelmatrixColliderEdi3 = glm::rotate(modelmatrixColliderEdi3,
+			glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi3Collider.u = glm::quat_cast(modelmatrixColliderEdi3);
+		modelmatrixColliderEdi3 = glm::scale(modelmatrixColliderEdi3, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi3 = glm::translate(modelmatrixColliderEdi3,
+			glm::vec3(modelEdi3.getObb().c.x + 5.5,
+				modelEdi3.getObb().c.y + 49.6,
+				modelEdi3.getObb().c.z + 82.0));
+		edi3Collider.e = modelEdi3.getObb().e * glm::vec3(1.0, 10.85, 0.025);
+		edi3Collider.c = glm::vec3(modelmatrixColliderEdi3[3]);
+		addOrUpdateColliders(collidersOBB, "edi3", edi3Collider, modelMatrixEdi3);
+
+		// Collider del edificio 4
+		AbstractModel::OBB edi4Collider;
+		glm::mat4 modelmatrixColliderEdi4 = glm::mat4(modelMatrixEdi4);
+		modelmatrixColliderEdi4 = glm::rotate(modelmatrixColliderEdi4,
+			glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi4Collider.u = glm::quat_cast(modelmatrixColliderEdi4);
+		modelmatrixColliderEdi4 = glm::scale(modelmatrixColliderEdi4, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi4 = glm::translate(modelmatrixColliderEdi4,
+			glm::vec3(modelEdi4.getObb().c.x,
+				modelEdi4.getObb().c.y + 84.7,
+				modelEdi4.getObb().c.z + 110.0));
+		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi4Collider.c = glm::vec3(modelmatrixColliderEdi4[3]);
+		addOrUpdateColliders(collidersOBB, "edi4", edi4Collider, modelMatrixEdi4);
+
+		// Collider del edificio 6
+		AbstractModel::OBB edi6Collider;
+		glm::mat4 modelmatrixColliderEdi6 = glm::mat4(modelMatrixEdi6);
+		modelmatrixColliderEdi6 = glm::rotate(modelmatrixColliderEdi6,
+			glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		edi6Collider.u = glm::quat_cast(modelmatrixColliderEdi6);
+		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderEdi6 = glm::translate(modelmatrixColliderEdi6,
+			glm::vec3(modelEdi6.getObb().c.x,
+				modelEdi6.getObb().c.y + 95.7,
+				modelEdi6.getObb().c.z + 110.0));
+		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
+		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
 		/*******************************************
 		 * Render de colliders
@@ -1182,26 +1207,6 @@ void applicationLoop() {
 			sphereCollider.enableWireMode();
 			sphereCollider.render(matrixCollider);
 		}
-
-		// Esto es para ilustrar la transformacion inversa de los coliders
-		/*glm::vec3 cinv = glm::inverse(simiCollider.u) * glm::vec4(rockCollider.c, 1.0);
-		glm::mat4 invColliderS = glm::mat4(1.0);
-		invColliderS = glm::translate(invColliderS, cinv);
-		invColliderS =  invColliderS * glm::mat4(simiCollider.u);
-		invColliderS = glm::scale(invColliderS, glm::vec3(rockCollider.ratio * 2.0, rockCollider.ratio * 2.0, rockCollider.ratio * 2.0));
-		sphereCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
-		sphereCollider.enableWireMode();
-		sphereCollider.render(invColliderS);
-		glm::vec3 cinv2 = glm::inverse(simiCollider.u) * glm::vec4(simiCollider.c, 1.0);
-		glm::mat4 invColliderB = glm::mat4(1.0);
-		invColliderB = glm::translate(invColliderB, cinv2);
-		invColliderB = glm::scale(invColliderB, simiCollider.e * 2.0f);
-		boxCollider.setColor(glm::vec4(1.0, 1.0, 0.0, 1.0));
-		boxCollider.enableWireMode();
-		boxCollider.render(invColliderB);
-		// Se regresa el color blanco
-		sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-		boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));*/
 
 		/*******************************************
 		 * Test Colisions
@@ -1296,10 +1301,6 @@ void applicationLoop() {
 		// Constantes de animaciones
 		animationIndex = 1;
 
-		/*******************************************
-		 * State machines
-		 *******************************************/
-
 		/*****************************
 		* Configuracion del texto
 		******************************/
@@ -1360,18 +1361,6 @@ void applicationLoop() {
 		listenerOri[3] = upModel.x;
 		listenerOri[4] = upModel.y;
 		listenerOri[5] = upModel.z;
-
-		// Listener for the First person camera
-		/*listenerPos[0] = camera->getPosition().x;
-		listenerPos[1] = camera->getPosition().y;
-		listenerPos[2] = camera->getPosition().z;
-		alListenerfv(AL_POSITION, listenerPos);
-		listenerOri[0] = camera->getFront().x;
-		listenerOri[1] = camera->getFront().y;
-		listenerOri[2] = camera->getFront().z;
-		listenerOri[3] = camera->getUp().x;
-		listenerOri[4] = camera->getUp().y;
-		listenerOri[5] = camera->getUp().z;*/
 		alListenerfv(AL_ORIENTATION, listenerOri);
 
 		for(unsigned int i = 0; i < sourcesPlay.size(); i++){
