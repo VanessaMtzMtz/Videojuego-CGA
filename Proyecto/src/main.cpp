@@ -72,10 +72,10 @@ Sphere sphereCollider(10, 10);
 
 // Models complex instances
 Model modelRock;
-// Lamps
+// Objetos
 Model modelLamp1;
-Model modelLamp2;
-Model modelLampPost2;
+Model modelMask;
+Model modelVaccine;
 // Hierba
 Model modelGrass;
 //Edificios y casas
@@ -88,6 +88,8 @@ Model modelEdi6;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
+//Person
+Model personModelAnimate;
 // Terrain model instance
 Terrain terrain(-1, -1, 200, 8, "../Textures/heightmap.png");
 
@@ -119,7 +121,9 @@ int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
 glm::mat4 matrixModelRock = glm::mat4(1.0);
+glm::mat4 matrixModelVaccine = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
+glm::mat4 modelMatrixPerson = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi3 = glm::mat4(1.0f);
@@ -139,10 +143,16 @@ glm::vec3(8.3, 0, -84.8),
 glm::vec3(70.0, 0, 25.0),
 glm::vec3(18.95, 0, 76.4) };
 std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 ,23.70};
+//Mask position
+std::vector<glm::vec3> maskPosition = { glm::vec3(-55.7, 2.0, 2.8),
+glm::vec3(-8.3, 2.0, -70.9),
+glm::vec3(-13.3, 2.0, 70.4),
+glm::vec3(75.8, 2.0, -71.9) };
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
-		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)}
+		{"farmacia", glm::vec3(-82.7f, 0.0f, 78.8f)},
+		{"vacuna", glm::vec3(58.3, 0.0, 64.1)}
 };
 
 double deltaTime;
@@ -275,9 +285,13 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	terrain.setShader(&shaderTerrain);
 	terrain.setPosition(glm::vec3(100, 0, 100));
 	
-	//Lamp models
+	//Object models
 	modelLamp1.loadModel("../models/Poste/poste.obj");
 	modelLamp1.setShader(&shaderMulLighting);
+	modelMask.loadModel("../models/N95/n95.obj");
+	modelMask.setShader(&shaderMulLighting);
+	modelVaccine.loadModel("../models/Vaccine/model/Export/vaccine.obj");
+	modelVaccine.setShader(&shaderMulLighting);
 
 	//Grass
 	modelGrass.loadModel("../models/grass/grassModel.obj");
@@ -300,6 +314,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	//Simi
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
 	simiModelAnimate.setShader(&shaderMulLighting);
+
+	//Person
+	personModelAnimate.loadModel("../models/Person/Crying/Crying.dae");
+	personModelAnimate.setShader(&shaderMulLighting);
 
 	camera->setPosition(glm::vec3(0.0, 0.0, 15.0));
 	camera->setDistanceFromTarget(distanceFromTarget);
@@ -573,10 +591,13 @@ void destroy() {
 	// Custom objects Delete
 	modelRock.destroy();
 	modelLamp1.destroy();
+	modelMask.destroy();
 	modelGrass.destroy();
+	modelVaccine.destroy();
 
 	// Custom objects animate
 	simiModelAnimate.destroy();
+	personModelAnimate.destroy();
 
 	// Textures Delete
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -643,6 +664,37 @@ bool processInput(bool continueApplication) {
 		return false;
 	}
 
+	//Mapeo botones control XBOX
+	if (glfwJoystickPresent(GLFW_JOYSTICK_1) == GL_TRUE) {
+		int axesCount, buttonCount;
+		const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
+
+		if (fabs(axes[1]) > 0.2) {
+			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.1));
+			animationIndex = 0;
+		}
+		if (fabs(axes[0]) > 0.2) {
+			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 0.5f), glm::vec3(0, 1, 0));
+			animationIndex = 0;
+		}
+		if (fabs(axes[2]) > 0.2) {
+			camera->mouseMoveCamera(axes[2], 0.0, deltaTime);
+		}
+		if (fabs(axes[3]) > 0.2) {
+			camera->mouseMoveCamera(0.0, axes[3], deltaTime);
+		}
+		const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+		//std::cout << "Numero de botones disponibles:=>" << buttonCount << std::endl;
+		/*if (buttons[0] == GLFW_PRESS)
+			std::cout << "Se presiona A:" << std::endl;*/
+		if (!isJump && buttons[0] == GLFW_PRESS) {
+			isJump = true;
+			startTimeJump = currTime;
+			tmv = 0;
+		}
+
+	}
+
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 		camera->mouseMoveCamera(offsetX, 0.0, deltaTime);
 	if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
@@ -698,9 +750,14 @@ void applicationLoop() {
 
 	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
 
-	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
+	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
+
+  //modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
+
+	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
 
 	modelMatrixEdi1 = glm::translate(modelMatrixEdi1, glm::vec3(-82.7f, 0.0f, 78.8f));
 	modelMatrixEdi2 = glm::translate(modelMatrixEdi2, glm::vec3(-82.7f, 0.0f, 78.8f));
@@ -911,6 +968,14 @@ void applicationLoop() {
 			modelLamp1.render();
 		}
 
+		//Render Masks
+		for (int i = 0; i < maskPosition.size(); i++) {
+			maskPosition[i].y = terrain.getHeightTerrain(maskPosition[i].x, maskPosition[i].z);
+			modelMask.setPosition(maskPosition[i]);
+			modelMask.setScale(glm::vec3(20.5, 20.5, 20.5));
+			modelMask.render();
+		}
+
 		// Grass
 		glDisable(GL_CULL_FACE);
 		glm::vec3 grassPosition = glm::vec3(-82.7f, 0.0f, 78.8f);
@@ -928,12 +993,16 @@ void applicationLoop() {
 			isJump = false;
 			modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		}
-		//modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
 		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
 		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
 		simiModelAnimate.setAnimationIndex(animationIndex);
 		simiModelAnimate.render(modelMatrixSimiBody);
 		simiModelAnimate.setAnimationIndex(1);
+
+		modelMatrixPerson[3][1] = terrain.getHeightTerrain(modelMatrixPerson[3][0], modelMatrixPerson[3][2]);
+		glm::mat4 modelMatrixPersonBody = glm::mat4(modelMatrixPerson);
+		modelMatrixPersonBody = glm::scale(modelMatrixPersonBody, glm::vec3(0.02f, 0.02f, 0.02f));
+		personModelAnimate.render(modelMatrixPersonBody);
 
 		/*******************************************
 		 * Skybox
@@ -956,6 +1025,7 @@ void applicationLoop() {
 		 */
 		// Update farmacia
 		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
+		blendingUnsorted.find("vacuna")->second = glm::vec3(matrixModelVaccine[3]);
 
 		/**********
 		 * Sorter with alpha objects
@@ -979,6 +1049,12 @@ void applicationLoop() {
 				glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
 				modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
 				modelEdi1.render(modelMatrixEdi1Blend);
+			}
+			if (it->second.first.compare("vacuna") == 0) {
+				glm::mat4 modelMatrixVaccineBlend = glm::mat4(matrixModelVaccine);
+				modelMatrixVaccineBlend[3][1] = terrain.getHeightTerrain(modelMatrixVaccineBlend[3][0], modelMatrixVaccineBlend[3][2]);
+				modelVaccine.setScale(glm::vec3(0.2, 0.2, 0.2));
+				modelVaccine.render(modelMatrixVaccineBlend);
 			}
 		}
 		glEnable(GL_CULL_FACE);
@@ -1083,7 +1159,7 @@ void applicationLoop() {
 		AbstractModel::OBB edi4Collider;
 		glm::mat4 modelmatrixColliderEdi4 = glm::mat4(modelMatrixEdi4);
 		modelmatrixColliderEdi4 = glm::rotate(modelmatrixColliderEdi4,
-				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+			glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
 		edi4Collider.u = glm::quat_cast(modelmatrixColliderEdi4);
 		modelmatrixColliderEdi4 = glm::scale(modelmatrixColliderEdi4, glm::vec3(1.0, 1.0, 0.1));
@@ -1104,9 +1180,9 @@ void applicationLoop() {
 		edi6Collider.u = glm::quat_cast(modelmatrixColliderEdi6);
 		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi6 = glm::translate(modelmatrixColliderEdi6,
-				glm::vec3(modelEdi6.getObb().c.x,
-						modelEdi6.getObb().c.y + 95.7,
-						modelEdi6.getObb().c.z + 110.0));
+			glm::vec3(modelEdi6.getObb().c.x,
+				modelEdi6.getObb().c.y + 95.7,
+				modelEdi6.getObb().c.z + 110.0));
 		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 5.9, 0.05);
 		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
@@ -1288,18 +1364,6 @@ void applicationLoop() {
 		listenerOri[3] = upModel.x;
 		listenerOri[4] = upModel.y;
 		listenerOri[5] = upModel.z;
-
-		// Listener for the First person camera
-		/*listenerPos[0] = camera->getPosition().x;
-		listenerPos[1] = camera->getPosition().y;
-		listenerPos[2] = camera->getPosition().z;
-		alListenerfv(AL_POSITION, listenerPos);
-		listenerOri[0] = camera->getFront().x;
-		listenerOri[1] = camera->getFront().y;
-		listenerOri[2] = camera->getFront().z;
-		listenerOri[3] = camera->getUp().x;
-		listenerOri[4] = camera->getUp().y;
-		listenerOri[5] = camera->getUp().z;*/
 		alListenerfv(AL_ORIENTATION, listenerOri);
 
 		for(unsigned int i = 0; i < sourcesPlay.size(); i++){
@@ -1312,7 +1376,7 @@ void applicationLoop() {
 }
 
 int main(int argc, char **argv) {
-	init(800, 700, "Videojuego COVID-19", false);
+	init(800, 700, "ZONA DE ALTO CONTAGIO", false);
 	applicationLoop();
 	destroy();
 	return 1;
