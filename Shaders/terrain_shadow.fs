@@ -113,7 +113,7 @@ float calculateShadow(vec3 lightDir){
 	}
 	shadow /= 9.0;
 	if(projCoords.z > 1.0)
-        shadow = 0.0;
+        shadow = 0.0; 
 
     return shadow;
 }

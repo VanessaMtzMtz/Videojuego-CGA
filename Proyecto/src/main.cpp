@@ -7,6 +7,10 @@
 #include <string>
 #include <iostream>
 
+// contains new std::shuffle definition
+#include <algorithm>
+#include <random>
+
 //glfw include
 #include <GLFW/glfw3.h>
 
@@ -45,6 +49,9 @@
 // Include Colision headers functions
 #include "Headers/Colisiones.h"
 
+//Shadowbox include
+#include "Headers/ShadowBox.h"
+
 // OpenAL include
 #include <AL/alut.h>
 
@@ -52,6 +59,8 @@
 
 int screenWidth;
 int screenHeight;
+
+const unsigned int SHADOW_WIDTH = 2048, SHADOW_HEIGHT = 2048;
 
 GLFWwindow *window;
 
@@ -62,6 +71,10 @@ Shader shaderSkybox;
 Shader shaderMulLighting;
 //Shader para el terreno
 Shader shaderTerrain;
+//Shader para visualizar buffer de profundidad
+Shader shaderViewDepth;
+//Shader dibujar el buffer de profundidad
+Shader shaderDepth;
 
 std::shared_ptr<Camera> camera(new ThirdPersonCamera());
 float distanceFromTarget = 12.0;
@@ -69,6 +82,10 @@ float distanceFromTarget = 12.0;
 Sphere skyboxSphere(20, 20);
 Box boxCollider;
 Sphere sphereCollider(10, 10);
+Box boxViewDepth;
+Box boxLightViewBox;
+
+ShadowBox* shadowBox;
 
 // Models complex instances
 Model modelRock;
@@ -168,6 +185,9 @@ double startTimeJump = 0;
 std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> > collidersOBB;
 std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> > collidersSBB;
 
+// Framesbuffers
+GLuint depthMap, depthMapFBO;
+
 /**********************
  * OpenAL config
  ***********************/
@@ -204,6 +224,9 @@ void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 void init(int width, int height, std::string strTitle, bool bFullScreen);
 void destroy();
 bool processInput(bool continueApplication = true);
+void prepareScene();
+void prepareDepthScene();
+void renderScene(bool renderParticles = true);
 
 // Implementacion de todas las funciones.
 void init(int width, int height, std::string strTitle, bool bFullScreen) {
@@ -262,8 +285,10 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	// Inicialización de los shaders
 	shader.initialize("../Shaders/colorShader.vs", "../Shaders/colorShader.fs");
 	shaderSkybox.initialize("../Shaders/skyBox.vs", "../Shaders/skyBox_fog.fs");
-	shaderMulLighting.initialize("../Shaders/iluminacion_textura_animation_fog.vs", "../Shaders/multipleLights_fog.fs");
-	shaderTerrain.initialize("../Shaders/terrain_fog.vs", "../Shaders/terrain_fog.fs");
+	shaderMulLighting.initialize("../Shaders/iluminacion_textura_animation_shadow.vs", "../Shaders/multipleLights_shadow.fs");
+	shaderTerrain.initialize("../Shaders/terrain_shadow.vs", "../Shaders/terrain_shadow.fs");
+	shaderViewDepth.initialize("../Shaders/texturizado.vs", "../Shaders/texturizado_depth_view.fs");
+	shaderDepth.initialize("../Shaders/shadow_mapping_depth.vs", "../Shaders/shadow_mapping_depth.fs");
 
 	// Inicializacion de los objetos.
 	skyboxSphere.init();
@@ -277,6 +302,9 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	sphereCollider.init();
 	sphereCollider.setShader(&shader);
 	sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
+
+	boxViewDepth.init();
+	boxViewDepth.setShader(&shaderViewDepth);
 
 	modelRock.loadModel("../models/rock/rock.obj");
 	modelRock.setShader(&shaderMulLighting);
@@ -561,6 +589,27 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	alSourcei(source[0], AL_BUFFER, buffer[0]);
 	alSourcei(source[0], AL_LOOPING, AL_TRUE);
 	alSourcef(source[0], AL_MAX_DISTANCE, 3000);
+
+	/*******************************************
+	 * Inicializacion del framebuffer para
+	 * almacenar el buffer de profundidad
+	 *******************************************/
+	glGenFramebuffers(1, &depthMapFBO);
+	glGenTextures(1, &depthMap);
+	glBindTexture(GL_TEXTURE_2D, depthMap);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
+		SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+	glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+	glDrawBuffer(GL_NONE);
+	glReadBuffer(GL_NONE);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void destroy() {
@@ -753,8 +802,8 @@ void applicationLoop() {
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  //modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
+	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
@@ -767,6 +816,9 @@ void applicationLoop() {
 	modelMatrixEdi6 = glm::translate(modelMatrixEdi6, glm::vec3(-82.7f, 0.0f, 78.8f));
 
 	lastTime = TimeManager::Instance().GetTime(); 
+
+	glm::vec3 lightPos = glm::vec3(10.0, 10.0, 0.0);
+	shadowBox = new ShadowBox(-lightPos, camera.get(), 15.0f, 0.1f, 45.0f);
 
 	while (psi) {
 		currTime = TimeManager::Instance().GetTime();
@@ -781,7 +833,7 @@ void applicationLoop() {
 
 		std::map<std::string, bool> collisionDetection;
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f),
 				(float) screenWidth / (float) screenHeight, 0.01f, 100.0f);
@@ -803,6 +855,19 @@ void applicationLoop() {
 		camera->updateCamera();
 		view = camera->getViewMatrix();
 
+		//Projection light shadow mapping
+		glm::mat4 lightProjection = glm::mat4(1.0f), lightView= glm::mat4(1.0f);
+		shadowBox->update(screenWidth,screenHeight);
+		glm::vec3 centerBox = shadowBox->getCenter();
+		glm::mat4 lightSpaceMatrix;
+		lightView = glm::lookAt(centerBox, centerBox + glm::normalize(-lightPos), glm::vec3(0.0, 1.0, 0.0));
+		lightProjection[0][0] = 2.0f / shadowBox->getWidth();
+		lightProjection[1][1] = 2.0f / shadowBox->getHeight();
+		lightProjection[2][2] = -2.0f / shadowBox->getLength();
+		lightProjection[3][3] = 1.0f;
+		lightSpaceMatrix = lightProjection * lightView;
+		shaderDepth.setMatrix4("lightSpaceMatrix", 1, false, glm::value_ptr(lightSpaceMatrix));
+
 		// Settea la matriz de vista y projection al shader con solo color
 		shader.setMatrix4("projection", 1, false, glm::value_ptr(projection));
 		shader.setMatrix4("view", 1, false, glm::value_ptr(view));
@@ -817,22 +882,24 @@ void applicationLoop() {
 					glm::value_ptr(projection));
 		shaderMulLighting.setMatrix4("view", 1, false,
 				glm::value_ptr(view));
+		shaderMulLighting.setMatrix4("lightSpaceMatrix", 1, false, glm::value_ptr(lightSpaceMatrix));
 		// Settea la matriz de vista y projection al shader con multiples luces
 		shaderTerrain.setMatrix4("projection", 1, false,
 					glm::value_ptr(projection));
 		shaderTerrain.setMatrix4("view", 1, false,
 				glm::value_ptr(view));
+		shaderTerrain.setMatrix4("lightSpaceMatrix", 1, false, glm::value_ptr(lightSpaceMatrix));
 
 		/*******************************************
 		 * Propiedades Neblina
 		 *******************************************/
 		shaderMulLighting.setVectorFloat3("fogColor", glm::value_ptr(glm::vec3(0.0, 0.5, 0.2)));
-		shaderMulLighting.setFloat("density", 0.02);
+		//shaderMulLighting.setFloat("density", 0.02);
 		shaderTerrain.setVectorFloat3("fogColor", glm::value_ptr(glm::vec3(0.0, 0.5, 0.2)));
-		shaderTerrain.setFloat("density", 0.02);
+		//shaderTerrain.setFloat("density", 0.02);
 		shaderSkybox.setVectorFloat3("fogColor", glm::value_ptr(glm::vec3(0.0, 0.5, 0.2)));
-		shaderSkybox.setFloat("lowerLimit", 0.0);
-		shaderSkybox.setFloat("upperLimit", 0.04);
+		//shaderSkybox.setFloat("lowerLimit", 0.0);
+		//shaderSkybox.setFloat("upperLimit", 0.04);
 
 		/*******************************************
 		 * Propiedades Luz direccional
@@ -907,102 +974,26 @@ void applicationLoop() {
 			shaderTerrain.setFloat("pointLights[" + std::to_string(i) + "].quadratic", 0.02);
 		}
 
-		/*******************************************
-		 * Terrain Cesped
-		 *******************************************/
-		glm::mat4 modelCesped = glm::mat4(1.0);
-		modelCesped = glm::translate(modelCesped, glm::vec3(0.0, 0.0, 0.0));
-		modelCesped = glm::scale(modelCesped, glm::vec3(200.0, 0.001, 200.0));
-		// Se activa la textura del background
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, textureTerrainBackgroundID);
-		shaderTerrain.setInt("backgroundTexture", 0);
-		// Se activa la textura de tierra
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, textureTerrainRID);
-		shaderTerrain.setInt("rTexture", 1);
-		// Se activa la textura de hierba
-		glActiveTexture(GL_TEXTURE2);
-		glBindTexture(GL_TEXTURE_2D, textureTerrainGID);
-		shaderTerrain.setInt("gTexture", 2);
-		// Se activa la textura del camino
-		glActiveTexture(GL_TEXTURE3);
-		glBindTexture(GL_TEXTURE_2D, textureTerrainBID);
-		shaderTerrain.setInt("bTexture", 3);
-		// Se activa la textura del blend map
-		glActiveTexture(GL_TEXTURE4);
-		glBindTexture(GL_TEXTURE_2D, textureTerrainBlendMapID);
-		shaderTerrain.setInt("blendMapTexture", 4);
-		shaderTerrain.setVectorFloat2("scaleUV", glm::value_ptr(glm::vec2(40, 40)));
-		terrain.render();
-		shaderTerrain.setVectorFloat2("scaleUV", glm::value_ptr(glm::vec2(0, 0)));
-		glBindTexture(GL_TEXTURE_2D, 0);
+		// Render del buffer de profundidad
+		glClearColor(0.1f, 0.1f, 0.1f, 0.1f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+		glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glCullFace(GL_FRONT);
+		prepareDepthScene();
+		renderScene(false);
+		glCullFace(GL_BACK);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-		/*******************************************
-		 * Custom objects obj
-		 *******************************************/
-		//Rock render
-		matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
-		modelRock.render(matrixModelRock);
-		//Edificios
-		modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
-		modelEdi2.render(modelMatrixEdi2); 
-		modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
-		modelEdi3.render(modelMatrixEdi3);
-		modelMatrixEdi4[3][1] = terrain.getHeightTerrain(modelMatrixEdi4[3][0], modelMatrixEdi4[3][2]);
-		modelEdi4.render(modelMatrixEdi4);
-		modelMatrixEdi5[3][1] = terrain.getHeightTerrain(modelMatrixEdi5[3][0], modelMatrixEdi5[3][2]);
-		modelEdi5.render(modelMatrixEdi5);
-		modelMatrixEdi6[3][1] = terrain.getHeightTerrain(modelMatrixEdi6[3][0], modelMatrixEdi6[3][2]);
-		modelEdi6.render(modelMatrixEdi6);
-
-		// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
-		glActiveTexture(GL_TEXTURE0);
-
-		// Render the lamps
-		for (int i = 0; i < lamp1Position.size(); i++){
-			lamp1Position[i].y = terrain.getHeightTerrain(lamp1Position[i].x, lamp1Position[i].z);
-			modelLamp1.setPosition(lamp1Position[i]);
-			modelLamp1.setScale(glm::vec3(0.5, 0.5, 0.5));
-			modelLamp1.setOrientation(glm::vec3(0, lamp1Orientation[i], 0));
-			modelLamp1.render();
-		}
-
-		//Render Masks
-		for (int i = 0; i < maskPosition.size(); i++) {
-			maskPosition[i].y = terrain.getHeightTerrain(maskPosition[i].x, maskPosition[i].z);
-			modelMask.setPosition(maskPosition[i]);
-			modelMask.setScale(glm::vec3(20.5, 20.5, 20.5));
-			modelMask.render();
-		}
-
-		// Grass
-		glDisable(GL_CULL_FACE);
-		glm::vec3 grassPosition = glm::vec3(-82.7f, 0.0f, 78.8f);
-		grassPosition.y = terrain.getHeightTerrain(grassPosition.x, grassPosition.z);
-		modelGrass.setPosition(grassPosition);
-		modelGrass.render();
-		glEnable(GL_CULL_FACE);
-
-		/*******************************************
-		 * Custom Anim objects obj
-		 *******************************************/
-		modelMatrixSimi[3][1] = -GRAVITY * tmv * tmv + 3.5 * tmv + terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
-		tmv = currTime - startTimeJump;
-		if(modelMatrixSimi[3][1] < terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2])){
-			isJump = false;
-			modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
-		}
-		glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
-		modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
-		simiModelAnimate.setAnimationIndex(animationIndex);
-		simiModelAnimate.render(modelMatrixSimiBody);
-		simiModelAnimate.setAnimationIndex(1);
-
-		modelMatrixPerson[3][1] = terrain.getHeightTerrain(modelMatrixPerson[3][0], modelMatrixPerson[3][2]);
-		glm::mat4 modelMatrixPersonBody = glm::mat4(modelMatrixPerson);
-		modelMatrixPersonBody = glm::scale(modelMatrixPersonBody, glm::vec3(0.02f, 0.02f, 0.02f));
-		personModelAnimate.render(modelMatrixPersonBody);
+		//Render de la escena normal 
+		glViewport(0, 0, screenWidth, screenHeight);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		prepareScene();
+		glActiveTexture(GL_TEXTURE10);
+		glBindTexture(GL_TEXTURE_2D, depthMap);
+		shaderMulLighting.setInt("shadowMap", 10);
+		shaderTerrain.setInt("shadowMap", 10);
 
 		/*******************************************
 		 * Skybox
@@ -1019,46 +1010,8 @@ void applicationLoop() {
 		skyboxSphere.render();
 		glCullFace(oldCullFaceMode);
 		glDepthFunc(oldDepthFuncMode);
-
-		/**********
-		 * Update the position with alpha objects
-		 */
-		// Update farmacia
-		blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
-		blendingUnsorted.find("vacuna")->second = glm::vec3(matrixModelVaccine[3]);
-
-		/**********
-		 * Sorter with alpha objects
-		 */
-		std::map<float, std::pair<std::string, glm::vec3>> blendingSorted;
-		std::map<std::string, glm::vec3>::iterator itblend;
-		for(itblend = blendingUnsorted.begin(); itblend != blendingUnsorted.end(); itblend++){
-			float distanceFromView = glm::length(camera->getPosition() - itblend->second);
-			blendingSorted[distanceFromView] = std::make_pair(itblend->first, itblend->second);
-		}
-
-		/**********
-		 * Render de las transparencias
-		 */
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glDisable(GL_CULL_FACE);
-		for(std::map<float, std::pair<std::string, glm::vec3> >::reverse_iterator it = blendingSorted.rbegin(); it != blendingSorted.rend(); it++){
-			if(it->second.first.compare("farmacia") == 0){
-				// Farmacia
-				glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
-				modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
-				modelEdi1.render(modelMatrixEdi1Blend);
-			}
-			if (it->second.first.compare("vacuna") == 0) {
-				glm::mat4 modelMatrixVaccineBlend = glm::mat4(matrixModelVaccine);
-				modelMatrixVaccineBlend[3][1] = terrain.getHeightTerrain(modelMatrixVaccineBlend[3][0], modelMatrixVaccineBlend[3][2]);
-				modelVaccine.setScale(glm::vec3(0.2, 0.2, 0.2));
-				modelVaccine.render(modelMatrixVaccineBlend);
-			}
-		}
-		glEnable(GL_CULL_FACE);
-
+		renderScene();
+		
 		/*******************************************
 		 * Creacion de colliders
 		 * IMPORTANT do this before interpolations
@@ -1373,6 +1326,202 @@ void applicationLoop() {
 			}
 		}
 	}
+}
+
+void prepareScene() {///Si se agregan otros objetos en la escena se debe setear su shader///
+
+	skyboxSphere.setShader(&shaderSkybox);
+	modelRock.setShader(&shaderMulLighting);
+	terrain.setShader(&shaderTerrain);
+
+	//Object models
+	modelLamp1.setShader(&shaderMulLighting);
+	modelMask.setShader(&shaderMulLighting);
+	modelVaccine.setShader(&shaderMulLighting);
+
+	//Edificios
+	modelEdi1.setShader(&shaderMulLighting);
+	modelEdi2.setShader(&shaderMulLighting);
+	modelEdi3.setShader(&shaderMulLighting);
+	modelEdi4.setShader(&shaderMulLighting);
+	modelEdi5.setShader(&shaderMulLighting);
+	modelEdi6.setShader(&shaderMulLighting);
+
+	//Simi
+	simiModelAnimate.setShader(&shaderMulLighting);
+
+	//Person
+	personModelAnimate.setShader(&shaderMulLighting);
+
+	//Grass
+	modelGrass.setShader(&shaderMulLighting);
+}
+
+void prepareDepthScene() {///Si se agregan otros objetos en la escena se debe setear su shader///
+
+	skyboxSphere.setShader(&shaderDepth);
+	modelRock.setShader(&shaderDepth);
+	terrain.setShader(&shaderDepth);
+
+	//Object models
+	modelLamp1.setShader(&shaderDepth);
+	modelMask.setShader(&shaderDepth);
+	modelVaccine.setShader(&shaderDepth);
+
+	//Edificios
+	modelEdi1.setShader(&shaderDepth);
+	modelEdi2.setShader(&shaderDepth);
+	modelEdi3.setShader(&shaderDepth);
+	modelEdi4.setShader(&shaderDepth);
+	modelEdi5.setShader(&shaderDepth);
+	modelEdi6.setShader(&shaderDepth);
+
+	//Simi
+	simiModelAnimate.setShader(&shaderDepth);
+
+	//Person
+	personModelAnimate.setShader(&shaderDepth);
+
+	//Grass
+	modelGrass.setShader(&shaderDepth);
+}
+
+void renderScene(bool renderParticles) {
+	/*******************************************
+		 * Terrain Cesped
+		 *******************************************/
+	glm::mat4 modelCesped = glm::mat4(1.0);
+	modelCesped = glm::translate(modelCesped, glm::vec3(0.0, 0.0, 0.0));
+	modelCesped = glm::scale(modelCesped, glm::vec3(200.0, 0.001, 200.0));
+	// Se activa la textura del background
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textureTerrainBackgroundID);
+	shaderTerrain.setInt("backgroundTexture", 0);
+	// Se activa la textura de tierra
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, textureTerrainRID);
+	shaderTerrain.setInt("rTexture", 1);
+	// Se activa la textura de hierba
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, textureTerrainGID);
+	shaderTerrain.setInt("gTexture", 2);
+	// Se activa la textura del camino
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, textureTerrainBID);
+	shaderTerrain.setInt("bTexture", 3);
+	// Se activa la textura del blend map
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, textureTerrainBlendMapID);
+	shaderTerrain.setInt("blendMapTexture", 4);
+	shaderTerrain.setVectorFloat2("scaleUV", glm::value_ptr(glm::vec2(40, 40)));
+	terrain.render();
+	shaderTerrain.setVectorFloat2("scaleUV", glm::value_ptr(glm::vec2(0, 0)));
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	/*******************************************
+	 * Custom objects obj
+	 *******************************************/
+	 //Rock render
+	matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
+	modelRock.render(matrixModelRock);
+	//Edificios
+	modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
+	modelEdi2.render(modelMatrixEdi2);
+	modelMatrixEdi3[3][1] = terrain.getHeightTerrain(modelMatrixEdi3[3][0], modelMatrixEdi3[3][2]);
+	modelEdi3.render(modelMatrixEdi3);
+	modelMatrixEdi4[3][1] = terrain.getHeightTerrain(modelMatrixEdi4[3][0], modelMatrixEdi4[3][2]);
+	modelEdi4.render(modelMatrixEdi4);
+	modelMatrixEdi5[3][1] = terrain.getHeightTerrain(modelMatrixEdi5[3][0], modelMatrixEdi5[3][2]);
+	modelEdi5.render(modelMatrixEdi5);
+	modelMatrixEdi6[3][1] = terrain.getHeightTerrain(modelMatrixEdi6[3][0], modelMatrixEdi6[3][2]);
+	modelEdi6.render(modelMatrixEdi6);
+
+	// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
+	glActiveTexture(GL_TEXTURE0);
+
+	// Render the lamps
+	for (int i = 0; i < lamp1Position.size(); i++) {
+		lamp1Position[i].y = terrain.getHeightTerrain(lamp1Position[i].x, lamp1Position[i].z);
+		modelLamp1.setPosition(lamp1Position[i]);
+		modelLamp1.setScale(glm::vec3(0.5, 0.5, 0.5));
+		modelLamp1.setOrientation(glm::vec3(0, lamp1Orientation[i], 0));
+		modelLamp1.render();
+	}
+
+	//Render Masks
+	for (int i = 0; i < maskPosition.size(); i++) {
+		maskPosition[i].y = terrain.getHeightTerrain(maskPosition[i].x, maskPosition[i].z);
+		modelMask.setPosition(maskPosition[i]);
+		modelMask.setScale(glm::vec3(20.5, 20.5, 20.5));
+		modelMask.render();
+	}
+
+	// Grass
+	glDisable(GL_CULL_FACE);
+	glm::vec3 grassPosition = glm::vec3(-82.7f, 0.0f, 78.8f);
+	grassPosition.y = terrain.getHeightTerrain(grassPosition.x, grassPosition.z);
+	modelGrass.setPosition(grassPosition);
+	modelGrass.render();
+	glEnable(GL_CULL_FACE);
+
+	/*******************************************
+	 * Custom Anim objects obj
+	 *******************************************/
+	modelMatrixSimi[3][1] = -GRAVITY * tmv * tmv + 3.5 * tmv + terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
+	tmv = currTime - startTimeJump;
+	if (modelMatrixSimi[3][1] < terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2])) {
+		isJump = false;
+		modelMatrixSimi[3][1] = terrain.getHeightTerrain(modelMatrixSimi[3][0], modelMatrixSimi[3][2]);
+	}
+	glm::mat4 modelMatrixSimiBody = glm::mat4(modelMatrixSimi);
+	modelMatrixSimiBody = glm::scale(modelMatrixSimiBody, glm::vec3(3.5f, 3.5f, 3.5f));
+	simiModelAnimate.setAnimationIndex(animationIndex);
+	simiModelAnimate.render(modelMatrixSimiBody);
+	simiModelAnimate.setAnimationIndex(1);
+
+	modelMatrixPerson[3][1] = terrain.getHeightTerrain(modelMatrixPerson[3][0], modelMatrixPerson[3][2]);
+	glm::mat4 modelMatrixPersonBody = glm::mat4(modelMatrixPerson);
+	modelMatrixPersonBody = glm::scale(modelMatrixPersonBody, glm::vec3(0.02f, 0.02f, 0.02f));
+	personModelAnimate.render(modelMatrixPersonBody);
+
+	/**********
+		 * Update the position with alpha objects
+		 */
+		 // Update farmacia
+	blendingUnsorted.find("farmacia")->second = glm::vec3(modelMatrixEdi1[3]);
+	blendingUnsorted.find("vacuna")->second = glm::vec3(matrixModelVaccine[3]);
+
+	/**********
+	 * Sorter with alpha objects
+	 */
+	std::map<float, std::pair<std::string, glm::vec3>> blendingSorted;
+	std::map<std::string, glm::vec3>::iterator itblend;
+	for (itblend = blendingUnsorted.begin(); itblend != blendingUnsorted.end(); itblend++) {
+		float distanceFromView = glm::length(camera->getPosition() - itblend->second);
+		blendingSorted[distanceFromView] = std::make_pair(itblend->first, itblend->second);
+	}
+
+	/**********
+	 * Render de las transparencias
+	 */
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_CULL_FACE);
+	for (std::map<float, std::pair<std::string, glm::vec3> >::reverse_iterator it = blendingSorted.rbegin(); it != blendingSorted.rend(); it++) {
+		if (it->second.first.compare("farmacia") == 0) {
+			// Farmacia
+			glm::mat4 modelMatrixEdi1Blend = glm::mat4(modelMatrixEdi1);
+			modelMatrixEdi1Blend[3][1] = terrain.getHeightTerrain(modelMatrixEdi1Blend[3][0], modelMatrixEdi1Blend[3][2]);
+			modelEdi1.render(modelMatrixEdi1Blend);
+		}
+		if (it->second.first.compare("vacuna") == 0) {
+			glm::mat4 modelMatrixVaccineBlend = glm::mat4(matrixModelVaccine);
+			modelMatrixVaccineBlend[3][1] = terrain.getHeightTerrain(modelMatrixVaccineBlend[3][0], modelMatrixVaccineBlend[3][2]);
+			modelVaccine.setScale(glm::vec3(0.2, 0.2, 0.2));
+			modelVaccine.render(modelMatrixVaccineBlend);
+		}
+	}
+	glEnable(GL_CULL_FACE);
 }
 
 int main(int argc, char **argv) {
