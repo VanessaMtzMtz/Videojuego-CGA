@@ -1117,9 +1117,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi1 = glm::scale(modelmatrixColliderEdi1, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
 				glm::vec3(modelEdi1.getObb().c.x,
-						modelEdi1.getObb().c.y + 77.5,
+						modelEdi1.getObb().c.y + 65.5,
 						modelEdi1.getObb().c.z + 123.5));
-		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.025);
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 12.3, 0.025);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
 
@@ -1187,7 +1187,7 @@ void applicationLoop() {
 		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
-		// Collider del borde
+		// Collider del borde1
 		AbstractModel::OBB bordeCollider1;
 		glm::mat4 modelmatrixColliderBorde1 = glm::mat4(modelMatrixEdi2);
 		modelmatrixColliderBorde1 = glm::rotate(modelmatrixColliderBorde1,
