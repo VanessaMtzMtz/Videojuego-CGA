@@ -1203,6 +1203,22 @@ void applicationLoop() {
 		bordeCollider1.c = glm::vec3(modelmatrixColliderBorde1[3]);
 		addOrUpdateColliders(collidersOBB, "borde1", bordeCollider1, modelMatrixEdi2);
 
+		// Collider del borde 2
+		AbstractModel::OBB bordeCollider2;
+		glm::mat4 modelmatrixColliderBorde2 = glm::mat4(modelMatrixEdi3);
+		modelmatrixColliderBorde2 = glm::rotate(modelmatrixColliderBorde2,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		bordeCollider2.u = glm::quat_cast(modelmatrixColliderBorde2);
+		modelmatrixColliderBorde2 = glm::scale(modelmatrixColliderBorde2, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderBorde2 = glm::translate(modelmatrixColliderBorde2,
+				glm::vec3(modelEdi3.getObb().c.x + 20.5, 
+						modelEdi3.getObb().c.y + 143.5,
+						modelEdi3.getObb().c.z + 82.0));
+		bordeCollider2.e = modelEdi3.getObb().e * glm::vec3(0.5, 1.6, 0.025);
+		bordeCollider2.c = glm::vec3(modelmatrixColliderBorde2[3]);
+		addOrUpdateColliders(collidersOBB, "borde2", bordeCollider2, modelMatrixEdi3);
+
 		/*******************************************
 		 * Render de colliders
 		 *******************************************/
