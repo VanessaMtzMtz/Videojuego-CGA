@@ -753,8 +753,8 @@ void applicationLoop() {
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  //modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
+  	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
@@ -1117,9 +1117,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi1 = glm::scale(modelmatrixColliderEdi1, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
 				glm::vec3(modelEdi1.getObb().c.x,
-						modelEdi1.getObb().c.y + 77.5,
+						modelEdi1.getObb().c.y + 65.5,
 						modelEdi1.getObb().c.z + 123.5));
-		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 10.8, 0.025);
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 12.3, 0.025);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
 
@@ -1132,10 +1132,10 @@ void applicationLoop() {
 		edi2Collider.u = glm::quat_cast(modelmatrixColliderEdi2);
 		modelmatrixColliderEdi2 = glm::scale(modelmatrixColliderEdi2, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi2 = glm::translate(modelmatrixColliderEdi2,
-				glm::vec3(modelEdi2.getObb().c.x + 6.0,
+				glm::vec3(modelEdi2.getObb().c.x + 22.0,
 						modelEdi2.getObb().c.y + 168.5,
 						modelEdi2.getObb().c.z + 195.0));
-		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(0.92, 1.1, 0.3);
+		edi2Collider.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
 		edi2Collider.c = glm::vec3(modelmatrixColliderEdi2[3]);
 		addOrUpdateColliders(collidersOBB, "edi2", edi2Collider, modelMatrixEdi2);
 
@@ -1186,6 +1186,38 @@ void applicationLoop() {
 		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 5.9, 0.05);
 		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
+
+		// Collider del borde1
+		AbstractModel::OBB bordeCollider1;
+		glm::mat4 modelmatrixColliderBorde1 = glm::mat4(modelMatrixEdi2);
+		modelmatrixColliderBorde1 = glm::rotate(modelmatrixColliderBorde1,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		bordeCollider1.u = glm::quat_cast(modelmatrixColliderBorde1);
+		modelmatrixColliderBorde1 = glm::scale(modelmatrixColliderBorde1, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderBorde1 = glm::translate(modelmatrixColliderBorde1,
+				glm::vec3(modelEdi2.getObb().c.x + 6.0,
+						modelEdi2.getObb().c.y - 38.0,
+						modelEdi2.getObb().c.z + 195.0));
+		bordeCollider1.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
+		bordeCollider1.c = glm::vec3(modelmatrixColliderBorde1[3]);
+		addOrUpdateColliders(collidersOBB, "borde1", bordeCollider1, modelMatrixEdi2);
+
+		// Collider del borde 2
+		AbstractModel::OBB bordeCollider2;
+		glm::mat4 modelmatrixColliderBorde2 = glm::mat4(modelMatrixEdi3);
+		modelmatrixColliderBorde2 = glm::rotate(modelmatrixColliderBorde2,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		bordeCollider2.u = glm::quat_cast(modelmatrixColliderBorde2);
+		modelmatrixColliderBorde2 = glm::scale(modelmatrixColliderBorde2, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderBorde2 = glm::translate(modelmatrixColliderBorde2,
+				glm::vec3(modelEdi3.getObb().c.x + 20.5, 
+						modelEdi3.getObb().c.y + 143.5,
+						modelEdi3.getObb().c.z + 82.0));
+		bordeCollider2.e = modelEdi3.getObb().e * glm::vec3(0.5, 1.6, 0.025);
+		bordeCollider2.c = glm::vec3(modelmatrixColliderBorde2[3]);
+		addOrUpdateColliders(collidersOBB, "borde2", bordeCollider2, modelMatrixEdi3);
 
 		/*******************************************
 		 * Render de colliders
