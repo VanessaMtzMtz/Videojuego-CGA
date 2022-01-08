@@ -1188,20 +1188,20 @@ void applicationLoop() {
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
 		// Collider del borde
-		AbstractModel::OBB bordeCollider;
-		glm::mat4 modelmatrixColliderBorde = glm::mat4(modelMatrixEdi2);
-		modelmatrixColliderBorde = glm::rotate(modelmatrixColliderBorde,
+		AbstractModel::OBB bordeCollider1;
+		glm::mat4 modelmatrixColliderBorde1 = glm::mat4(modelMatrixEdi2);
+		modelmatrixColliderBorde1 = glm::rotate(modelmatrixColliderBorde1,
 				glm::radians(-90.0f), glm::vec3(1, 0, 0));
 		// Set the orientation of collider before doing the scale
-		bordeCollider.u = glm::quat_cast(modelmatrixColliderBorde);
-		modelmatrixColliderBorde = glm::scale(modelmatrixColliderBorde, glm::vec3(1.0, 1.0, 0.1));
-		modelmatrixColliderBorde = glm::translate(modelmatrixColliderBorde,
+		bordeCollider1.u = glm::quat_cast(modelmatrixColliderBorde1);
+		modelmatrixColliderBorde1 = glm::scale(modelmatrixColliderBorde1, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderBorde1 = glm::translate(modelmatrixColliderBorde1,
 				glm::vec3(modelEdi2.getObb().c.x + 6.0,
 						modelEdi2.getObb().c.y - 38.0,
 						modelEdi2.getObb().c.z + 195.0));
-		bordeCollider.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
-		bordeCollider.c = glm::vec3(modelmatrixColliderBorde[3]);
-		addOrUpdateColliders(collidersOBB, "borde", bordeCollider, modelMatrixEdi2);
+		bordeCollider1.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
+		bordeCollider1.c = glm::vec3(modelmatrixColliderBorde1[3]);
+		addOrUpdateColliders(collidersOBB, "borde1", bordeCollider1, modelMatrixEdi2);
 
 		/*******************************************
 		 * Render de colliders
