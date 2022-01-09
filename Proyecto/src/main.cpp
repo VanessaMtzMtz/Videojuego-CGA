@@ -87,8 +87,6 @@ Box boxLightViewBox;
 
 ShadowBox* shadowBox;
 
-// Models complex instances
-Model modelRock;
 // Objetos
 Model modelLamp1;
 Model modelMask;
@@ -138,8 +136,8 @@ int lastMousePosX, offsetX = 0;
 int lastMousePosY, offsetY = 0;
 
 // Model matrix definitions
-glm::mat4 matrixModelRock = glm::mat4(1.0);
 glm::mat4 matrixModelVaccine = glm::mat4(1.0);
+glm::mat4 matrixModelVaccine2 = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
 glm::mat4 modelMatrixPerson = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
@@ -241,15 +239,16 @@ int stateSimi = 0;
 
 // Lamps positions
 std::vector<glm::vec3> lamp1Position = { glm::vec3(-83.1, 0, -5.3), 
-glm::vec3(8.3, 0, -84.8), 
-glm::vec3(70.0, 0, 25.0),
-glm::vec3(18.95, 0, 76.4) };
-std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 ,23.70};
+glm::vec3(-14.1, 0.0, -75.4), 
+glm::vec3(74.0, 0.0, -38.5),
+glm::vec3(66.3, 0.0, 70.0),
+glm::vec3(-49.9, 0.0, 71.1)};
+std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 , 23.70, 200.0};
 //Mask position
 std::vector<glm::vec3> maskPosition = { glm::vec3(-66.1, 2.0, -48.5),
 glm::vec3(-8.3, 2.0, -70.9),
-glm::vec3(-13.3, 2.0, 70.4),
-glm::vec3(75.8, 2.0, -71.9) };
+glm::vec3(18.8, 2.0, 57.5),
+glm::vec3(65.1, 2.0, -12.9)};
 
 // Blending model unsorted
 std::map<std::string, glm::vec3> blendingUnsorted = {
@@ -390,9 +389,6 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 
 	boxViewDepth.init();
 	boxViewDepth.setShader(&shaderViewDepth);
-
-	modelRock.loadModel("../models/rock/rock.obj");
-	modelRock.setShader(&shaderMulLighting);
 
 	terrain.init();
 	terrain.setShader(&shaderTerrain);
@@ -724,8 +720,7 @@ void destroy() {
 	modelEdi4.destroy();
 	modelEdi5.destroy();
 
-	// Custom objects Delete
-	modelRock.destroy();
+	// Objects Delete
 	modelLamp1.destroy();
 	modelMask.destroy();
 	modelGrass.destroy();
@@ -889,10 +884,10 @@ void applicationLoop() {
 	int numberAdvanceVirus = 0;
 	int maxAdvanceVirus = 20;
 
-	matrixModelRock = glm::translate(matrixModelRock, glm::vec3(-3.0, 0.0, 2.0));
-
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
+	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(78.6, 0.0, -70.9));
+	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 83.3f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
@@ -1078,10 +1073,10 @@ void applicationLoop() {
 	modelMatrixVirus81 = glm::scale(modelMatrixVirus81, glm::vec3(3.0f, 3.0f, 3.0f));
 	modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(-25.0f, 2.5f, 60.0f));
 	modelMatrixVirus82 = glm::scale(modelMatrixVirus82, glm::vec3(3.0f, 3.0f, 3.0f));
-	modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-2.0f, 2.5f, 65.0f));
+	/*modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-2.0f, 2.5f, 65.0f));
 	modelMatrixVirus83 = glm::scale(modelMatrixVirus83, glm::vec3(3.0f, 3.0f, 3.0f));
 	modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(-25.0f, 2.5f, 70.0f));
-	modelMatrixVirus84 = glm::scale(modelMatrixVirus84, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus84 = glm::scale(modelMatrixVirus84, glm::vec3(3.0f, 3.0f, 3.0f));*/
 
 	lastTime = TimeManager::Instance().GetTime(); 
 
@@ -1284,15 +1279,6 @@ void applicationLoop() {
 		 * Creacion de colliders
 		 * IMPORTANT do this before interpolations
 		 *******************************************/
-
-		//Collider del la rock
-		AbstractModel::SBB rockCollider;
-		glm::mat4 modelMatrixColliderRock= glm::mat4(matrixModelRock);
-		modelMatrixColliderRock = glm::scale(modelMatrixColliderRock, glm::vec3(1.0, 1.0, 1.0));
-		modelMatrixColliderRock = glm::translate(modelMatrixColliderRock, modelRock.getSbb().c);
-		rockCollider.c = glm::vec3(modelMatrixColliderRock[3]);
-		rockCollider.ratio = modelRock.getSbb().ratio * 1.0;
-		addOrUpdateColliders(collidersSBB, "rock", rockCollider, matrixModelRock);
 
 		// Lamps1 colliders
 		for (int i = 0; i < lamp1Position.size(); i++){
@@ -2069,7 +2055,7 @@ void applicationLoop() {
 		Virus82Collider.c = glm::vec3(modelMatrixColliderVirus82[3]);
 		Virus82Collider.ratio = modelVirus.getSbb().ratio * 3.0;
 		addOrUpdateColliders(collidersSBB, "Virus82", Virus82Collider, modelMatrixVirus82);
-		//Collider del Virus83
+		/*//Collider del Virus83
 		AbstractModel::SBB Virus83Collider;
 		glm::mat4 modelMatrixColliderVirus83 = glm::mat4(modelMatrixVirus83);
 		modelMatrixColliderVirus83 = glm::scale(modelMatrixColliderVirus83, glm::vec3(1.0, 1.0, 1.0));
@@ -2084,7 +2070,7 @@ void applicationLoop() {
 		modelMatrixColliderVirus84 = glm::translate(modelMatrixColliderVirus84, modelVirus.getSbb().c);
 		Virus84Collider.c = glm::vec3(modelMatrixColliderVirus84[3]);
 		Virus84Collider.ratio = modelVirus.getSbb().ratio * 3.0;
-		addOrUpdateColliders(collidersSBB, "Virus84", Virus84Collider, modelMatrixVirus84);
+		addOrUpdateColliders(collidersSBB, "Virus84", Virus84Collider, modelMatrixVirus84);*/
 
 		/*******************************************
 		 * Render de colliders
@@ -2247,8 +2233,8 @@ void applicationLoop() {
 			modelMatrixVirus80 = glm::translate(modelMatrixVirus80, glm::vec3(0.45f, 0.0f, -0.0f));
 			modelMatrixVirus81 = glm::translate(modelMatrixVirus81, glm::vec3(-0.45f, 0.0f, -0.0f));
 			modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(0.45f, 0.0f, -0.0f));
-			modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-0.45f, 0.0f, -0.0f));
-			modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(0.45f, 0.0f, -0.0f));
+			//modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-0.45f, 0.0f, -0.0f));
+			//modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(0.45f, 0.0f, -0.0f));
 
 			advanceCountVirus += 0.9;
 			if (advanceCountVirus > maxAdvanceVirus) {
@@ -2293,8 +2279,8 @@ void applicationLoop() {
 			modelMatrixVirus80 = glm::translate(modelMatrixVirus80, glm::vec3(-0.45f, 0.0f, 0.0f));
 			modelMatrixVirus81 = glm::translate(modelMatrixVirus81, glm::vec3(0.45f, 0.0f, 0.0f));
 			modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(-0.45f, 0.0f, 0.0f));
-			modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(0.45f, 0.0f, 0.0f));
-			modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(-0.45f, 0.0f, 0.0f));
+			//modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(0.45f, 0.0f, 0.0f));
+			//modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(-0.45f, 0.0f, 0.0f));
 			advanceCountVirus += 0.9;
 			if (advanceCountVirus > maxAdvanceVirus) {
 				advanceCountVirus = 0;
@@ -2379,7 +2365,6 @@ void applicationLoop() {
 void prepareScene() {///Si se agregan otros objetos en la escena se debe setear su shader///
 
 	skyboxSphere.setShader(&shaderSkybox);
-	modelRock.setShader(&shaderMulLighting);
 	terrain.setShader(&shaderTerrain);
 
 	//Object models
@@ -2409,7 +2394,6 @@ void prepareScene() {///Si se agregan otros objetos en la escena se debe setear 
 void prepareDepthScene() {///Si se agregan otros objetos en la escena se debe setear su shader///
 
 	skyboxSphere.setShader(&shaderDepth);
-	modelRock.setShader(&shaderDepth);
 	terrain.setShader(&shaderDepth);
 
 	//Object models
@@ -2471,9 +2455,6 @@ void renderScene(bool renderParticles) {
 	/*******************************************
 	 * Custom objects obj
 	 *******************************************/
-	 //Rock render
-	matrixModelRock[3][1] = terrain.getHeightTerrain(matrixModelRock[3][0], matrixModelRock[3][2]);
-	modelRock.render(matrixModelRock);
 	//Edificios
 	modelMatrixEdi2[3][1] = terrain.getHeightTerrain(modelMatrixEdi2[3][0], modelMatrixEdi2[3][2]);
 	modelEdi2.render(modelMatrixEdi2);
@@ -2661,6 +2642,10 @@ void renderScene(bool renderParticles) {
 			modelMatrixVaccineBlend[3][1] = terrain.getHeightTerrain(modelMatrixVaccineBlend[3][0], modelMatrixVaccineBlend[3][2]);
 			modelVaccine.setScale(glm::vec3(0.2, 0.2, 0.2));
 			modelVaccine.render(modelMatrixVaccineBlend);
+
+			glm::mat4 modelMatrixVaccine2Blend = glm::mat4(matrixModelVaccine2);
+			modelMatrixVaccine2Blend[3][1] = terrain.getHeightTerrain(modelMatrixVaccine2Blend[3][0], modelMatrixVaccine2Blend[3][2]);
+			modelVaccine.render(modelMatrixVaccine2Blend);
 		}
 	}
 	glEnable(GL_CULL_FACE);
