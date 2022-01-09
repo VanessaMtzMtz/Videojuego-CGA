@@ -101,6 +101,7 @@ Model modelEdi3;
 Model modelEdi4;
 Model modelEdi5;
 Model modelEdi6;
+Model modelParque;
 // Model animate instance
 // Simi
 Model simiModelAnimate;
@@ -146,6 +147,7 @@ glm::mat4 modelMatrixEdi3 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi4 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi5 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi6 = glm::mat4(1.0f);
+glm::mat4 modelMatrixParque = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus2 = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus3 = glm::mat4(1.0f);
@@ -421,7 +423,8 @@ void init(int width, int height, std::string strTitle, bool bFullScreen) {
 	modelEdi5.setShader(&shaderMulLighting);
 	modelEdi6.loadModel("../models/edificios/ladoE.obj");
 	modelEdi6.setShader(&shaderMulLighting);
-
+	modelParque.loadModel("../models/parque/parque.obj");
+	modelParque.setShader(&shaderMulLighting);
 	//Simi
 	simiModelAnimate.loadModel("../models/doctor-simi/simi.fbx");
 	simiModelAnimate.setShader(&shaderMulLighting);
@@ -719,6 +722,8 @@ void destroy() {
 	modelEdi3.destroy();
 	modelEdi4.destroy();
 	modelEdi5.destroy();
+	modelEdi6.destroy();
+	modelParque.destroy();
 
 	// Objects Delete
 	modelLamp1.destroy();
@@ -886,7 +891,7 @@ void applicationLoop() {
 
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
-	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(78.6, 0.0, -70.9));
+	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(65.1, 0.0, -65.5));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 83.3f));
@@ -900,6 +905,7 @@ void applicationLoop() {
 	modelMatrixEdi4 = glm::translate(modelMatrixEdi4, glm::vec3(-82.7f, 0.0f, 78.8f));
 	modelMatrixEdi5 = glm::translate(modelMatrixEdi5, glm::vec3(-50.0f, 0.0f, 56.5f));
 	modelMatrixEdi6 = glm::translate(modelMatrixEdi6, glm::vec3(-82.7f, 0.0f, 78.8f));
+	modelMatrixParque = glm::translate(modelMatrixParque, glm::vec3(-82.7f, 0.0f, 78.8f));
 
 	//Camino 1
 	modelMatrixVirus1 = glm::translate(modelMatrixVirus1, glm::vec3(-68.0f, 2.5f, 70.0f));
@@ -2380,6 +2386,7 @@ void prepareScene() {///Si se agregan otros objetos en la escena se debe setear 
 	modelEdi4.setShader(&shaderMulLighting);
 	modelEdi5.setShader(&shaderMulLighting);
 	modelEdi6.setShader(&shaderMulLighting);
+	modelParque.setShader(&shaderMulLighting);
 
 	//Simi
 	simiModelAnimate.setShader(&shaderMulLighting);
@@ -2409,6 +2416,7 @@ void prepareDepthScene() {///Si se agregan otros objetos en la escena se debe se
 	modelEdi4.setShader(&shaderDepth);
 	modelEdi5.setShader(&shaderDepth);
 	modelEdi6.setShader(&shaderDepth);
+	modelParque.setShader(&shaderDepth);
 
 	//Simi
 	simiModelAnimate.setShader(&shaderDepth);
@@ -2466,6 +2474,8 @@ void renderScene(bool renderParticles) {
 	modelEdi5.render(modelMatrixEdi5);
 	modelMatrixEdi6[3][1] = terrain.getHeightTerrain(modelMatrixEdi6[3][0], modelMatrixEdi6[3][2]);
 	modelEdi6.render(modelMatrixEdi6);
+	modelMatrixParque[3][1] = terrain.getHeightTerrain(modelMatrixParque[3][0], modelMatrixParque[3][2]);
+	modelParque.render(modelMatrixParque);
 
 	// Forze to enable the unit texture to 0 always ----------------- IMPORTANT
 	glActiveTexture(GL_TEXTURE0);
