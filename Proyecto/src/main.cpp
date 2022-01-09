@@ -1318,16 +1318,20 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					if (jt->first.compare("simi") == 0){
-						if (jt->first.compare("edi1") != 0){
-							printf("\n*****NO COLLISION*****\n");
+					//if (jt->first.compare("simi") == 0){
+						if (jt->first.compare("edi1") == 0){
+							printf("\n*****NO COLLISION edificio 1*****\n");
 							modelMatrixSimi = std::get<1>(jt->second);
 						}
-						else{
+						else if (jt->first.compare("edi4") == 0){
+							printf("\n*****NO COLLISION edificio 4*****\n");
 							modelMatrixSimi = std::get<1>(jt->second);
 							stateSimi += 1;
 						}
-					}
+						else{
+							modelMatrixSimi = std::get<1>(jt->second);
+						}
+					//}
 					
 				}
 			}
