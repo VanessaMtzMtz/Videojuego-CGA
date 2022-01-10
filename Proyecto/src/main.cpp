@@ -2089,7 +2089,7 @@ void applicationLoop() {
 		modelmatrixColliderBorde1 = glm::scale(modelmatrixColliderBorde1, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderBorde1 = glm::translate(modelmatrixColliderBorde1,
 				glm::vec3(modelEdi2.getObb().c.x + 6.0,
-						modelEdi2.getObb().c.y - 38.0,
+						modelEdi2.getObb().c.y - 35.0,
 						modelEdi2.getObb().c.z + 195.0));
 		bordeCollider1.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
 		bordeCollider1.c = glm::vec3(modelmatrixColliderBorde1[3]);
