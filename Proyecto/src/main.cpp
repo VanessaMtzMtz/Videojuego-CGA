@@ -139,7 +139,7 @@ int stateSimi = 0;
 
 // Lamps positions
 std::vector<glm::vec3> lamp1Position = { glm::vec3(-83.1, 0, -5.3), 
-glm::vec3(8.3, 0, -84.8), 
+glm::vec3(4.3, 0, -84.8), 
 glm::vec3(70.0, 0, 25.0),
 glm::vec3(18.95, 0, 76.4) };
 std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 ,23.70};
