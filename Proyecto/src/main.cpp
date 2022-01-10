@@ -131,6 +131,12 @@ std::string fileNames[6] = { "../Textures/mp_bloodvalley/blood-valley_ft.tga",
 		"../Textures/mp_bloodvalley/blood-valley_dn.tga",
 		"../Textures/mp_bloodvalley/blood-valley_rt.tga",
 		"../Textures/mp_bloodvalley/blood-valley_lf.tga" };
+/*std::string fileNames[6] = { "../Textures/corona/corona_ft.tga",
+		"../Textures/corona/corona_bk.tga",
+		"../Textures/corona/corona_up.tga",
+		"../Textures/corona/corona_dn.tga",
+		"../Textures/corona/corona_rt.tga",
+		"../Textures/corona/corona_lf.tga" };*/
 
 bool exitApp = false;
 int lastMousePosX, offsetX = 0;
@@ -232,6 +238,87 @@ glm::mat4 modelMatrixVirus81 = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus82 = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus83 = glm::mat4(1.0f);
 glm::mat4 modelMatrixVirus84 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus85 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus86 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus87 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus88 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus89 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus90 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus91 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus92 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus93 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus94 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus95 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus96 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus97 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus98 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus99 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus100 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus101 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus102 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus103 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus104 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus105 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus106 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus107 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus108 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus109 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus110 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus111 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus112 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus113 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus114 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus115 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus116 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus117 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus118 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus119 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus120 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus121 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus122 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus123 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus124 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus125 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus126 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus127 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus128 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus129 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus130 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus131 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus132 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus133 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus134 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus135 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus136 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus137 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus138 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus139 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus140 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus141 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus142 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus143 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus144 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus145 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus146 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus147 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus148 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus149 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus150 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus151 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus152 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus153 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus154 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus155 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus156 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus157 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus158 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus159 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus160 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus161 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus162 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus163 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus164 = glm::mat4(1.0f);
+glm::mat4 modelMatrixVirus165 = glm::mat4(1.0f);
 
 int animationIndex = 1;
 int modelSelected = 2;
@@ -249,7 +336,7 @@ std::vector<float> lamp1Orientation = { 300.0, 200.0, 100.0 , 23.70, 200.0};
 //Mask position
 std::vector<glm::vec3> maskPosition = { glm::vec3(-66.1, 2.0, -48.5),
 glm::vec3(-8.3, 2.0, -70.9),
-glm::vec3(18.8, 2.0, 57.5),
+glm::vec3(17.2, 2.0, 46.7),
 glm::vec3(65.1, 2.0, -12.9)};
 
 // Blending model unsorted
@@ -859,7 +946,6 @@ bool processInput(bool continueApplication) {
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
-		//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.02));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
 		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
@@ -888,14 +974,17 @@ void applicationLoop() {
 	float advanceCountVirus = 0.0;
 	int numberAdvanceVirus = 0;
 	int maxAdvanceVirus = 20;
+	int stateVirus3 = 1;
+	float advanceCountVirus3 = 0.0;
+	int numberAdvanceVirus3 = 0;
+	int maxAdvanceVirus3 = 20;
 
 	matrixModelVaccine = glm::translate(matrixModelVaccine, glm::vec3(58.3, 0.0, 64.1));
 	matrixModelVaccine = glm::rotate(matrixModelVaccine, glm::radians(90.0f), glm::vec3(0, 1, 0));
-	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(65.1, 0.0, -65.5));
+	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(79.9, 0.0, -73.1));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 72.7f));
-	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
+    modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 83.3f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
@@ -1080,10 +1169,132 @@ void applicationLoop() {
 	modelMatrixVirus81 = glm::scale(modelMatrixVirus81, glm::vec3(3.0f, 3.0f, 3.0f));
 	modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(-25.0f, 2.5f, 60.0f));
 	modelMatrixVirus82 = glm::scale(modelMatrixVirus82, glm::vec3(3.0f, 3.0f, 3.0f));
-	/*modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-2.0f, 2.5f, 65.0f));
+	//Pasillo 2
+	//Bordes
+	modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(58.0f, 1.3f, 50.0f));
 	modelMatrixVirus83 = glm::scale(modelMatrixVirus83, glm::vec3(3.0f, 3.0f, 3.0f));
-	modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(-25.0f, 2.5f, 70.0f));
-	modelMatrixVirus84 = glm::scale(modelMatrixVirus84, glm::vec3(3.0f, 3.0f, 3.0f));*/
+	modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(48.3f, 1.3f, 43.6f));
+	modelMatrixVirus84 = glm::scale(modelMatrixVirus84, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus85 = glm::translate(modelMatrixVirus85, glm::vec3(10.0f, 1.3f, 50.0f));
+	modelMatrixVirus85 = glm::scale(modelMatrixVirus85, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus86 = glm::translate(modelMatrixVirus86, glm::vec3(10.0f, 1.3f, 64.0f));
+	modelMatrixVirus86 = glm::scale(modelMatrixVirus86, glm::vec3(3.0f, 3.0f, 3.0f));
+	//Relleno
+	modelMatrixVirus87 = glm::translate(modelMatrixVirus87, glm::vec3(52.0f, 1.3f, 58.0f));
+	modelMatrixVirus88 = glm::translate(modelMatrixVirus88, glm::vec3(48.0f, 1.3f, 57.0f));
+	modelMatrixVirus89 = glm::translate(modelMatrixVirus89, glm::vec3(35.0f, 1.3f, 54.0f));
+	modelMatrixVirus90 = glm::translate(modelMatrixVirus90, glm::vec3(29.0f, 1.3f, 55.0f));
+	modelMatrixVirus91 = glm::translate(modelMatrixVirus91, glm::vec3(27.0f, 1.3f, 53.0f));
+	modelMatrixVirus92 = glm::translate(modelMatrixVirus92, glm::vec3(12.0f, 1.3f, 61.0f));
+	modelMatrixVirus93 = glm::translate(modelMatrixVirus93, glm::vec3(14.0f, 1.3f, 61.0f));
+	modelMatrixVirus94 = glm::translate(modelMatrixVirus94, glm::vec3(16.0f, 1.3f, 51.0f));
+	modelMatrixVirus95 = glm::translate(modelMatrixVirus95, glm::vec3(17.0f, 1.3f, 56.0f));
+	modelMatrixVirus96 = glm::translate(modelMatrixVirus96, glm::vec3(41.0f, 1.3f, 54.0f));
+	modelMatrixVirus97 = glm::translate(modelMatrixVirus97, glm::vec3(18.4f, 1.3f, 37.7f));
+	modelMatrixVirus98 = glm::translate(modelMatrixVirus98, glm::vec3(35.0f, 1.3f, 60.0f));
+	modelMatrixVirus99 = glm::translate(modelMatrixVirus99, glm::vec3(14.0f, 1.3f, 59.0f));
+	modelMatrixVirus100 = glm::translate(modelMatrixVirus100, glm::vec3(17.0f, 1.3f, 58.0f));
+	modelMatrixVirus101 = glm::translate(modelMatrixVirus101, glm::vec3(22.0f, 1.3f, 58.0f));
+	modelMatrixVirus102 = glm::translate(modelMatrixVirus102, glm::vec3(29.0f, 1.3f, 53.0f));
+	modelMatrixVirus103 = glm::translate(modelMatrixVirus103, glm::vec3(6.7f, 1.3f, 44.2f));
+	modelMatrixVirus104 = glm::translate(modelMatrixVirus104, glm::vec3(31.0f, 1.3f, 55.0f));
+	modelMatrixVirus105 = glm::translate(modelMatrixVirus105, glm::vec3(36.0f, 1.3f, 51.0f));
+	modelMatrixVirus106 = glm::translate(modelMatrixVirus106, glm::vec3(41.0f, 1.3f, 52.0f));
+	modelMatrixVirus107 = glm::translate(modelMatrixVirus107, glm::vec3(50.0f, 1.3f, 63.0f));
+	modelMatrixVirus108 = glm::translate(modelMatrixVirus108, glm::vec3(52.0f, 1.3f, 62.0f));
+	modelMatrixVirus109 = glm::translate(modelMatrixVirus109, glm::vec3(56.0f, 1.3f, 55.0f));
+	modelMatrixVirus110 = glm::translate(modelMatrixVirus110, glm::vec3(19.0f, 1.3f, 54.0f));
+	modelMatrixVirus111 = glm::translate(modelMatrixVirus111, glm::vec3(25.0f, 1.3f, 58.0f));
+	modelMatrixVirus112 = glm::translate(modelMatrixVirus112, glm::vec3(27.0f, 1.3f, 59.0f));
+	modelMatrixVirus113 = glm::translate(modelMatrixVirus113, glm::vec3(37.0f, 1.3f, 60.0f));
+	modelMatrixVirus114 = glm::translate(modelMatrixVirus114, glm::vec3(41.0f, 1.3f, 56.0f));
+	modelMatrixVirus115 = glm::translate(modelMatrixVirus115, glm::vec3(18.0f, 1.3f, 64.0f));
+	modelMatrixVirus116 = glm::translate(modelMatrixVirus116, glm::vec3(25.0f, 1.3f, 64.0f));
+	modelMatrixVirus117 = glm::translate(modelMatrixVirus117, glm::vec3(27.0f, 1.3f, 64.0f));
+	modelMatrixVirus118 = glm::translate(modelMatrixVirus118, glm::vec3(32.0f, 1.3f, 64.0f));
+	modelMatrixVirus119 = glm::translate(modelMatrixVirus119, glm::vec3(35.0f, 1.3f, 64.0f));
+	modelMatrixVirus120 = glm::translate(modelMatrixVirus120, glm::vec3(31.5f, 1.3f, 41.3f));
+	modelMatrixVirus121 = glm::translate(modelMatrixVirus121, glm::vec3(19.0f, 1.3f, 58.0f));
+	modelMatrixVirus122 = glm::translate(modelMatrixVirus122, glm::vec3(25.0f, 1.3f, 60.0f));
+	modelMatrixVirus123 = glm::translate(modelMatrixVirus123, glm::vec3(28.0f, 1.3f, 54.0f));
+	modelMatrixVirus124 = glm::translate(modelMatrixVirus124, glm::vec3(36.0f, 1.3f, 57.0f));
+	modelMatrixVirus125 = glm::translate(modelMatrixVirus125, glm::vec3(34.0f, 1.3f, 55.0f));
+	modelMatrixVirus126 = glm::translate(modelMatrixVirus126, glm::vec3(8.4f, 1.3f, 33.6f));
+	modelMatrixVirus127 = glm::translate(modelMatrixVirus127, glm::vec3(47.0f, 1.3f, 61.0f));
+	modelMatrixVirus128 = glm::translate(modelMatrixVirus128, glm::vec3(49.0f, 1.3f, 60.0f));
+	modelMatrixVirus129 = glm::translate(modelMatrixVirus129, glm::vec3(52.0f, 1.3f, 55.0f));
+	modelMatrixVirus130 = glm::translate(modelMatrixVirus130, glm::vec3(55.0f, 1.3f, 63.0f));
+	//Camino 4
+	modelMatrixVirus131 = glm::translate(modelMatrixVirus131, glm::vec3(59.0f, 2.5f, -81.0f));
+	modelMatrixVirus131 = glm::scale(modelMatrixVirus131, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus132 = glm::translate(modelMatrixVirus132, glm::vec3(41.0f, 2.5f, -77.0f));
+	modelMatrixVirus132 = glm::scale(modelMatrixVirus132, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus133 = glm::translate(modelMatrixVirus133, glm::vec3(59.0f, 2.5f, -73.0f));
+	modelMatrixVirus133 = glm::scale(modelMatrixVirus133, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus134 = glm::translate(modelMatrixVirus134, glm::vec3(41.0f, 2.5f, -69.0f));
+	modelMatrixVirus134 = glm::scale(modelMatrixVirus134, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus135 = glm::translate(modelMatrixVirus135, glm::vec3(59.0f, 2.5f, -65.0f));
+	modelMatrixVirus135 = glm::scale(modelMatrixVirus135, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus136 = glm::translate(modelMatrixVirus136, glm::vec3(41.0f, 2.5f, -61.0f));
+	modelMatrixVirus136 = glm::scale(modelMatrixVirus136, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus137 = glm::translate(modelMatrixVirus137, glm::vec3(59.0f, 2.5f, -57.0f));
+	modelMatrixVirus137 = glm::scale(modelMatrixVirus137, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus138 = glm::translate(modelMatrixVirus138, glm::vec3(41.0f, 2.5f, -53.0f));
+	modelMatrixVirus138 = glm::scale(modelMatrixVirus138, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus139 = glm::translate(modelMatrixVirus139, glm::vec3(59.0f, 2.5f, -49.0f));
+	modelMatrixVirus139 = glm::scale(modelMatrixVirus139, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus140 = glm::translate(modelMatrixVirus140, glm::vec3(41.0f, 2.5f, -45.0f));
+	modelMatrixVirus140 = glm::scale(modelMatrixVirus140, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus141 = glm::translate(modelMatrixVirus141, glm::vec3(59.0f, 2.5f, -41.0f));
+	modelMatrixVirus141 = glm::scale(modelMatrixVirus141, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus142 = glm::translate(modelMatrixVirus142, glm::vec3(41.0f, 2.5f, -37.0f));
+	modelMatrixVirus142 = glm::scale(modelMatrixVirus142, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus143 = glm::translate(modelMatrixVirus143, glm::vec3(59.0f, 2.5f, -33.0f));
+	modelMatrixVirus143 = glm::scale(modelMatrixVirus143, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus144 = glm::translate(modelMatrixVirus144, glm::vec3(41.0f, 2.5f, -29.0f));
+	modelMatrixVirus144 = glm::scale(modelMatrixVirus144, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus145 = glm::translate(modelMatrixVirus145, glm::vec3(59.0f, 2.5f, -25.0f));
+	modelMatrixVirus145 = glm::scale(modelMatrixVirus145, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus146 = glm::translate(modelMatrixVirus146, glm::vec3(41.0f, 2.5f, -21.0f));
+	modelMatrixVirus146 = glm::scale(modelMatrixVirus146, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus147 = glm::translate(modelMatrixVirus147, glm::vec3(59.0f, 2.5f, -17.0f));
+	modelMatrixVirus147 = glm::scale(modelMatrixVirus147, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus148 = glm::translate(modelMatrixVirus148, glm::vec3(41.0f, 2.5f, -13.0f));
+	modelMatrixVirus148 = glm::scale(modelMatrixVirus148, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus149 = glm::translate(modelMatrixVirus149, glm::vec3(59.0f, 2.5f, -9.0f));
+	modelMatrixVirus149 = glm::scale(modelMatrixVirus149, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus150 = glm::translate(modelMatrixVirus150, glm::vec3(41.0f, 2.5f, -5.0f));
+	modelMatrixVirus150 = glm::scale(modelMatrixVirus150, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus151 = glm::translate(modelMatrixVirus151, glm::vec3(59.0f, 2.5f, -1.0f));
+	modelMatrixVirus151 = glm::scale(modelMatrixVirus151, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus152 = glm::translate(modelMatrixVirus152, glm::vec3(41.0f, 2.5f, 3.0f));
+	modelMatrixVirus152 = glm::scale(modelMatrixVirus152, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus153 = glm::translate(modelMatrixVirus153, glm::vec3(59.0f, 2.5f, 7.0f));
+	modelMatrixVirus153 = glm::scale(modelMatrixVirus153, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus154 = glm::translate(modelMatrixVirus154, glm::vec3(41.0f, 2.5f, 11.0f));
+	modelMatrixVirus154 = glm::scale(modelMatrixVirus154, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus155 = glm::translate(modelMatrixVirus155, glm::vec3(59.0f, 2.5f, 15.0f));
+	modelMatrixVirus155 = glm::scale(modelMatrixVirus155, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus156 = glm::translate(modelMatrixVirus156, glm::vec3(41.0f, 2.5f, 19.0f));
+	modelMatrixVirus156 = glm::scale(modelMatrixVirus156, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus157 = glm::translate(modelMatrixVirus157, glm::vec3(59.0f, 2.5f, 23.0f));
+	modelMatrixVirus157 = glm::scale(modelMatrixVirus157, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus158 = glm::translate(modelMatrixVirus158, glm::vec3(41.0f, 2.5f, 27.0f));
+	modelMatrixVirus158 = glm::scale(modelMatrixVirus158, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus159 = glm::translate(modelMatrixVirus159, glm::vec3(59.0f, 2.5f, 31.0f));
+	modelMatrixVirus159 = glm::scale(modelMatrixVirus159, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus160 = glm::translate(modelMatrixVirus160, glm::vec3(41.0f, 2.5f, 35.0f));
+	modelMatrixVirus160 = glm::scale(modelMatrixVirus160, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus161 = glm::translate(modelMatrixVirus161, glm::vec3(59.0f, 2.5f, 39.0f));
+	modelMatrixVirus161 = glm::scale(modelMatrixVirus161, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus162 = glm::translate(modelMatrixVirus162, glm::vec3(41.0f, 2.5f, 43.0f));
+	modelMatrixVirus162 = glm::scale(modelMatrixVirus162, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus163 = glm::translate(modelMatrixVirus163, glm::vec3(59.0f, 2.5f, 47.0f));
+	modelMatrixVirus163 = glm::scale(modelMatrixVirus163, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus164 = glm::translate(modelMatrixVirus164, glm::vec3(41.0f, 2.5f, 51.0f));
+	modelMatrixVirus164 = glm::scale(modelMatrixVirus164, glm::vec3(3.0f, 3.0f, 3.0f));
+	modelMatrixVirus165 = glm::translate(modelMatrixVirus165, glm::vec3(59.0f, 2.5f, 55.0f));
+	modelMatrixVirus165 = glm::scale(modelMatrixVirus165, glm::vec3(3.0f, 3.0f, 3.0f));
 
 	lastTime = TimeManager::Instance().GetTime(); 
 
@@ -2062,7 +2273,7 @@ void applicationLoop() {
 		Virus82Collider.c = glm::vec3(modelMatrixColliderVirus82[3]);
 		Virus82Collider.ratio = modelVirus.getSbb().ratio * 3.0;
 		addOrUpdateColliders(collidersSBB, "Virus82", Virus82Collider, modelMatrixVirus82);
-		/*//Collider del Virus83
+		//Collider del Virus83
 		AbstractModel::SBB Virus83Collider;
 		glm::mat4 modelMatrixColliderVirus83 = glm::mat4(modelMatrixVirus83);
 		modelMatrixColliderVirus83 = glm::scale(modelMatrixColliderVirus83, glm::vec3(1.0, 1.0, 1.0));
@@ -2077,7 +2288,657 @@ void applicationLoop() {
 		modelMatrixColliderVirus84 = glm::translate(modelMatrixColliderVirus84, modelVirus.getSbb().c);
 		Virus84Collider.c = glm::vec3(modelMatrixColliderVirus84[3]);
 		Virus84Collider.ratio = modelVirus.getSbb().ratio * 3.0;
-		addOrUpdateColliders(collidersSBB, "Virus84", Virus84Collider, modelMatrixVirus84);*/
+		addOrUpdateColliders(collidersSBB, "Virus84", Virus84Collider, modelMatrixVirus84);
+		//Collider del Virus85
+		AbstractModel::SBB Virus85Collider;
+		glm::mat4 modelMatrixColliderVirus85 = glm::mat4(modelMatrixVirus85);
+		modelMatrixColliderVirus85 = glm::scale(modelMatrixColliderVirus85, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus85 = glm::translate(modelMatrixColliderVirus85, modelVirus.getSbb().c);
+		Virus85Collider.c = glm::vec3(modelMatrixColliderVirus85[3]);
+		Virus85Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus85", Virus85Collider, modelMatrixVirus85);
+		//Collider del Virus86
+		AbstractModel::SBB Virus86Collider;
+		glm::mat4 modelMatrixColliderVirus86 = glm::mat4(modelMatrixVirus86);
+		modelMatrixColliderVirus86 = glm::scale(modelMatrixColliderVirus86, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus86 = glm::translate(modelMatrixColliderVirus86, modelVirus.getSbb().c);
+		Virus86Collider.c = glm::vec3(modelMatrixColliderVirus86[3]);
+		Virus86Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus86", Virus86Collider, modelMatrixVirus86);
+		//Collider del Virus87
+		AbstractModel::SBB Virus87Collider;
+		glm::mat4 modelMatrixColliderVirus87 = glm::mat4(modelMatrixVirus87);
+		modelMatrixColliderVirus87 = glm::scale(modelMatrixColliderVirus87, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus87 = glm::translate(modelMatrixColliderVirus87, modelVirus.getSbb().c);
+		Virus87Collider.c = glm::vec3(modelMatrixColliderVirus87[3]);
+		Virus87Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus87", Virus87Collider, modelMatrixVirus87);
+		//Collider del Virus88
+		AbstractModel::SBB Virus88Collider;
+		glm::mat4 modelMatrixColliderVirus88 = glm::mat4(modelMatrixVirus88);
+		modelMatrixColliderVirus88 = glm::scale(modelMatrixColliderVirus88, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus88 = glm::translate(modelMatrixColliderVirus88, modelVirus.getSbb().c);
+		Virus88Collider.c = glm::vec3(modelMatrixColliderVirus88[3]);
+		Virus88Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus88", Virus88Collider, modelMatrixVirus88);
+		//Collider del Virus89
+		AbstractModel::SBB Virus89Collider;
+		glm::mat4 modelMatrixColliderVirus89 = glm::mat4(modelMatrixVirus89);
+		modelMatrixColliderVirus89 = glm::scale(modelMatrixColliderVirus89, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus89 = glm::translate(modelMatrixColliderVirus89, modelVirus.getSbb().c);
+		Virus89Collider.c = glm::vec3(modelMatrixColliderVirus89[3]);
+		Virus89Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus89", Virus89Collider, modelMatrixVirus89);
+		//Collider del Virus90
+		AbstractModel::SBB Virus90Collider;
+		glm::mat4 modelMatrixColliderVirus90 = glm::mat4(modelMatrixVirus90);
+		modelMatrixColliderVirus90 = glm::scale(modelMatrixColliderVirus90, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus90 = glm::translate(modelMatrixColliderVirus90, modelVirus.getSbb().c);
+		Virus90Collider.c = glm::vec3(modelMatrixColliderVirus90[3]);
+		Virus90Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus90", Virus90Collider, modelMatrixVirus90);
+		//Collider del Virus91
+		AbstractModel::SBB Virus91Collider;
+		glm::mat4 modelMatrixColliderVirus91 = glm::mat4(modelMatrixVirus91);
+		modelMatrixColliderVirus91 = glm::scale(modelMatrixColliderVirus91, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus91 = glm::translate(modelMatrixColliderVirus91, modelVirus.getSbb().c);
+		Virus91Collider.c = glm::vec3(modelMatrixColliderVirus91[3]);
+		Virus91Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus91", Virus91Collider, modelMatrixVirus91);
+		//Collider del Virus92
+		AbstractModel::SBB Virus92Collider;
+		glm::mat4 modelMatrixColliderVirus92 = glm::mat4(modelMatrixVirus92);
+		modelMatrixColliderVirus92 = glm::scale(modelMatrixColliderVirus92, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus92 = glm::translate(modelMatrixColliderVirus92, modelVirus.getSbb().c);
+		Virus92Collider.c = glm::vec3(modelMatrixColliderVirus92[3]);
+		Virus92Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus92", Virus92Collider, modelMatrixVirus92);
+		//Collider del Virus93
+		AbstractModel::SBB Virus93Collider;
+		glm::mat4 modelMatrixColliderVirus93 = glm::mat4(modelMatrixVirus93);
+		modelMatrixColliderVirus93 = glm::scale(modelMatrixColliderVirus93, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus93 = glm::translate(modelMatrixColliderVirus93, modelVirus.getSbb().c);
+		Virus93Collider.c = glm::vec3(modelMatrixColliderVirus93[3]);
+		Virus93Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus93", Virus93Collider, modelMatrixVirus93);
+		//Collider del Virus94
+		AbstractModel::SBB Virus94Collider;
+		glm::mat4 modelMatrixColliderVirus94 = glm::mat4(modelMatrixVirus94);
+		modelMatrixColliderVirus94 = glm::scale(modelMatrixColliderVirus94, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus94 = glm::translate(modelMatrixColliderVirus94, modelVirus.getSbb().c);
+		Virus94Collider.c = glm::vec3(modelMatrixColliderVirus94[3]);
+		Virus94Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus94", Virus94Collider, modelMatrixVirus94);
+		//Collider del Virus95
+		AbstractModel::SBB Virus95Collider;
+		glm::mat4 modelMatrixColliderVirus95 = glm::mat4(modelMatrixVirus95);
+		modelMatrixColliderVirus95 = glm::scale(modelMatrixColliderVirus95, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus95 = glm::translate(modelMatrixColliderVirus95, modelVirus.getSbb().c);
+		Virus95Collider.c = glm::vec3(modelMatrixColliderVirus95[3]);
+		Virus95Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus95", Virus95Collider, modelMatrixVirus95);
+		//Collider del Virus96
+		AbstractModel::SBB Virus96Collider;
+		glm::mat4 modelMatrixColliderVirus96 = glm::mat4(modelMatrixVirus96);
+		modelMatrixColliderVirus96 = glm::scale(modelMatrixColliderVirus96, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus96 = glm::translate(modelMatrixColliderVirus96, modelVirus.getSbb().c);
+		Virus96Collider.c = glm::vec3(modelMatrixColliderVirus96[3]);
+		Virus96Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus96", Virus96Collider, modelMatrixVirus96);
+		//Collider del Virus97
+		AbstractModel::SBB Virus97Collider;
+		glm::mat4 modelMatrixColliderVirus97 = glm::mat4(modelMatrixVirus97);
+		modelMatrixColliderVirus97 = glm::scale(modelMatrixColliderVirus97, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus97 = glm::translate(modelMatrixColliderVirus97, modelVirus.getSbb().c);
+		Virus97Collider.c = glm::vec3(modelMatrixColliderVirus97[3]);
+		Virus97Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus97", Virus97Collider, modelMatrixVirus97);
+		//Collider del Virus98
+		AbstractModel::SBB Virus98Collider;
+		glm::mat4 modelMatrixColliderVirus98 = glm::mat4(modelMatrixVirus98);
+		modelMatrixColliderVirus98 = glm::scale(modelMatrixColliderVirus98, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus98 = glm::translate(modelMatrixColliderVirus98, modelVirus.getSbb().c);
+		Virus98Collider.c = glm::vec3(modelMatrixColliderVirus98[3]);
+		Virus98Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus98", Virus98Collider, modelMatrixVirus98);
+		//Collider del Virus99
+		AbstractModel::SBB Virus99Collider;
+		glm::mat4 modelMatrixColliderVirus99 = glm::mat4(modelMatrixVirus99);
+		modelMatrixColliderVirus99 = glm::scale(modelMatrixColliderVirus99, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus99 = glm::translate(modelMatrixColliderVirus99, modelVirus.getSbb().c);
+		Virus99Collider.c = glm::vec3(modelMatrixColliderVirus99[3]);
+		Virus99Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus99", Virus99Collider, modelMatrixVirus99);
+		//Collider del Virus100
+		AbstractModel::SBB Virus100Collider;
+		glm::mat4 modelMatrixColliderVirus100 = glm::mat4(modelMatrixVirus100);
+		modelMatrixColliderVirus100 = glm::scale(modelMatrixColliderVirus100, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus100 = glm::translate(modelMatrixColliderVirus100, modelVirus.getSbb().c);
+		Virus100Collider.c = glm::vec3(modelMatrixColliderVirus100[3]);
+		Virus100Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus100", Virus100Collider, modelMatrixVirus100);
+
+		//Collider del Virus101
+		AbstractModel::SBB Virus101Collider;
+		glm::mat4 modelMatrixColliderVirus101 = glm::mat4(modelMatrixVirus101);
+		modelMatrixColliderVirus101 = glm::scale(modelMatrixColliderVirus101, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus101 = glm::translate(modelMatrixColliderVirus101, modelVirus.getSbb().c);
+		Virus101Collider.c = glm::vec3(modelMatrixColliderVirus101[3]);
+		Virus101Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus101", Virus101Collider, modelMatrixVirus101);
+		//Collider del Virus102
+		AbstractModel::SBB Virus102Collider;
+		glm::mat4 modelMatrixColliderVirus102 = glm::mat4(modelMatrixVirus102);
+		modelMatrixColliderVirus102 = glm::scale(modelMatrixColliderVirus102, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus102 = glm::translate(modelMatrixColliderVirus102, modelVirus.getSbb().c);
+		Virus102Collider.c = glm::vec3(modelMatrixColliderVirus102[3]);
+		Virus102Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus102", Virus102Collider, modelMatrixVirus102);
+		//Collider del Virus103
+		AbstractModel::SBB Virus103Collider;
+		glm::mat4 modelMatrixColliderVirus103 = glm::mat4(modelMatrixVirus103);
+		modelMatrixColliderVirus103 = glm::scale(modelMatrixColliderVirus103, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus103 = glm::translate(modelMatrixColliderVirus103, modelVirus.getSbb().c);
+		Virus103Collider.c = glm::vec3(modelMatrixColliderVirus103[3]);
+		Virus103Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus103", Virus103Collider, modelMatrixVirus103);
+		//Collider del Virus104
+		AbstractModel::SBB Virus104Collider;
+		glm::mat4 modelMatrixColliderVirus104 = glm::mat4(modelMatrixVirus104);
+		modelMatrixColliderVirus104 = glm::scale(modelMatrixColliderVirus104, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus104 = glm::translate(modelMatrixColliderVirus104, modelVirus.getSbb().c);
+		Virus104Collider.c = glm::vec3(modelMatrixColliderVirus104[3]);
+		Virus104Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus104", Virus104Collider, modelMatrixVirus104);
+		//Collider del Virus105
+		AbstractModel::SBB Virus105Collider;
+		glm::mat4 modelMatrixColliderVirus105 = glm::mat4(modelMatrixVirus105);
+		modelMatrixColliderVirus105 = glm::scale(modelMatrixColliderVirus105, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus105 = glm::translate(modelMatrixColliderVirus105, modelVirus.getSbb().c);
+		Virus105Collider.c = glm::vec3(modelMatrixColliderVirus105[3]);
+		Virus105Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus105", Virus105Collider, modelMatrixVirus105);
+		//Collider del Virus106
+		AbstractModel::SBB Virus106Collider;
+		glm::mat4 modelMatrixColliderVirus106 = glm::mat4(modelMatrixVirus106);
+		modelMatrixColliderVirus106 = glm::scale(modelMatrixColliderVirus106, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus106 = glm::translate(modelMatrixColliderVirus106, modelVirus.getSbb().c);
+		Virus106Collider.c = glm::vec3(modelMatrixColliderVirus106[3]);
+		Virus106Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus106", Virus106Collider, modelMatrixVirus106);
+		//Collider del Virus107
+		AbstractModel::SBB Virus107Collider;
+		glm::mat4 modelMatrixColliderVirus107 = glm::mat4(modelMatrixVirus107);
+		modelMatrixColliderVirus107 = glm::scale(modelMatrixColliderVirus107, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus107 = glm::translate(modelMatrixColliderVirus107, modelVirus.getSbb().c);
+		Virus107Collider.c = glm::vec3(modelMatrixColliderVirus107[3]);
+		Virus107Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus107", Virus107Collider, modelMatrixVirus107);
+		//Collider del Virus108
+		AbstractModel::SBB Virus108Collider;
+		glm::mat4 modelMatrixColliderVirus108 = glm::mat4(modelMatrixVirus108);
+		modelMatrixColliderVirus108 = glm::scale(modelMatrixColliderVirus108, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus108 = glm::translate(modelMatrixColliderVirus108, modelVirus.getSbb().c);
+		Virus108Collider.c = glm::vec3(modelMatrixColliderVirus108[3]);
+		Virus108Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus108", Virus108Collider, modelMatrixVirus108);
+		//Collider del Virus109
+		AbstractModel::SBB Virus109Collider;
+		glm::mat4 modelMatrixColliderVirus109 = glm::mat4(modelMatrixVirus109);
+		modelMatrixColliderVirus109 = glm::scale(modelMatrixColliderVirus109, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus109 = glm::translate(modelMatrixColliderVirus109, modelVirus.getSbb().c);
+		Virus109Collider.c = glm::vec3(modelMatrixColliderVirus109[3]);
+		Virus109Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus109", Virus109Collider, modelMatrixVirus109);
+		//Collider del Virus110
+		AbstractModel::SBB Virus110Collider;
+		glm::mat4 modelMatrixColliderVirus110 = glm::mat4(modelMatrixVirus110);
+		modelMatrixColliderVirus110 = glm::scale(modelMatrixColliderVirus110, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus110 = glm::translate(modelMatrixColliderVirus110, modelVirus.getSbb().c);
+		Virus110Collider.c = glm::vec3(modelMatrixColliderVirus110[3]);
+		Virus110Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus110", Virus110Collider, modelMatrixVirus110);
+		//Collider del Virus111
+		AbstractModel::SBB Virus111Collider;
+		glm::mat4 modelMatrixColliderVirus111 = glm::mat4(modelMatrixVirus111);
+		modelMatrixColliderVirus111 = glm::scale(modelMatrixColliderVirus111, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus111 = glm::translate(modelMatrixColliderVirus111, modelVirus.getSbb().c);
+		Virus111Collider.c = glm::vec3(modelMatrixColliderVirus111[3]);
+		Virus111Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus111", Virus111Collider, modelMatrixVirus111);
+		//Collider del Virus112
+		AbstractModel::SBB Virus112Collider;
+		glm::mat4 modelMatrixColliderVirus112 = glm::mat4(modelMatrixVirus112);
+		modelMatrixColliderVirus112 = glm::scale(modelMatrixColliderVirus112, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus112 = glm::translate(modelMatrixColliderVirus112, modelVirus.getSbb().c);
+		Virus112Collider.c = glm::vec3(modelMatrixColliderVirus112[3]);
+		Virus112Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus112", Virus112Collider, modelMatrixVirus112);
+		//Collider del Virus113
+		AbstractModel::SBB Virus113Collider;
+		glm::mat4 modelMatrixColliderVirus113 = glm::mat4(modelMatrixVirus113);
+		modelMatrixColliderVirus113 = glm::scale(modelMatrixColliderVirus113, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus113 = glm::translate(modelMatrixColliderVirus113, modelVirus.getSbb().c);
+		Virus113Collider.c = glm::vec3(modelMatrixColliderVirus113[3]);
+		Virus113Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus113", Virus113Collider, modelMatrixVirus113);
+		//Collider del Virus114
+		AbstractModel::SBB Virus114Collider;
+		glm::mat4 modelMatrixColliderVirus114 = glm::mat4(modelMatrixVirus114);
+		modelMatrixColliderVirus114 = glm::scale(modelMatrixColliderVirus114, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus114 = glm::translate(modelMatrixColliderVirus114, modelVirus.getSbb().c);
+		Virus114Collider.c = glm::vec3(modelMatrixColliderVirus114[3]);
+		Virus114Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus114", Virus114Collider, modelMatrixVirus114);
+		//Collider del Virus115
+		AbstractModel::SBB Virus115Collider;
+		glm::mat4 modelMatrixColliderVirus115 = glm::mat4(modelMatrixVirus115);
+		modelMatrixColliderVirus115 = glm::scale(modelMatrixColliderVirus115, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus115 = glm::translate(modelMatrixColliderVirus115, modelVirus.getSbb().c);
+		Virus115Collider.c = glm::vec3(modelMatrixColliderVirus115[3]);
+		Virus115Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus115", Virus115Collider, modelMatrixVirus115);
+		//Collider del Virus116
+		AbstractModel::SBB Virus116Collider;
+		glm::mat4 modelMatrixColliderVirus116 = glm::mat4(modelMatrixVirus116);
+		modelMatrixColliderVirus116 = glm::scale(modelMatrixColliderVirus116, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus116 = glm::translate(modelMatrixColliderVirus116, modelVirus.getSbb().c);
+		Virus116Collider.c = glm::vec3(modelMatrixColliderVirus116[3]);
+		Virus116Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus116", Virus116Collider, modelMatrixVirus116);
+		//Collider del Virus117
+		AbstractModel::SBB Virus117Collider;
+		glm::mat4 modelMatrixColliderVirus117 = glm::mat4(modelMatrixVirus117);
+		modelMatrixColliderVirus117 = glm::scale(modelMatrixColliderVirus117, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus117 = glm::translate(modelMatrixColliderVirus117, modelVirus.getSbb().c);
+		Virus117Collider.c = glm::vec3(modelMatrixColliderVirus117[3]);
+		Virus117Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus117", Virus117Collider, modelMatrixVirus117);
+		//Collider del Virus118
+		AbstractModel::SBB Virus118Collider;
+		glm::mat4 modelMatrixColliderVirus118 = glm::mat4(modelMatrixVirus118);
+		modelMatrixColliderVirus118 = glm::scale(modelMatrixColliderVirus118, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus118 = glm::translate(modelMatrixColliderVirus118, modelVirus.getSbb().c);
+		Virus118Collider.c = glm::vec3(modelMatrixColliderVirus118[3]);
+		Virus118Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus118", Virus118Collider, modelMatrixVirus118);
+		//Collider del Virus119
+		AbstractModel::SBB Virus119Collider;
+		glm::mat4 modelMatrixColliderVirus119 = glm::mat4(modelMatrixVirus119);
+		modelMatrixColliderVirus119 = glm::scale(modelMatrixColliderVirus119, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus119 = glm::translate(modelMatrixColliderVirus119, modelVirus.getSbb().c);
+		Virus119Collider.c = glm::vec3(modelMatrixColliderVirus119[3]);
+		Virus119Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus119", Virus119Collider, modelMatrixVirus119);
+
+		//Collider del Virus120
+		AbstractModel::SBB Virus120Collider;
+		glm::mat4 modelMatrixColliderVirus120 = glm::mat4(modelMatrixVirus120);
+		modelMatrixColliderVirus120 = glm::scale(modelMatrixColliderVirus120, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus120 = glm::translate(modelMatrixColliderVirus120, modelVirus.getSbb().c);
+		Virus120Collider.c = glm::vec3(modelMatrixColliderVirus120[3]);
+		Virus120Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus120", Virus120Collider, modelMatrixVirus120);
+		//Collider del Virus121
+		AbstractModel::SBB Virus121Collider;
+		glm::mat4 modelMatrixColliderVirus121 = glm::mat4(modelMatrixVirus121);
+		modelMatrixColliderVirus121 = glm::scale(modelMatrixColliderVirus121, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus121 = glm::translate(modelMatrixColliderVirus121, modelVirus.getSbb().c);
+		Virus121Collider.c = glm::vec3(modelMatrixColliderVirus121[3]);
+		Virus121Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus121", Virus121Collider, modelMatrixVirus121);
+		//Collider del Virus122
+		AbstractModel::SBB Virus122Collider;
+		glm::mat4 modelMatrixColliderVirus122 = glm::mat4(modelMatrixVirus122);
+		modelMatrixColliderVirus122 = glm::scale(modelMatrixColliderVirus122, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus122 = glm::translate(modelMatrixColliderVirus122, modelVirus.getSbb().c);
+		Virus122Collider.c = glm::vec3(modelMatrixColliderVirus122[3]);
+		Virus122Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus122", Virus122Collider, modelMatrixVirus122);
+		//Collider del Virus123
+		AbstractModel::SBB Virus123Collider;
+		glm::mat4 modelMatrixColliderVirus123 = glm::mat4(modelMatrixVirus123);
+		modelMatrixColliderVirus123 = glm::scale(modelMatrixColliderVirus123, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus123 = glm::translate(modelMatrixColliderVirus123, modelVirus.getSbb().c);
+		Virus123Collider.c = glm::vec3(modelMatrixColliderVirus123[3]);
+		Virus123Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus123", Virus123Collider, modelMatrixVirus123);
+		//Collider del Virus124
+		AbstractModel::SBB Virus124Collider;
+		glm::mat4 modelMatrixColliderVirus124 = glm::mat4(modelMatrixVirus124);
+		modelMatrixColliderVirus124 = glm::scale(modelMatrixColliderVirus124, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus124 = glm::translate(modelMatrixColliderVirus124, modelVirus.getSbb().c);
+		Virus124Collider.c = glm::vec3(modelMatrixColliderVirus124[3]);
+		Virus124Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus124", Virus124Collider, modelMatrixVirus124);
+		//Collider del Virus125
+		AbstractModel::SBB Virus125Collider;
+		glm::mat4 modelMatrixColliderVirus125 = glm::mat4(modelMatrixVirus125);
+		modelMatrixColliderVirus125 = glm::scale(modelMatrixColliderVirus125, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus125 = glm::translate(modelMatrixColliderVirus125, modelVirus.getSbb().c);
+		Virus125Collider.c = glm::vec3(modelMatrixColliderVirus125[3]);
+		Virus125Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus125", Virus125Collider, modelMatrixVirus125);
+		//Collider del Virus126
+		AbstractModel::SBB Virus126Collider;
+		glm::mat4 modelMatrixColliderVirus126 = glm::mat4(modelMatrixVirus126);
+		modelMatrixColliderVirus126 = glm::scale(modelMatrixColliderVirus126, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus126 = glm::translate(modelMatrixColliderVirus126, modelVirus.getSbb().c);
+		Virus126Collider.c = glm::vec3(modelMatrixColliderVirus126[3]);
+		Virus126Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus126", Virus126Collider, modelMatrixVirus126);
+		//Collider del Virus127
+		AbstractModel::SBB Virus127Collider;
+		glm::mat4 modelMatrixColliderVirus127 = glm::mat4(modelMatrixVirus127);
+		modelMatrixColliderVirus127 = glm::scale(modelMatrixColliderVirus127, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus127 = glm::translate(modelMatrixColliderVirus127, modelVirus.getSbb().c);
+		Virus127Collider.c = glm::vec3(modelMatrixColliderVirus127[3]);
+		Virus127Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus127", Virus127Collider, modelMatrixVirus127);
+		//Collider del Virus128
+		AbstractModel::SBB Virus128Collider;
+		glm::mat4 modelMatrixColliderVirus128 = glm::mat4(modelMatrixVirus128);
+		modelMatrixColliderVirus128 = glm::scale(modelMatrixColliderVirus128, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus128 = glm::translate(modelMatrixColliderVirus128, modelVirus.getSbb().c);
+		Virus128Collider.c = glm::vec3(modelMatrixColliderVirus128[3]);
+		Virus128Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus128", Virus128Collider, modelMatrixVirus128);
+		//Collider del Virus129
+		AbstractModel::SBB Virus129Collider;
+		glm::mat4 modelMatrixColliderVirus129 = glm::mat4(modelMatrixVirus129);
+		modelMatrixColliderVirus129 = glm::scale(modelMatrixColliderVirus129, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus129 = glm::translate(modelMatrixColliderVirus129, modelVirus.getSbb().c);
+		Virus129Collider.c = glm::vec3(modelMatrixColliderVirus129[3]);
+		Virus129Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus129", Virus129Collider, modelMatrixVirus129);
+		//Collider del Virus130
+		AbstractModel::SBB Virus130Collider;
+		glm::mat4 modelMatrixColliderVirus130 = glm::mat4(modelMatrixVirus130);
+		modelMatrixColliderVirus130 = glm::scale(modelMatrixColliderVirus130, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus130 = glm::translate(modelMatrixColliderVirus130, modelVirus.getSbb().c);
+		Virus130Collider.c = glm::vec3(modelMatrixColliderVirus130[3]);
+		Virus130Collider.ratio = modelVirus.getSbb().ratio * 1.0;
+		addOrUpdateColliders(collidersSBB, "Virus130", Virus130Collider, modelMatrixVirus130);
+		//Collider del Virus131
+		AbstractModel::SBB Virus131Collider;
+		glm::mat4 modelMatrixColliderVirus131 = glm::mat4(modelMatrixVirus131);
+		modelMatrixColliderVirus131 = glm::scale(modelMatrixColliderVirus131, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus131 = glm::translate(modelMatrixColliderVirus131, modelVirus.getSbb().c);
+		Virus131Collider.c = glm::vec3(modelMatrixColliderVirus131[3]);
+		Virus131Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus131", Virus131Collider, modelMatrixVirus131);
+		//Collider del Virus132
+		AbstractModel::SBB Virus132Collider;
+		glm::mat4 modelMatrixColliderVirus132 = glm::mat4(modelMatrixVirus132);
+		modelMatrixColliderVirus132 = glm::scale(modelMatrixColliderVirus132, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus132 = glm::translate(modelMatrixColliderVirus132, modelVirus.getSbb().c);
+		Virus132Collider.c = glm::vec3(modelMatrixColliderVirus132[3]);
+		Virus132Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus132", Virus132Collider, modelMatrixVirus132);
+		//Collider del Virus133
+		AbstractModel::SBB Virus133Collider;
+		glm::mat4 modelMatrixColliderVirus133 = glm::mat4(modelMatrixVirus133);
+		modelMatrixColliderVirus133 = glm::scale(modelMatrixColliderVirus133, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus133 = glm::translate(modelMatrixColliderVirus133, modelVirus.getSbb().c);
+		Virus133Collider.c = glm::vec3(modelMatrixColliderVirus133[3]);
+		Virus133Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus133", Virus133Collider, modelMatrixVirus133);
+		//Collider del Virus134
+		AbstractModel::SBB Virus134Collider;
+		glm::mat4 modelMatrixColliderVirus134 = glm::mat4(modelMatrixVirus134);
+		modelMatrixColliderVirus134 = glm::scale(modelMatrixColliderVirus134, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus134 = glm::translate(modelMatrixColliderVirus134, modelVirus.getSbb().c);
+		Virus134Collider.c = glm::vec3(modelMatrixColliderVirus134[3]);
+		Virus134Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus134", Virus134Collider, modelMatrixVirus134);
+		//Collider del Virus135
+		AbstractModel::SBB Virus135Collider;
+		glm::mat4 modelMatrixColliderVirus135 = glm::mat4(modelMatrixVirus135);
+		modelMatrixColliderVirus135 = glm::scale(modelMatrixColliderVirus135, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus135 = glm::translate(modelMatrixColliderVirus135, modelVirus.getSbb().c);
+		Virus135Collider.c = glm::vec3(modelMatrixColliderVirus135[3]);
+		Virus135Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus135", Virus135Collider, modelMatrixVirus135);
+		//Collider del Virus136
+		AbstractModel::SBB Virus136Collider;
+		glm::mat4 modelMatrixColliderVirus136 = glm::mat4(modelMatrixVirus136);
+		modelMatrixColliderVirus136 = glm::scale(modelMatrixColliderVirus136, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus136 = glm::translate(modelMatrixColliderVirus136, modelVirus.getSbb().c);
+		Virus136Collider.c = glm::vec3(modelMatrixColliderVirus136[3]);
+		Virus136Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus136", Virus136Collider, modelMatrixVirus136);
+		//Collider del Virus137
+		AbstractModel::SBB Virus137Collider;
+		glm::mat4 modelMatrixColliderVirus137 = glm::mat4(modelMatrixVirus137);
+		modelMatrixColliderVirus137 = glm::scale(modelMatrixColliderVirus137, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus137 = glm::translate(modelMatrixColliderVirus137, modelVirus.getSbb().c);
+		Virus137Collider.c = glm::vec3(modelMatrixColliderVirus137[3]);
+		Virus137Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus137", Virus137Collider, modelMatrixVirus137);
+		//Collider del Virus138
+		AbstractModel::SBB Virus138Collider;
+		glm::mat4 modelMatrixColliderVirus138 = glm::mat4(modelMatrixVirus138);
+		modelMatrixColliderVirus138 = glm::scale(modelMatrixColliderVirus138, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus138 = glm::translate(modelMatrixColliderVirus138, modelVirus.getSbb().c);
+		Virus138Collider.c = glm::vec3(modelMatrixColliderVirus138[3]);
+		Virus138Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus138", Virus138Collider, modelMatrixVirus138);
+		//Collider del Virus139
+		AbstractModel::SBB Virus139Collider;
+		glm::mat4 modelMatrixColliderVirus139 = glm::mat4(modelMatrixVirus139);
+		modelMatrixColliderVirus139 = glm::scale(modelMatrixColliderVirus139, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus139 = glm::translate(modelMatrixColliderVirus139, modelVirus.getSbb().c);
+		Virus139Collider.c = glm::vec3(modelMatrixColliderVirus139[3]);
+		Virus139Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus139", Virus139Collider, modelMatrixVirus139);
+		//Collider del Virus140
+		AbstractModel::SBB Virus140Collider;
+		glm::mat4 modelMatrixColliderVirus140 = glm::mat4(modelMatrixVirus140);
+		modelMatrixColliderVirus140 = glm::scale(modelMatrixColliderVirus140, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus140 = glm::translate(modelMatrixColliderVirus140, modelVirus.getSbb().c);
+		Virus140Collider.c = glm::vec3(modelMatrixColliderVirus140[3]);
+		Virus140Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus140", Virus140Collider, modelMatrixVirus140);
+		//Collider del Virus141
+		AbstractModel::SBB Virus141Collider;
+		glm::mat4 modelMatrixColliderVirus141 = glm::mat4(modelMatrixVirus141);
+		modelMatrixColliderVirus141 = glm::scale(modelMatrixColliderVirus141, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus141 = glm::translate(modelMatrixColliderVirus141, modelVirus.getSbb().c);
+		Virus141Collider.c = glm::vec3(modelMatrixColliderVirus141[3]);
+		Virus141Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus141", Virus141Collider, modelMatrixVirus141);
+		//Collider del Virus142
+		AbstractModel::SBB Virus142Collider;
+		glm::mat4 modelMatrixColliderVirus142 = glm::mat4(modelMatrixVirus142);
+		modelMatrixColliderVirus142 = glm::scale(modelMatrixColliderVirus142, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus142 = glm::translate(modelMatrixColliderVirus142, modelVirus.getSbb().c);
+		Virus142Collider.c = glm::vec3(modelMatrixColliderVirus142[3]);
+		Virus142Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus142", Virus142Collider, modelMatrixVirus142);
+		//Collider del Virus143
+		AbstractModel::SBB Virus143Collider;
+		glm::mat4 modelMatrixColliderVirus143 = glm::mat4(modelMatrixVirus143);
+		modelMatrixColliderVirus143 = glm::scale(modelMatrixColliderVirus143, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus143 = glm::translate(modelMatrixColliderVirus143, modelVirus.getSbb().c);
+		Virus143Collider.c = glm::vec3(modelMatrixColliderVirus143[3]);
+		Virus143Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus143", Virus143Collider, modelMatrixVirus143);
+		//Collider del Virus144
+		AbstractModel::SBB Virus144Collider;
+		glm::mat4 modelMatrixColliderVirus144 = glm::mat4(modelMatrixVirus144);
+		modelMatrixColliderVirus144 = glm::scale(modelMatrixColliderVirus144, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus144 = glm::translate(modelMatrixColliderVirus144, modelVirus.getSbb().c);
+		Virus144Collider.c = glm::vec3(modelMatrixColliderVirus144[3]);
+		Virus144Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus144", Virus144Collider, modelMatrixVirus144);
+		//Collider del Virus145
+		AbstractModel::SBB Virus145Collider;
+		glm::mat4 modelMatrixColliderVirus145 = glm::mat4(modelMatrixVirus145);
+		modelMatrixColliderVirus145 = glm::scale(modelMatrixColliderVirus145, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus145 = glm::translate(modelMatrixColliderVirus145, modelVirus.getSbb().c);
+		Virus145Collider.c = glm::vec3(modelMatrixColliderVirus145[3]);
+		Virus145Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus145", Virus145Collider, modelMatrixVirus145);
+		//Collider del Virus146
+		AbstractModel::SBB Virus146Collider;
+		glm::mat4 modelMatrixColliderVirus146 = glm::mat4(modelMatrixVirus146);
+		modelMatrixColliderVirus146 = glm::scale(modelMatrixColliderVirus146, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus146 = glm::translate(modelMatrixColliderVirus146, modelVirus.getSbb().c);
+		Virus146Collider.c = glm::vec3(modelMatrixColliderVirus146[3]);
+		Virus146Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus146", Virus146Collider, modelMatrixVirus146);
+		//Collider del Virus147
+		AbstractModel::SBB Virus147Collider;
+		glm::mat4 modelMatrixColliderVirus147 = glm::mat4(modelMatrixVirus147);
+		modelMatrixColliderVirus147 = glm::scale(modelMatrixColliderVirus147, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus147 = glm::translate(modelMatrixColliderVirus147, modelVirus.getSbb().c);
+		Virus147Collider.c = glm::vec3(modelMatrixColliderVirus147[3]);
+		Virus147Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus147", Virus147Collider, modelMatrixVirus147);
+		//Collider del Virus148
+		AbstractModel::SBB Virus148Collider;
+		glm::mat4 modelMatrixColliderVirus148 = glm::mat4(modelMatrixVirus148);
+		modelMatrixColliderVirus148 = glm::scale(modelMatrixColliderVirus148, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus148 = glm::translate(modelMatrixColliderVirus148, modelVirus.getSbb().c);
+		Virus148Collider.c = glm::vec3(modelMatrixColliderVirus148[3]);
+		Virus148Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus148", Virus148Collider, modelMatrixVirus148);
+		//Collider del Virus149
+		AbstractModel::SBB Virus149Collider;
+		glm::mat4 modelMatrixColliderVirus149 = glm::mat4(modelMatrixVirus149);
+		modelMatrixColliderVirus149 = glm::scale(modelMatrixColliderVirus149, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus149 = glm::translate(modelMatrixColliderVirus149, modelVirus.getSbb().c);
+		Virus149Collider.c = glm::vec3(modelMatrixColliderVirus149[3]);
+		Virus149Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus149", Virus149Collider, modelMatrixVirus149);
+		//Collider del Virus150
+		AbstractModel::SBB Virus150Collider;
+		glm::mat4 modelMatrixColliderVirus150 = glm::mat4(modelMatrixVirus150);
+		modelMatrixColliderVirus150 = glm::scale(modelMatrixColliderVirus150, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus150 = glm::translate(modelMatrixColliderVirus150, modelVirus.getSbb().c);
+		Virus150Collider.c = glm::vec3(modelMatrixColliderVirus150[3]);
+		Virus150Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus150", Virus150Collider, modelMatrixVirus150);
+		//Collider del Virus151
+		AbstractModel::SBB Virus151Collider;
+		glm::mat4 modelMatrixColliderVirus151 = glm::mat4(modelMatrixVirus151);
+		modelMatrixColliderVirus151 = glm::scale(modelMatrixColliderVirus151, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus151 = glm::translate(modelMatrixColliderVirus151, modelVirus.getSbb().c);
+		Virus151Collider.c = glm::vec3(modelMatrixColliderVirus151[3]);
+		Virus151Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus151", Virus151Collider, modelMatrixVirus151);
+		//Collider del Virus152
+		AbstractModel::SBB Virus152Collider;
+		glm::mat4 modelMatrixColliderVirus152 = glm::mat4(modelMatrixVirus152);
+		modelMatrixColliderVirus152 = glm::scale(modelMatrixColliderVirus152, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus152 = glm::translate(modelMatrixColliderVirus152, modelVirus.getSbb().c);
+		Virus152Collider.c = glm::vec3(modelMatrixColliderVirus152[3]);
+		Virus152Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus152", Virus152Collider, modelMatrixVirus152);
+		//Collider del Virus153
+		AbstractModel::SBB Virus153Collider;
+		glm::mat4 modelMatrixColliderVirus153 = glm::mat4(modelMatrixVirus153);
+		modelMatrixColliderVirus153 = glm::scale(modelMatrixColliderVirus153, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus153 = glm::translate(modelMatrixColliderVirus153, modelVirus.getSbb().c);
+		Virus153Collider.c = glm::vec3(modelMatrixColliderVirus153[3]);
+		Virus153Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus153", Virus153Collider, modelMatrixVirus153);
+		//Collider del Virus154
+		AbstractModel::SBB Virus154Collider;
+		glm::mat4 modelMatrixColliderVirus154 = glm::mat4(modelMatrixVirus154);
+		modelMatrixColliderVirus154 = glm::scale(modelMatrixColliderVirus154, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus154 = glm::translate(modelMatrixColliderVirus154, modelVirus.getSbb().c);
+		Virus154Collider.c = glm::vec3(modelMatrixColliderVirus154[3]);
+		Virus154Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus154", Virus154Collider, modelMatrixVirus154);
+		//Collider del Virus155
+		AbstractModel::SBB Virus155Collider;
+		glm::mat4 modelMatrixColliderVirus155 = glm::mat4(modelMatrixVirus155);
+		modelMatrixColliderVirus155 = glm::scale(modelMatrixColliderVirus155, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus155 = glm::translate(modelMatrixColliderVirus155, modelVirus.getSbb().c);
+		Virus155Collider.c = glm::vec3(modelMatrixColliderVirus155[3]);
+		Virus155Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus155", Virus155Collider, modelMatrixVirus155);
+		//Collider del Virus156
+		AbstractModel::SBB Virus156Collider;
+		glm::mat4 modelMatrixColliderVirus156 = glm::mat4(modelMatrixVirus156);
+		modelMatrixColliderVirus156 = glm::scale(modelMatrixColliderVirus156, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus156 = glm::translate(modelMatrixColliderVirus156, modelVirus.getSbb().c);
+		Virus156Collider.c = glm::vec3(modelMatrixColliderVirus156[3]);
+		Virus156Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus156", Virus156Collider, modelMatrixVirus156);
+		//Collider del Virus157
+		AbstractModel::SBB Virus157Collider;
+		glm::mat4 modelMatrixColliderVirus157 = glm::mat4(modelMatrixVirus157);
+		modelMatrixColliderVirus157 = glm::scale(modelMatrixColliderVirus157, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus157 = glm::translate(modelMatrixColliderVirus157, modelVirus.getSbb().c);
+		Virus157Collider.c = glm::vec3(modelMatrixColliderVirus157[3]);
+		Virus157Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus157", Virus157Collider, modelMatrixVirus157);
+		//Collider del Virus158
+		AbstractModel::SBB Virus158Collider;
+		glm::mat4 modelMatrixColliderVirus158 = glm::mat4(modelMatrixVirus158);
+		modelMatrixColliderVirus158 = glm::scale(modelMatrixColliderVirus158, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus158 = glm::translate(modelMatrixColliderVirus158, modelVirus.getSbb().c);
+		Virus158Collider.c = glm::vec3(modelMatrixColliderVirus158[3]);
+		Virus158Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus158", Virus158Collider, modelMatrixVirus158);
+		//Collider del Virus159
+		AbstractModel::SBB Virus159Collider;
+		glm::mat4 modelMatrixColliderVirus159 = glm::mat4(modelMatrixVirus159);
+		modelMatrixColliderVirus159 = glm::scale(modelMatrixColliderVirus159, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus159 = glm::translate(modelMatrixColliderVirus159, modelVirus.getSbb().c);
+		Virus159Collider.c = glm::vec3(modelMatrixColliderVirus159[3]);
+		Virus159Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus159", Virus159Collider, modelMatrixVirus159);
+		//Collider del Virus160
+		AbstractModel::SBB Virus160Collider;
+		glm::mat4 modelMatrixColliderVirus160 = glm::mat4(modelMatrixVirus160);
+		modelMatrixColliderVirus160 = glm::scale(modelMatrixColliderVirus160, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus160 = glm::translate(modelMatrixColliderVirus160, modelVirus.getSbb().c);
+		Virus160Collider.c = glm::vec3(modelMatrixColliderVirus160[3]);
+		Virus160Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus160", Virus160Collider, modelMatrixVirus160);
+		//Collider del Virus161
+		AbstractModel::SBB Virus161Collider;
+		glm::mat4 modelMatrixColliderVirus161 = glm::mat4(modelMatrixVirus161);
+		modelMatrixColliderVirus161 = glm::scale(modelMatrixColliderVirus161, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus161 = glm::translate(modelMatrixColliderVirus161, modelVirus.getSbb().c);
+		Virus161Collider.c = glm::vec3(modelMatrixColliderVirus161[3]);
+		Virus161Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus161", Virus161Collider, modelMatrixVirus161);
+		//Collider del Virus162
+		AbstractModel::SBB Virus162Collider;
+		glm::mat4 modelMatrixColliderVirus162 = glm::mat4(modelMatrixVirus162);
+		modelMatrixColliderVirus162 = glm::scale(modelMatrixColliderVirus162, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus162 = glm::translate(modelMatrixColliderVirus162, modelVirus.getSbb().c);
+		Virus162Collider.c = glm::vec3(modelMatrixColliderVirus162[3]);
+		Virus162Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus162", Virus162Collider, modelMatrixVirus162);
+		//Collider del Virus163
+		AbstractModel::SBB Virus163Collider;
+		glm::mat4 modelMatrixColliderVirus163 = glm::mat4(modelMatrixVirus163);
+		modelMatrixColliderVirus163 = glm::scale(modelMatrixColliderVirus163, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus163 = glm::translate(modelMatrixColliderVirus163, modelVirus.getSbb().c);
+		Virus163Collider.c = glm::vec3(modelMatrixColliderVirus163[3]);
+		Virus163Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus163", Virus163Collider, modelMatrixVirus163);
+		//Collider del Virus164
+		AbstractModel::SBB Virus164Collider;
+		glm::mat4 modelMatrixColliderVirus164 = glm::mat4(modelMatrixVirus164);
+		modelMatrixColliderVirus164 = glm::scale(modelMatrixColliderVirus164, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus164 = glm::translate(modelMatrixColliderVirus164, modelVirus.getSbb().c);
+		Virus164Collider.c = glm::vec3(modelMatrixColliderVirus164[3]);
+		Virus164Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus164", Virus164Collider, modelMatrixVirus164);
+		//Collider del Virus165
+		AbstractModel::SBB Virus165Collider;
+		glm::mat4 modelMatrixColliderVirus165 = glm::mat4(modelMatrixVirus165);
+		modelMatrixColliderVirus165 = glm::scale(modelMatrixColliderVirus165, glm::vec3(1.0, 1.0, 1.0));
+		modelMatrixColliderVirus165 = glm::translate(modelMatrixColliderVirus165, modelVirus.getSbb().c);
+		Virus165Collider.c = glm::vec3(modelMatrixColliderVirus165[3]);
+		Virus165Collider.ratio = modelVirus.getSbb().ratio * 3.0;
+		addOrUpdateColliders(collidersSBB, "Virus165", Virus165Collider, modelMatrixVirus165);
     
 		// Collider del borde1
 		AbstractModel::OBB bordeCollider1;
@@ -2272,8 +3133,6 @@ void applicationLoop() {
 			modelMatrixVirus80 = glm::translate(modelMatrixVirus80, glm::vec3(0.45f, 0.0f, -0.0f));
 			modelMatrixVirus81 = glm::translate(modelMatrixVirus81, glm::vec3(-0.45f, 0.0f, -0.0f));
 			modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(0.45f, 0.0f, -0.0f));
-			//modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(-0.45f, 0.0f, -0.0f));
-			//modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(0.45f, 0.0f, -0.0f));
 
 			advanceCountVirus += 0.9;
 			if (advanceCountVirus > maxAdvanceVirus) {
@@ -2318,12 +3177,102 @@ void applicationLoop() {
 			modelMatrixVirus80 = glm::translate(modelMatrixVirus80, glm::vec3(-0.45f, 0.0f, 0.0f));
 			modelMatrixVirus81 = glm::translate(modelMatrixVirus81, glm::vec3(0.45f, 0.0f, 0.0f));
 			modelMatrixVirus82 = glm::translate(modelMatrixVirus82, glm::vec3(-0.45f, 0.0f, 0.0f));
-			//modelMatrixVirus83 = glm::translate(modelMatrixVirus83, glm::vec3(0.45f, 0.0f, 0.0f));
-			//modelMatrixVirus84 = glm::translate(modelMatrixVirus84, glm::vec3(-0.45f, 0.0f, 0.0f));
 			advanceCountVirus += 0.9;
 			if (advanceCountVirus > maxAdvanceVirus) {
 				advanceCountVirus = 0;
 				stateVirus = 1;
+			}
+			break;
+		default:
+			break;
+		}
+
+		switch (stateVirus3) {
+
+		case 1:
+			modelMatrixVirus131 = glm::translate(modelMatrixVirus131, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus132 = glm::translate(modelMatrixVirus132, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus133 = glm::translate(modelMatrixVirus133, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus134 = glm::translate(modelMatrixVirus134, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus135 = glm::translate(modelMatrixVirus135, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus136 = glm::translate(modelMatrixVirus136, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus137 = glm::translate(modelMatrixVirus137, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus138 = glm::translate(modelMatrixVirus138, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus139 = glm::translate(modelMatrixVirus139, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus140 = glm::translate(modelMatrixVirus140, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus141 = glm::translate(modelMatrixVirus141, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus142 = glm::translate(modelMatrixVirus142, glm::vec3(0.2f, 0.0f, -0.0f));
+			modelMatrixVirus143 = glm::translate(modelMatrixVirus143, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus144 = glm::translate(modelMatrixVirus144, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus145 = glm::translate(modelMatrixVirus145, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus146 = glm::translate(modelMatrixVirus146, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus147 = glm::translate(modelMatrixVirus147, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus148 = glm::translate(modelMatrixVirus148, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus149 = glm::translate(modelMatrixVirus149, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus150 = glm::translate(modelMatrixVirus150, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus151 = glm::translate(modelMatrixVirus151, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus152 = glm::translate(modelMatrixVirus152, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus153 = glm::translate(modelMatrixVirus153, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus154 = glm::translate(modelMatrixVirus154, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus155 = glm::translate(modelMatrixVirus155, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus156 = glm::translate(modelMatrixVirus156, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus157 = glm::translate(modelMatrixVirus157, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus158 = glm::translate(modelMatrixVirus158, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus159 = glm::translate(modelMatrixVirus159, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus160 = glm::translate(modelMatrixVirus160, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus161 = glm::translate(modelMatrixVirus161, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus162 = glm::translate(modelMatrixVirus162, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus163 = glm::translate(modelMatrixVirus163, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus164 = glm::translate(modelMatrixVirus164, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus165 = glm::translate(modelMatrixVirus165, glm::vec3(-0.315f, 0.0f, -0.0f));
+
+			advanceCountVirus3 += 0.7;
+			if (advanceCountVirus3 > maxAdvanceVirus3) {
+				advanceCountVirus3 = 0;
+				stateVirus3 = 2;
+			}
+			break;
+
+		case 2:
+			modelMatrixVirus131 = glm::translate(modelMatrixVirus131, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus132 = glm::translate(modelMatrixVirus132, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus133 = glm::translate(modelMatrixVirus133, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus134 = glm::translate(modelMatrixVirus134, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus135 = glm::translate(modelMatrixVirus135, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus136 = glm::translate(modelMatrixVirus136, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus137 = glm::translate(modelMatrixVirus137, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus138 = glm::translate(modelMatrixVirus138, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus139 = glm::translate(modelMatrixVirus139, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus140 = glm::translate(modelMatrixVirus140, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus141 = glm::translate(modelMatrixVirus141, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus142 = glm::translate(modelMatrixVirus142, glm::vec3(-0.2f, 0.0f, -0.0f));
+			modelMatrixVirus143 = glm::translate(modelMatrixVirus143, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus144 = glm::translate(modelMatrixVirus144, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus145 = glm::translate(modelMatrixVirus145, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus146 = glm::translate(modelMatrixVirus146, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus147 = glm::translate(modelMatrixVirus147, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus148 = glm::translate(modelMatrixVirus148, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus149 = glm::translate(modelMatrixVirus149, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus150 = glm::translate(modelMatrixVirus150, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus151 = glm::translate(modelMatrixVirus151, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus152 = glm::translate(modelMatrixVirus152, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus153 = glm::translate(modelMatrixVirus153, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus154 = glm::translate(modelMatrixVirus154, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus155 = glm::translate(modelMatrixVirus155, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus157 = glm::translate(modelMatrixVirus157, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus158 = glm::translate(modelMatrixVirus158, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus159 = glm::translate(modelMatrixVirus159, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus160 = glm::translate(modelMatrixVirus160, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus161 = glm::translate(modelMatrixVirus161, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus162 = glm::translate(modelMatrixVirus162, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus163 = glm::translate(modelMatrixVirus163, glm::vec3(-0.315f, 0.0f, -0.0f));
+			modelMatrixVirus164 = glm::translate(modelMatrixVirus164, glm::vec3(0.315f, 0.0f, -0.0f));
+			modelMatrixVirus165 = glm::translate(modelMatrixVirus165, glm::vec3(-0.315f, 0.0f, -0.0f));
+
+			advanceCountVirus3 += 0.7;
+			if (advanceCountVirus3 > maxAdvanceVirus3) {
+				advanceCountVirus3 = 0;
+				stateVirus3 = 1;
 			}
 			break;
 		default:
@@ -2649,6 +3598,96 @@ void renderScene(bool renderParticles) {
 	modelVirus.render(modelMatrixVirus82);
 	modelVirus.render(modelMatrixVirus83);
 	modelVirus.render(modelMatrixVirus84);
+	modelVirus.render(modelMatrixVirus85);
+	modelVirus.render(modelMatrixVirus86);
+	modelVirus.render(modelMatrixVirus87);
+	modelVirus.render(modelMatrixVirus88);
+	modelVirus.render(modelMatrixVirus89);
+	modelVirus.render(modelMatrixVirus90);
+	modelVirus.render(modelMatrixVirus91);
+	modelVirus.render(modelMatrixVirus92);
+	modelVirus.render(modelMatrixVirus93);
+	modelVirus.render(modelMatrixVirus94);
+	modelVirus.render(modelMatrixVirus95);
+	modelVirus.render(modelMatrixVirus96);
+	modelVirus.render(modelMatrixVirus97);
+	modelVirus.render(modelMatrixVirus98);
+	modelVirus.render(modelMatrixVirus99);
+
+	modelVirus.render(modelMatrixVirus100);
+	modelVirus.render(modelMatrixVirus101);
+	modelVirus.render(modelMatrixVirus102);
+	modelVirus.render(modelMatrixVirus103);
+	modelVirus.render(modelMatrixVirus104);
+	modelVirus.render(modelMatrixVirus105);
+	modelVirus.render(modelMatrixVirus106);
+	modelVirus.render(modelMatrixVirus107);
+	modelVirus.render(modelMatrixVirus108);
+	modelVirus.render(modelMatrixVirus109);
+
+
+	modelVirus.render(modelMatrixVirus110);
+	modelVirus.render(modelMatrixVirus111);
+	modelVirus.render(modelMatrixVirus112);
+	modelVirus.render(modelMatrixVirus113);
+	modelVirus.render(modelMatrixVirus114);
+	modelVirus.render(modelMatrixVirus115);
+	modelVirus.render(modelMatrixVirus116);
+	modelVirus.render(modelMatrixVirus117);
+	modelVirus.render(modelMatrixVirus118);
+	modelVirus.render(modelMatrixVirus119);
+
+
+	modelVirus.render(modelMatrixVirus120);
+	modelVirus.render(modelMatrixVirus121);
+	modelVirus.render(modelMatrixVirus122);
+	modelVirus.render(modelMatrixVirus123);
+	modelVirus.render(modelMatrixVirus124);
+	modelVirus.render(modelMatrixVirus125);
+	modelVirus.render(modelMatrixVirus126);
+	modelVirus.render(modelMatrixVirus127);
+	modelVirus.render(modelMatrixVirus128);
+	modelVirus.render(modelMatrixVirus129);
+
+	modelVirus.render(modelMatrixVirus130);
+	modelVirus.render(modelMatrixVirus131);
+	modelVirus.render(modelMatrixVirus132);
+	modelVirus.render(modelMatrixVirus133);
+	modelVirus.render(modelMatrixVirus134);
+	modelVirus.render(modelMatrixVirus135);
+	modelVirus.render(modelMatrixVirus136);
+	modelVirus.render(modelMatrixVirus137);
+	modelVirus.render(modelMatrixVirus138);
+	modelVirus.render(modelMatrixVirus139);
+
+	modelVirus.render(modelMatrixVirus140);
+	modelVirus.render(modelMatrixVirus141);
+	modelVirus.render(modelMatrixVirus142);
+	modelVirus.render(modelMatrixVirus143);
+	modelVirus.render(modelMatrixVirus144);
+	modelVirus.render(modelMatrixVirus145);
+	modelVirus.render(modelMatrixVirus146);
+	modelVirus.render(modelMatrixVirus147);
+	modelVirus.render(modelMatrixVirus148);
+	modelVirus.render(modelMatrixVirus149);
+
+	modelVirus.render(modelMatrixVirus150);
+	modelVirus.render(modelMatrixVirus151);
+	modelVirus.render(modelMatrixVirus152);
+	modelVirus.render(modelMatrixVirus153);
+	modelVirus.render(modelMatrixVirus154);
+	modelVirus.render(modelMatrixVirus155);
+	modelVirus.render(modelMatrixVirus156);
+	modelVirus.render(modelMatrixVirus157);
+	modelVirus.render(modelMatrixVirus158);
+	modelVirus.render(modelMatrixVirus159);
+
+	modelVirus.render(modelMatrixVirus160);
+	modelVirus.render(modelMatrixVirus161);
+	modelVirus.render(modelMatrixVirus162);
+	modelVirus.render(modelMatrixVirus163);
+	modelVirus.render(modelMatrixVirus164);
+	modelVirus.render(modelMatrixVirus165);
 
 	/**********
 		 * Update the position with alpha objects
