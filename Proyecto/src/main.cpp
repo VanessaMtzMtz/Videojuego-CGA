@@ -1181,9 +1181,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi6 = glm::translate(modelmatrixColliderEdi6,
 			glm::vec3(modelEdi6.getObb().c.x,
-				modelEdi6.getObb().c.y + 102.0,
+				modelEdi6.getObb().c.y + 105.0,
 				modelEdi6.getObb().c.z + 110.0));
-		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 6.75, 0.05);
+		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 7.1, 0.05);
 		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
