@@ -77,7 +77,7 @@ Shader shaderViewDepth;
 Shader shaderDepth;
 
 std::shared_ptr<Camera> camera(new ThirdPersonCamera());
-float distanceFromTarget = 12.0;
+float distanceFromTarget = 15.0;
 
 Sphere skyboxSphere(20, 20);
 Box boxCollider;
@@ -1395,9 +1395,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi6 = glm::scale(modelmatrixColliderEdi6, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi6 = glm::translate(modelmatrixColliderEdi6,
 			glm::vec3(modelEdi6.getObb().c.x,
-				modelEdi6.getObb().c.y + 95.7,
+				modelEdi6.getObb().c.y + 105.0,
 				modelEdi6.getObb().c.z + 110.0));
-		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi6Collider.e = modelEdi6.getObb().e * glm::vec3(1.0, 7.1, 0.05);
 		edi6Collider.c = glm::vec3(modelmatrixColliderEdi6[3]);
 		addOrUpdateColliders(collidersOBB, "edi6", edi6Collider, modelMatrixEdi6);
 
@@ -2210,16 +2210,20 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					if (jt->first.compare("simi") == 0){
-						if (jt->first.compare("edi1") != 0){
-							printf("\n*****NO COLLISION*****\n");
+					//if (jt->first.compare("simi") == 0){
+						if (jt->first.compare("edi1") == 0){
+							printf("\n*****NO COLLISION edificio 1*****\n");
 							modelMatrixSimi = std::get<1>(jt->second);
 						}
-						else{
+						else if (jt->first.compare("edi4") == 0){
+							printf("\n*****NO COLLISION edificio 4*****\n");
 							modelMatrixSimi = std::get<1>(jt->second);
 							stateSimi += 1;
 						}
-					}
+						else{
+							modelMatrixSimi = std::get<1>(jt->second);
+						}
+					//}
 					
 				}
 			}
