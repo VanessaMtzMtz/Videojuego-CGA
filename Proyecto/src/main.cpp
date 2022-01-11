@@ -894,8 +894,8 @@ void applicationLoop() {
 	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(65.1, 0.0, -65.5));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
-	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
+  	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -50.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
@@ -1379,9 +1379,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi4 = glm::scale(modelmatrixColliderEdi4, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi4 = glm::translate(modelmatrixColliderEdi4,
 				glm::vec3(modelEdi4.getObb().c.x,
-						modelEdi4.getObb().c.y + 84.7,
+						modelEdi4.getObb().c.y + 65.7,
 						modelEdi4.getObb().c.z + 110.0));
-		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 8.35, 0.05);
 		edi4Collider.c = glm::vec3(modelmatrixColliderEdi4[3]);
 		addOrUpdateColliders(collidersOBB, "edi4", edi4Collider, modelMatrixEdi4);
 
