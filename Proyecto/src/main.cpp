@@ -319,7 +319,7 @@ int animationIndex = 1;
 int modelSelected = 2;
 bool enableCountSelected = true;
 
-int stateSimi = 0;
+int stateSimi = -100;
 
 // Lamps positions
 std::vector<glm::vec3> lamp1Position = { glm::vec3(-83.1, 0, -5.3), 
@@ -3076,10 +3076,120 @@ void applicationLoop() {
 			for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> > ::iterator jt = collidersSBB.begin(); jt != collidersSBB.end(); jt++)
 			{
 				//testSphereOBox(sbb, obb)
+<<<<<<< Updated upstream
 				if (testSphereOBox(std::get<0>(jt->second), std::get<0>(it->second)))				{
 					std::cout << "Collision " << it->first << " with " << jt->first << std::endl;
 					isCollision = true;
 					addOrUpdateCollisionDetection(collisionDetection, jt->first, true);
+=======
+				if (testSphereOBox(std::get<0>(jt->second), std::get<0>(it->second))) {
+
+					std::cout << "Collision " << it->first << " with " << jt->first << std::endl;
+					isCollision = true;
+					addOrUpdateCollisionDetection(collisionDetection, jt->first, true);
+					if (jt->first.compare("Virus1") == 0 || jt->first.compare("Virus2") == 0 || jt->first.compare("Virus3") == 0 ||
+						jt->first.compare("Virus4") == 0 || jt->first.compare("Virus5") == 0 || jt->first.compare("Virus6") == 0 ||
+						jt->first.compare("Virus7") == 0 || jt->first.compare("Virus8") == 0 || jt->first.compare("Virus9") == 0 ||
+
+						jt->first.compare("Virus10") == 0 ||
+						jt->first.compare("Virus11") == 0 || jt->first.compare("Virus12") == 0 || jt->first.compare("Virus13") == 0 ||
+						jt->first.compare("Virus14") == 0 || jt->first.compare("Virus15") == 0 || jt->first.compare("Virus16") == 0 ||
+						jt->first.compare("Virus17") == 0 || jt->first.compare("Virus18") == 0 || jt->first.compare("Virus19") == 0 ||
+
+						jt->first.compare("Virus20") == 0 ||
+						jt->first.compare("Virus21") == 0 || jt->first.compare("Virus22") == 0 || jt->first.compare("Virus23") == 0 ||
+						jt->first.compare("Virus24") == 0 || jt->first.compare("Virus25") == 0 || jt->first.compare("Virus26") == 0 ||
+						jt->first.compare("Virus27") == 0 || jt->first.compare("Virus28") == 0 || jt->first.compare("Virus29") == 0 ||
+
+						jt->first.compare("Virus30") == 0 ||
+						jt->first.compare("Virus31") == 0 || jt->first.compare("Virus32") == 0 || jt->first.compare("Virus33") == 0 ||
+						jt->first.compare("Virus34") == 0 || jt->first.compare("Virus35") == 0 || jt->first.compare("Virus36") == 0 ||
+						jt->first.compare("Virus37") == 0 || jt->first.compare("Virus38") == 0 || jt->first.compare("Virus39") == 0 ||
+
+						jt->first.compare("Virus40") == 0 ||
+						jt->first.compare("Virus41") == 0 || jt->first.compare("Virus42") == 0 || jt->first.compare("Virus43") == 0 ||
+						jt->first.compare("Virus44") == 0 || jt->first.compare("Virus45") == 0 || jt->first.compare("Virus46") == 0 ||
+						jt->first.compare("Virus47") == 0 || jt->first.compare("Virus48") == 0 || jt->first.compare("Virus49") == 0 ||
+
+						jt->first.compare("Virus50") == 0 ||
+						jt->first.compare("Virus51") == 0 || jt->first.compare("Virus52") == 0 || jt->first.compare("Virus53") == 0 ||
+						jt->first.compare("Virus54") == 0 || jt->first.compare("Virus55") == 0 || jt->first.compare("Virus56") == 0 ||
+						jt->first.compare("Virus57") == 0 || jt->first.compare("Virus58") == 0 || jt->first.compare("Virus59") == 0 ||
+
+						jt->first.compare("Virus60") == 0 ||
+						jt->first.compare("Virus61") == 0 || jt->first.compare("Virus62") == 0 || jt->first.compare("Virus63") == 0 ||
+						jt->first.compare("Virus64") == 0 || jt->first.compare("Virus65") == 0 || jt->first.compare("Virus66") == 0 ||
+						jt->first.compare("Virus67") == 0 || jt->first.compare("Virus68") == 0 || jt->first.compare("Virus69") == 0 ||
+
+						jt->first.compare("Virus70") == 0 ||
+						jt->first.compare("Virus71") == 0 || jt->first.compare("Virus72") == 0 || jt->first.compare("Virus73") == 0 ||
+						jt->first.compare("Virus74") == 0 || jt->first.compare("Virus75") == 0 || jt->first.compare("Virus76") == 0 ||
+						jt->first.compare("Virus77") == 0 || jt->first.compare("Virus78") == 0 || jt->first.compare("Virus79") == 0 ||
+
+						jt->first.compare("Virus80") == 0 ||
+						jt->first.compare("Virus81") == 0 || jt->first.compare("Virus82") == 0 || jt->first.compare("Virus83") == 0 ||
+						jt->first.compare("Virus84") == 0 || jt->first.compare("Virus85") == 0 || jt->first.compare("Virus86") == 0 ||
+						jt->first.compare("Virus87") == 0 || jt->first.compare("Virus88") == 0 || jt->first.compare("Virus89") == 0 ||
+
+						jt->first.compare("Virus90") == 0 ||
+						jt->first.compare("Virus91") == 0 || jt->first.compare("Virus92") == 0 || jt->first.compare("Virus93") == 0 ||
+						jt->first.compare("Virus94") == 0 || jt->first.compare("Virus95") == 0 || jt->first.compare("Virus96") == 0 ||
+						jt->first.compare("Virus97") == 0 || jt->first.compare("Virus98") == 0 || jt->first.compare("Virus99") == 0 ||
+
+						jt->first.compare("Virus100") == 0 ||
+						jt->first.compare("Virus101") == 0 || jt->first.compare("Virus102") == 0 || jt->first.compare("Virus103") == 0 ||
+						jt->first.compare("Virus104") == 0 || jt->first.compare("Virus105") == 0 || jt->first.compare("Virus106") == 0 ||
+						jt->first.compare("Virus107") == 0 || jt->first.compare("Virus108") == 0 || jt->first.compare("Virus109") == 0 ||
+
+						jt->first.compare("Virus110") == 0 ||
+						jt->first.compare("Virus111") == 0 || jt->first.compare("Virus112") == 0 || jt->first.compare("Virus113") == 0 ||
+						jt->first.compare("Virus114") == 0 || jt->first.compare("Virus115") == 0 || jt->first.compare("Virus116") == 0 ||
+						jt->first.compare("Virus117") == 0 || jt->first.compare("Virus118") == 0 || jt->first.compare("Virus119") == 0 ||
+
+						jt->first.compare("Virus120") == 0 ||
+						jt->first.compare("Virus121") == 0 || jt->first.compare("Virus122") == 0 || jt->first.compare("Virus123") == 0 ||
+						jt->first.compare("Virus124") == 0 || jt->first.compare("Virus125") == 0 || jt->first.compare("Virus126") == 0 ||
+						jt->first.compare("Virus127") == 0 || jt->first.compare("Virus128") == 0 || jt->first.compare("Virus129") == 0 ||
+
+						jt->first.compare("Virus130") == 0 ||
+						jt->first.compare("Virus131") == 0 || jt->first.compare("Virus132") == 0 || jt->first.compare("Virus133") == 0 ||
+						jt->first.compare("Virus134") == 0 || jt->first.compare("Virus135") == 0 || jt->first.compare("Virus136") == 0 ||
+						jt->first.compare("Virus137") == 0 || jt->first.compare("Virus138") == 0 || jt->first.compare("Virus139") == 0 ||
+
+						jt->first.compare("Virus140") == 0 ||
+						jt->first.compare("Virus141") == 0 || jt->first.compare("Virus142") == 0 || jt->first.compare("Virus143") == 0 ||
+						jt->first.compare("Virus144") == 0 || jt->first.compare("Virus145") == 0 || jt->first.compare("Virus146") == 0 ||
+						jt->first.compare("Virus147") == 0 || jt->first.compare("Virus148") == 0 || jt->first.compare("Virus149") == 0 ||
+
+						jt->first.compare("Virus150") == 0 ||
+						jt->first.compare("Virus151") == 0 || jt->first.compare("Virus152") == 0 || jt->first.compare("Virus153") == 0 ||
+						jt->first.compare("Virus154") == 0 || jt->first.compare("Virus155") == 0 || jt->first.compare("Virus156") == 0 ||
+						jt->first.compare("Virus157") == 0 || jt->first.compare("Virus158") == 0 || jt->first.compare("Virus159") == 0 ||
+
+						jt->first.compare("Virus160") == 0 ||
+						jt->first.compare("Virus161") == 0 || jt->first.compare("Virus162") == 0 || jt->first.compare("Virus163") == 0 ||
+						jt->first.compare("Virus164") == 0 || jt->first.compare("Virus165") == 0) {
+						printf("\n-----PIERDE VIDA-----\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+						stateSimi += 1;
+					}
+					else if (jt->first.compare("Vacuna") == 0) {
+					 std::cout << "Collision " << it->first << " with " << jt->first << std::endl;
+						printf("\n-----SUMA VIDA-----\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+						stateSimi -= 50;
+					}
+					else if (jt->first.compare("Vacuna2") == 0){
+					std::cout << "Collision " << it->first << " with " << jt->first << std::endl;
+						printf("\n-----FELICIDADES, HAS COMPLETADO EL CIRCUITO-----\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+						stateSimi = 1000;
+					}
+					else {
+						printf("\n-----NO COLLISION-----\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+					}
+>>>>>>> Stashed changes
 				}
 			}
 			if (isCollision)			{
@@ -3348,6 +3458,24 @@ void applicationLoop() {
 			modelText -> render("El Dr. Simi murio" , -0.1, -0.9, 50, 1.0, 1.0, 0.0);
 			glDisable(GL_BLEND);
 		}
+<<<<<<< Updated upstream
+=======
+		else if (stateSimi == 1000) {
+			glEnable(GL_BLEND);
+			modelText->render("Felicidades, completaste el circuito", -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else if (stateSimi == -51) {
+			glEnable(GL_BLEND);
+			modelText->render("Vacuna 1 encontrada", -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+		else if (stateSimi == -100) {
+			glEnable(GL_BLEND);
+			modelText->render("Inicio del juego", -0.1, -0.9, 50, 1.0, 1.0, 0.0);
+			glDisable(GL_BLEND);
+		}
+>>>>>>> Stashed changes
 		else{
 			modelMatrixSimi = modelMatrixSimiAux;
 			stateSimi = 0;
