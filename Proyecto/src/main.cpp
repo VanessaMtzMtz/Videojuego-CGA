@@ -146,6 +146,7 @@ int lastMousePosY, offsetY = 0;
 glm::mat4 matrixModelVaccine = glm::mat4(1.0);
 glm::mat4 matrixModelVaccine2 = glm::mat4(1.0);
 glm::mat4 modelMatrixSimi = glm::mat4(1.0f);
+glm::mat4 modelMatrixSimiAux = glm::mat4(1.0f);
 glm::mat4 modelMatrixPerson = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi1 = glm::mat4(1.0f);
 glm::mat4 modelMatrixEdi2 = glm::mat4(1.0f);
@@ -984,8 +985,10 @@ void applicationLoop() {
 	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(79.9, 0.0, -73.1));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-    modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-68.0f, 0.0f, 83.3f));
+  modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
+	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -20.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
+	modelMatrixSimiAux = modelMatrixSimi;
 
 	modelMatrixPerson = glm::translate(modelMatrixPerson, glm::vec3(-75.0f, 0.0f, -74.3f));
 
@@ -1542,9 +1545,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi1 = glm::scale(modelmatrixColliderEdi1, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi1 = glm::translate(modelmatrixColliderEdi1,
 				glm::vec3(modelEdi1.getObb().c.x,
-						modelEdi1.getObb().c.y + 65.5,
+						modelEdi1.getObb().c.y + 67,
 						modelEdi1.getObb().c.z + 123.5));
-		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 12.3, 0.025);
+		edi1Collider.e = modelEdi1.getObb().e * glm::vec3(1.0, 12.1, 0.025);
 		edi1Collider.c = glm::vec3(modelmatrixColliderEdi1[3]);
 		addOrUpdateColliders(collidersOBB, "edi1", edi1Collider, modelMatrixEdi1);
 
@@ -1574,7 +1577,7 @@ void applicationLoop() {
 		modelmatrixColliderEdi3 = glm::scale(modelmatrixColliderEdi3, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi3 = glm::translate(modelmatrixColliderEdi3,
 				glm::vec3(modelEdi3.getObb().c.x + 5.5, 
-						modelEdi3.getObb().c.y + 49.6,
+						modelEdi3.getObb().c.y + 53.0,
 						modelEdi3.getObb().c.z + 82.0));
 		edi3Collider.e = modelEdi3.getObb().e * glm::vec3(1.0, 10.85, 0.025);
 		edi3Collider.c = glm::vec3(modelmatrixColliderEdi3[3]);
@@ -1590,9 +1593,9 @@ void applicationLoop() {
 		modelmatrixColliderEdi4 = glm::scale(modelmatrixColliderEdi4, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderEdi4 = glm::translate(modelmatrixColliderEdi4,
 				glm::vec3(modelEdi4.getObb().c.x,
-						modelEdi4.getObb().c.y + 84.7,
+						modelEdi4.getObb().c.y + 65.7,
 						modelEdi4.getObb().c.z + 110.0));
-		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 5.9, 0.05);
+		edi4Collider.e = modelEdi4.getObb().e * glm::vec3(1.0, 8.35, 0.05);
 		edi4Collider.c = glm::vec3(modelmatrixColliderEdi4[3]);
 		addOrUpdateColliders(collidersOBB, "edi4", edi4Collider, modelMatrixEdi4);
 
@@ -1619,7 +1622,7 @@ void applicationLoop() {
 		modelMatrixColliderVirus1 = glm::translate(modelMatrixColliderVirus1, modelVirus.getSbb().c);
 		virus1Collider.c = glm::vec3(modelMatrixColliderVirus1[3]);
 		virus1Collider.ratio = modelVirus.getSbb().ratio * 3.0;
-		addOrUpdateColliders(collidersSBB, "virus1", virus1Collider, modelMatrixVirus1);
+		addOrUpdateColliders(collidersSBB, "Virus1", virus1Collider, modelMatrixVirus1);
 
 		//Collider del virus2
 		AbstractModel::SBB virus2Collider;
@@ -1628,7 +1631,7 @@ void applicationLoop() {
 		modelMatrixColliderVirus2 = glm::translate(modelMatrixColliderVirus2, modelVirus.getSbb().c);
 		virus2Collider.c = glm::vec3(modelMatrixColliderVirus2[3]);
 		virus2Collider.ratio = modelVirus.getSbb().ratio * 3.0;
-		addOrUpdateColliders(collidersSBB, "virus2", virus2Collider, modelMatrixVirus2);
+		addOrUpdateColliders(collidersSBB, "Virus2", virus2Collider, modelMatrixVirus2);
 
 		//Collider del Virus3
 		AbstractModel::SBB Virus3Collider;
@@ -2950,7 +2953,7 @@ void applicationLoop() {
 		modelmatrixColliderBorde1 = glm::scale(modelmatrixColliderBorde1, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderBorde1 = glm::translate(modelmatrixColliderBorde1,
 				glm::vec3(modelEdi2.getObb().c.x + 6.0,
-						modelEdi2.getObb().c.y - 38.0,
+						modelEdi2.getObb().c.y - 35.0,
 						modelEdi2.getObb().c.z + 195.0));
 		bordeCollider1.e = modelEdi2.getObb().e * glm::vec3(1.1, 1.1, 0.3);
 		bordeCollider1.c = glm::vec3(modelmatrixColliderBorde1[3]);
@@ -2965,12 +2968,28 @@ void applicationLoop() {
 		bordeCollider2.u = glm::quat_cast(modelmatrixColliderBorde2);
 		modelmatrixColliderBorde2 = glm::scale(modelmatrixColliderBorde2, glm::vec3(1.0, 1.0, 0.1));
 		modelmatrixColliderBorde2 = glm::translate(modelmatrixColliderBorde2,
-				glm::vec3(modelEdi3.getObb().c.x + 20.5, 
-						modelEdi3.getObb().c.y + 143.5,
+				glm::vec3(modelEdi3.getObb().c.x + 13.0, 
+						modelEdi3.getObb().c.y + 146.0,
 						modelEdi3.getObb().c.z + 82.0));
-		bordeCollider2.e = modelEdi3.getObb().e * glm::vec3(0.5, 1.6, 0.025);
+		bordeCollider2.e = modelEdi3.getObb().e * glm::vec3(0.5, 1.3, 0.025);
 		bordeCollider2.c = glm::vec3(modelmatrixColliderBorde2[3]);
 		addOrUpdateColliders(collidersOBB, "borde2", bordeCollider2, modelMatrixEdi3);
+
+		// Collider del borde3
+		AbstractModel::OBB bordeCollider3;
+		glm::mat4 modelmatrixColliderBorde3 = glm::mat4(modelMatrixEdi2);
+		modelmatrixColliderBorde3 = glm::rotate(modelmatrixColliderBorde3,
+				glm::radians(-90.0f), glm::vec3(1, 0, 0));
+		// Set the orientation of collider before doing the scale
+		bordeCollider3.u = glm::quat_cast(modelmatrixColliderBorde3);
+		modelmatrixColliderBorde3 = glm::scale(modelmatrixColliderBorde3, glm::vec3(1.0, 1.0, 0.1));
+		modelmatrixColliderBorde3 = glm::translate(modelmatrixColliderBorde3,
+				glm::vec3(modelEdi2.getObb().c.x + 29.0,
+						modelEdi2.getObb().c.y - 15.0,
+						modelEdi2.getObb().c.z + 195.0));
+		bordeCollider3.e = modelEdi2.getObb().e * glm::vec3(0.75, 1.35, 0.3);
+		bordeCollider3.c = glm::vec3(modelmatrixColliderBorde3[3]);
+		addOrUpdateColliders(collidersOBB, "borde3", bordeCollider3, modelMatrixEdi2);
 
 		/*******************************************
 		 * Render de colliders
@@ -3035,21 +3054,42 @@ void applicationLoop() {
 			addOrUpdateCollisionDetection(collisionDetection, it->first, isCollision);
 		}
 
-		for (std::map<std::string,
-				std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
-				collidersSBB.begin(); it != collidersSBB.end(); it++) {
+		// for (std::map<std::string,
+		// 		std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
+		// 		collidersSBB.begin(); it != collidersSBB.end(); it++) {
+		// 	bool isCollision = false;
+			
+		// 	for (std::map<std::string,
+		// 			std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator jt =
+		// 			collidersOBB.begin(); jt != collidersOBB.end(); jt++) {
+		// 		if (testSphereOBox(std::get<0>(it->second),
+		// 						std::get<0>(jt->second))) {
+		// 			std::cout << "Colision " << it->first << " with "
+		// 					<< jt->first << std::endl;
+		// 			isCollision = true;
+		// 			addOrUpdateCollisionDetection(collisionDetection, jt->first, true);
+		// 		}
+		// 	}
+		// 	addOrUpdateCollisionDetection(collisionDetection, it->first, isCollision);
+		// }
+
+		/**************************************
+		 * Test collisions OBB vs SBB (caja vs esfera)
+		 **************************************/
+		for (std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> > ::iterator it = collidersOBB.begin(); it != collidersOBB.end(); it++)
+		{
 			bool isCollision = false;
-			std::map<std::string,
-					std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator jt =
-					collidersOBB.begin();
-			for (; jt != collidersOBB.end(); jt++) {
-				if (testSphereOBox(std::get<0>(it->second),
-								std::get<0>(jt->second))) {
-					std::cout << "Colision " << it->first << " with "
-							<< jt->first << std::endl;
+			for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> > ::iterator jt = collidersSBB.begin(); jt != collidersSBB.end(); jt++)
+			{
+				//testSphereOBox(sbb, obb)
+				if (testSphereOBox(std::get<0>(jt->second), std::get<0>(it->second)))				{
+					std::cout << "Collision " << it->first << " with " << jt->first << std::endl;
 					isCollision = true;
-					addOrUpdateCollisionDetection(collisionDetection, jt->first, isCollision);
+					addOrUpdateCollisionDetection(collisionDetection, jt->first, true);
 				}
+			}
+			if (isCollision)			{
+				std::cout << "Collision " << it->first << " with object" <<  std::endl;
 			}
 			addOrUpdateCollisionDetection(collisionDetection, it->first, isCollision);
 		}
@@ -3071,21 +3111,18 @@ void applicationLoop() {
 				if (!colIt->second)
 					addOrUpdateColliders(collidersOBB, jt->first);
 				else {
-					//if (jt->first.compare("simi") == 0){
-						if (jt->first.compare("edi1") == 0){
-							printf("\n*****NO COLLISION edificio 1*****\n");
-							modelMatrixSimi = std::get<1>(jt->second);
-						}
-						else if (jt->first.compare("edi4") == 0){
-							printf("\n*****NO COLLISION edificio 4*****\n");
-							modelMatrixSimi = std::get<1>(jt->second);
-							stateSimi += 1;
-						}
-						else{
-							modelMatrixSimi = std::get<1>(jt->second);
-						}
-					//}
-					
+					if (jt->first.compare("Virus1") == 0 ){
+						/*|| jt->first.compare("edi2") == 0 || jt->first.compare("edi3") == 0 ||
+						jt->first.compare("edi4") == 0 || jt->first.compare("edi6") == 0 || jt->first.compare("borde1") == 0 ||
+						jt->first.compare("borde2") == 0 || jt->first.compare("borde3") == 0*/
+						printf("\n-----PIERDE VIDA-----\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+						stateSimi += 1;
+					}
+					else{
+						printf("\n*****NO COLLISION*****\n");
+						modelMatrixSimi = std::get<1>(jt->second);
+					}
 				}
 			}
 		}
@@ -3318,7 +3355,7 @@ void applicationLoop() {
 			glDisable(GL_BLEND);
 		}
 		else{
-			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(13.0f, 0.05f, -5.0f));
+			modelMatrixSimi = modelMatrixSimiAux;
 			stateSimi = 0;
 		}
 		
