@@ -889,11 +889,11 @@ bool processInput(bool continueApplication) {
 		const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
 
 		if (fabs(axes[1]) > 0.2) {
-			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.1));
+			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.5));
 			animationIndex = 0;
 		}
 		if (fabs(axes[0]) > 0.2) {
-			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 0.5f), glm::vec3(0, 1, 0));
+			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 1.0f), glm::vec3(0, 1, 0));
 			animationIndex = 0;
 		}
 		if (fabs(axes[2]) > 0.2) {
