@@ -125,18 +125,18 @@ GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
 GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
 GL_TEXTURE_CUBE_MAP_NEGATIVE_Z };
 
-std::string fileNames[6] = { "../Textures/mp_bloodvalley/blood-valley_ft.tga",
-		"../Textures/mp_bloodvalley/blood-valley_bk.tga",
-		"../Textures/mp_bloodvalley/blood-valley_up.tga",
-		"../Textures/mp_bloodvalley/blood-valley_dn.tga",
-		"../Textures/mp_bloodvalley/blood-valley_rt.tga",
-		"../Textures/mp_bloodvalley/blood-valley_lf.tga" };
-/*std::string fileNames[6] = { "../Textures/corona/corona_ft.tga",
+// std::string fileNames[6] = { "../Textures/mp_bloodvalley/blood-valley_ft.tga",
+// 		"../Textures/mp_bloodvalley/blood-valley_bk.tga",
+// 		"../Textures/mp_bloodvalley/blood-valley_up.tga",
+// 		"../Textures/mp_bloodvalley/blood-valley_dn.tga",
+// 		"../Textures/mp_bloodvalley/blood-valley_rt.tga",
+// 		"../Textures/mp_bloodvalley/blood-valley_lf.tga" };
+std::string fileNames[6] = { "../Textures/corona/corona_ft.tga",
 		"../Textures/corona/corona_bk.tga",
 		"../Textures/corona/corona_up.tga",
 		"../Textures/corona/corona_dn.tga",
 		"../Textures/corona/corona_rt.tga",
-		"../Textures/corona/corona_lf.tga" };*/
+		"../Textures/corona/corona_lf.tga" };
 
 bool exitApp = false;
 int lastMousePosX, offsetX = 0;
@@ -985,7 +985,7 @@ void applicationLoop() {
 	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(79.9, 0.0, -73.1));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
+  	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
 	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -20.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 	modelMatrixSimiAux = modelMatrixSimi;
