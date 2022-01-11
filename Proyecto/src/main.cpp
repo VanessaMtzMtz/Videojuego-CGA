@@ -934,16 +934,16 @@ bool processInput(bool continueApplication) {
 
 	//Simi walking
 	if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
-		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(2.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
-		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-2.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.5));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.5));
 		animationIndex = 0;
 	}
 
@@ -2985,29 +2985,29 @@ void applicationLoop() {
 		bordeCollider3.c = glm::vec3(modelmatrixColliderBorde3[3]);
 		addOrUpdateColliders(collidersOBB, "borde3", bordeCollider3, modelMatrixEdi2);
 
-		/*******************************************
-		 * Render de colliders
-		 *******************************************/
-		for (std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator it =
-				collidersOBB.begin(); it != collidersOBB.end(); it++) {
-			glm::mat4 matrixCollider = glm::mat4(1.0);
-			matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
-			matrixCollider = matrixCollider * glm::mat4(std::get<0>(it->second).u);
-			matrixCollider = glm::scale(matrixCollider, std::get<0>(it->second).e * 2.0f);
-			boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-			boxCollider.enableWireMode();
-			boxCollider.render(matrixCollider);
-		}
+		// /*******************************************
+		//  * Render de colliders
+		//  *******************************************/
+		// for (std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator it =
+		// 		collidersOBB.begin(); it != collidersOBB.end(); it++) {
+		// 	glm::mat4 matrixCollider = glm::mat4(1.0);
+		// 	matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
+		// 	matrixCollider = matrixCollider * glm::mat4(std::get<0>(it->second).u);
+		// 	matrixCollider = glm::scale(matrixCollider, std::get<0>(it->second).e * 2.0f);
+		// 	boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
+		// 	boxCollider.enableWireMode();
+		// 	boxCollider.render(matrixCollider);
+		// }
 
-		for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
-				collidersSBB.begin(); it != collidersSBB.end(); it++) {
-			glm::mat4 matrixCollider = glm::mat4(1.0);
-			matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
-			matrixCollider = glm::scale(matrixCollider, glm::vec3(std::get<0>(it->second).ratio * 2.0f));
-			sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-			sphereCollider.enableWireMode();
-			sphereCollider.render(matrixCollider);
-		}
+		// for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
+		// 		collidersSBB.begin(); it != collidersSBB.end(); it++) {
+		// 	glm::mat4 matrixCollider = glm::mat4(1.0);
+		// 	matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
+		// 	matrixCollider = glm::scale(matrixCollider, glm::vec3(std::get<0>(it->second).ratio * 2.0f));
+		// 	sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
+		// 	sphereCollider.enableWireMode();
+		// 	sphereCollider.render(matrixCollider);
+		// }
 
 		/*******************************************
 		 * Test Colisions
