@@ -125,18 +125,12 @@ GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
 GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
 GL_TEXTURE_CUBE_MAP_NEGATIVE_Z };
 
-std::string fileNames[6] = { "../Textures/mp_bloodvalley/blood-valley_ft.tga",
-		"../Textures/mp_bloodvalley/blood-valley_bk.tga",
-		"../Textures/mp_bloodvalley/blood-valley_up.tga",
-		"../Textures/mp_bloodvalley/blood-valley_dn.tga",
-		"../Textures/mp_bloodvalley/blood-valley_rt.tga",
-		"../Textures/mp_bloodvalley/blood-valley_lf.tga" };
-/*std::string fileNames[6] = { "../Textures/corona/corona_ft.tga",
+std::string fileNames[6] = { "../Textures/corona/corona_ft.tga",
 		"../Textures/corona/corona_bk.tga",
 		"../Textures/corona/corona_up.tga",
 		"../Textures/corona/corona_dn.tga",
 		"../Textures/corona/corona_rt.tga",
-		"../Textures/corona/corona_lf.tga" };*/
+		"../Textures/corona/corona_lf.tga" };
 
 bool exitApp = false;
 int lastMousePosX, offsetX = 0;
@@ -895,11 +889,11 @@ bool processInput(bool continueApplication) {
 		const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
 
 		if (fabs(axes[1]) > 0.2) {
-			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.1));
+			modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, axes[1] * 0.5));
 			animationIndex = 0;
 		}
 		if (fabs(axes[0]) > 0.2) {
-			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 0.5f), glm::vec3(0, 1, 0));
+			modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-axes[0] * 1.0f), glm::vec3(0, 1, 0));
 			animationIndex = 0;
 		}
 		if (fabs(axes[2]) > 0.2) {
@@ -940,16 +934,16 @@ bool processInput(bool continueApplication) {
 
 	//Simi walking
 	if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
-		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(2.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
-		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-1.0f), glm::vec3(0, 1, 0));
+		modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-2.0f), glm::vec3(0, 1, 0));
 		animationIndex = 0;
 	}if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.3));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, 0.5));
 		animationIndex = 0;
 	}else if (modelSelected == 2 && glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.2));
+		modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(0, 0, -0.5));
 		animationIndex = 0;
 	}
 
@@ -985,7 +979,7 @@ void applicationLoop() {
 	matrixModelVaccine2 = glm::translate(matrixModelVaccine2, glm::vec3(79.9, 0.0, -73.1));
 	matrixModelVaccine2 = glm::rotate(matrixModelVaccine2, glm::radians(90.0f), glm::vec3(0, 1, 0));
 
-  modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
+  	modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(-63.0, 0, 85.0));
 	//modelMatrixSimi = glm::translate(modelMatrixSimi, glm::vec3(42.0f, 0.0f, -20.0f));
 	modelMatrixSimi = glm::rotate(modelMatrixSimi, glm::radians(-180.0f), glm::vec3(0, 1, 0));
 	modelMatrixSimiAux = modelMatrixSimi;
@@ -2991,29 +2985,29 @@ void applicationLoop() {
 		bordeCollider3.c = glm::vec3(modelmatrixColliderBorde3[3]);
 		addOrUpdateColliders(collidersOBB, "borde3", bordeCollider3, modelMatrixEdi2);
 
-		/*******************************************
-		 * Render de colliders
-		 *******************************************/
-		for (std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator it =
-				collidersOBB.begin(); it != collidersOBB.end(); it++) {
-			glm::mat4 matrixCollider = glm::mat4(1.0);
-			matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
-			matrixCollider = matrixCollider * glm::mat4(std::get<0>(it->second).u);
-			matrixCollider = glm::scale(matrixCollider, std::get<0>(it->second).e * 2.0f);
-			boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-			boxCollider.enableWireMode();
-			boxCollider.render(matrixCollider);
-		}
+		// /*******************************************
+		//  * Render de colliders
+		//  *******************************************/
+		// for (std::map<std::string, std::tuple<AbstractModel::OBB, glm::mat4, glm::mat4> >::iterator it =
+		// 		collidersOBB.begin(); it != collidersOBB.end(); it++) {
+		// 	glm::mat4 matrixCollider = glm::mat4(1.0);
+		// 	matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
+		// 	matrixCollider = matrixCollider * glm::mat4(std::get<0>(it->second).u);
+		// 	matrixCollider = glm::scale(matrixCollider, std::get<0>(it->second).e * 2.0f);
+		// 	boxCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
+		// 	boxCollider.enableWireMode();
+		// 	boxCollider.render(matrixCollider);
+		// }
 
-		for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
-				collidersSBB.begin(); it != collidersSBB.end(); it++) {
-			glm::mat4 matrixCollider = glm::mat4(1.0);
-			matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
-			matrixCollider = glm::scale(matrixCollider, glm::vec3(std::get<0>(it->second).ratio * 2.0f));
-			sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
-			sphereCollider.enableWireMode();
-			sphereCollider.render(matrixCollider);
-		}
+		// for (std::map<std::string, std::tuple<AbstractModel::SBB, glm::mat4, glm::mat4> >::iterator it =
+		// 		collidersSBB.begin(); it != collidersSBB.end(); it++) {
+		// 	glm::mat4 matrixCollider = glm::mat4(1.0);
+		// 	matrixCollider = glm::translate(matrixCollider, std::get<0>(it->second).c);
+		// 	matrixCollider = glm::scale(matrixCollider, glm::vec3(std::get<0>(it->second).ratio * 2.0f));
+		// 	sphereCollider.setColor(glm::vec4(1.0, 1.0, 1.0, 1.0));
+		// 	sphereCollider.enableWireMode();
+		// 	sphereCollider.render(matrixCollider);
+		// }
 
 		/*******************************************
 		 * Test Colisions

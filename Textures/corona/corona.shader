@@ -1,8 +1,8 @@
 // Direction & elevation checked and adjusted - Speaker
 
-textures/skies/mp_bloodvalley
+textures/skies/corona
 {
-	qer_editorimage env/mp_bloodvalley/blood-valley_ft.tga
+	qer_editorimage env/corona/corona.tga
 	surfaceparm noimpact
 	surfaceparm nolightmap
 	q3map_globaltexture
@@ -10,5 +10,5 @@ textures/skies/mp_bloodvalley
 	q3map_surfacelight 100
 	surfaceparm sky
 	q3map_sun 1 1 1 100 225 35
-	skyparms env/mp_bloodvalley/blood-valley - -
+	skyparms env/inter/interstellar - -
 }
